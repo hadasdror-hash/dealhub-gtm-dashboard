@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Dashboard — Demos Created (SQL)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; font-size: 14px; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 0.5px solid #ddd; }
+  .page-header h1 { font-size: 18px; font-weight: 500; }
+  .page-header .meta { font-size: 12px; color: #888; margin-top: 3px; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; }
+  .badge-live { background: #EAF3DE; color: #3B6D11; }
+
+  .section-label { font-size: 11px; font-weight: 500; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .section-divider { border: none; border-top: 0.5px solid #e8e8e5; margin: 28px 0; }
+
+  .kpi-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  .kpi-card { background: #fff; border-radius: 10px; border: 0.5px solid #e5e5e5; padding: 16px 20px; flex: 1; min-width: 160px; }
+  .kpi-card .lbl { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+  .kpi-card .val { font-size: 26px; font-weight: 500; line-height: 1; margin-bottom: 6px; }
+  .kpi-card .delta { font-size: 12px; display: flex; align-items: center; gap: 3px; }
+  .delta-up { color: #3B6D11; }
+  .delta-down { color: #A32D2D; }
+  .delta-neutral { color: #888; }
+  .sub { color: #aaa; font-size: 11px; margin-left: 2px; }
+
+  .wow-chips { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .wow-chip { display: flex; align-items: center; gap: 8px; background: #fff; border: 0.5px solid #e5e5e5; border-radius: 8px; padding: 10px 14px; }
+  .wow-chip .lbl { font-size: 11px; color: #888; }
+  .wow-chip .val { font-size: 15px; font-weight: 500; }
+  .wow-chip .chg { font-size: 11px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .full-col { margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 10px; border: 0.5px solid #e5e5e5; padding: 20px; }
+  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-sub { font-size: 11px; color: #aaa; margin-bottom: 16px; }
+
+  .src-hdr { display: flex; justify-content: space-between; font-size: 11px; color: #ccc; margin-bottom: 8px; }
+  .src-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .src-lbl { width: 70px; font-size: 12px; color: #555; flex-shrink: 0; }
+  .bar-wrap { flex: 1; background: #f0f0ee; border-radius: 4px; height: 7px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .src-count { width: 30px; text-align: right; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+  .src-q1 { width: 42px; text-align: right; font-size: 11px; color: #aaa; flex-shrink: 0; }
+  .src-pct { width: 48px; text-align: right; font-size: 11px; flex-shrink: 0; }
+  .src-arr { font-size: 11px; color: #aaa; margin: -2px 0 9px 78px; }
+
+  .team-rows { display: flex; flex-direction: column; gap: 8px; }
+  .team-row { display: grid; grid-template-columns: 90px 1fr 90px 90px; align-items: center; gap: 8px; padding: 10px 12px; background: #f8f8f6; border-radius: 8px; border: 0.5px solid #e8e8e5; }
+  .team-seg { font-size: 11px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.3px; }
+  .team-val { font-size: 14px; font-weight: 500; }
+  .team-arr { font-size: 11px; color: #888; }
+  .team-vs { font-size: 11px; }
+
+  .sqo-highlight { background: #f0f6fd; border: 0.5px solid #B5D4F4; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .sqo-hl-item { }
+  .sqo-hl-item .lbl { font-size: 11px; color: #185FA5; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+  .sqo-hl-item .val { font-size: 22px; font-weight: 500; color: #0C447C; }
+  .sqo-hl-item .note { font-size: 11px; color: #378ADD; margin-top: 2px; }
+  .sqo-divider { width: 0.5px; background: #B5D4F4; align-self: stretch; }
+
+  .info-note { background: #f0f6fd; border-radius: 6px; padding: 9px 12px; font-size: 11px; color: #185FA5; margin-top: 12px; }
+  .warn-note { background: #FAEEDA; border-radius: 6px; padding: 9px 12px; font-size: 11px; color: #854F0B; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-header">
+    <div>
+      <h1>Demos created — SQL &amp; SQO pipeline</h1>
+      <div class="meta">FY26 · Q1 (Feb 1–Apr 30) · Q2 to date (May 1–Jun 18) · Week of Jun 16–18 · QoQ uses Q1 QTD (Feb 1–Mar 21)</div>
+    </div>
+    <span class="badge badge-live"><i class="ti ti-refresh" aria-hidden="true"></i> Live report</span>
+  </div>
+
+  <!-- ── SQL SECTION ── -->
+  <div class="section-label">SQL — demos created</div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="lbl">Deals created QTD</div>
+      <div class="val">181</div>
+      <div class="delta delta-down"><i class="ti ti-arrow-down-right"></i> 2% vs Q1 QTD (185) <span class="sub">QoQ</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">ARR created QTD</div>
+      <div class="val">$13.0M</div>
+      <div class="delta delta-down"><i class="ti ti-arrow-down-right"></i> 13% vs Q1 QTD ($14.9M) <span class="sub">QoQ</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">SQL → SQO conversion</div>
+      <div class="val">49.2%</div>
+      <div class="delta delta-neutral"><i class="ti ti-minus"></i> flat vs Q1 QTD (49.2%) <span class="sub">QoQ</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">This week vs last week — SQL</div>
+  <div class="wow-chips">
+    <div class="wow-chip">
+      <span class="lbl">Deals this week</span>
+      <span class="val">24</span>
+      <span class="chg delta-up">▲ +50% vs 16</span>
+    </div>
+    <div class="wow-chip">
+      <span class="lbl">ARR this week</span>
+      <span class="val">$1.06M</span>
+      <span class="chg delta-up">▲ +12% vs $0.95M</span>
+    </div>
+    <div class="wow-chip">
+      <span class="lbl">Avg ARR / deal</span>
+      <span class="val">$44.2K</span>
+      <span class="chg delta-down">▼ -25% vs $59.1K</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+
+    <!-- BY SOURCE -->
+    <div class="card">
+      <div class="card-title">By source</div>
+      <div class="card-sub">Deal count QTD vs Q1 QTD · % = deal count delta</div>
+
+      <div class="src-hdr">
+        <span>Source</span>
+        <span style="display:flex;gap:20px;"><span>Q2 QTD</span><span>Q1 QTD</span><span style="width:48px;text-align:right">QoQ</span></span>
+      </div>
+
+      <div class="src-row">
+        <span class="src-lbl">Inbound</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:69%;background:#378ADD"></div></div>
+        <span class="src-count">125</span>
+        <span class="src-q1">124</span>
+        <span class="src-pct delta-up">▲ +1%</span>
+      </div>
+      <div class="src-arr">$7.5M QTD · $9.7M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Outbound</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#1D9E75"></div></div>
+        <span class="src-count">29</span>
+        <span class="src-q1">34</span>
+        <span class="src-pct delta-down">▼ -15%</span>
+      </div>
+      <div class="src-arr">$1.9M QTD · $2.4M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Partners</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:6%;background:#BA7517"></div></div>
+        <span class="src-count">10</span>
+        <span class="src-q1">18</span>
+        <span class="src-pct delta-down">▼ -44%</span>
+      </div>
+      <div class="src-arr">$0.5M QTD · $1.8M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Other</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:6%;background:#888780"></div></div>
+        <span class="src-count">11</span>
+        <span class="src-q1">9</span>
+        <span class="src-pct delta-up">▲ +22%</span>
+      </div>
+      <div class="src-arr">$2.6M QTD · $1.0M Q1 QTD</div>
+
+      <div class="warn-note">
+        <i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:4px;"></i>
+        Partners down 44% vs Q1 QTD. Outbound down 15%. Inbound holding steady.
+      </div>
+    </div>
+
+    <!-- BY SALES TEAM SIZE -->
+    <div class="card">
+      <div class="card-title">By sales team size</div>
+      <div class="card-sub">Deal count &amp; ARR QTD · vs Q1 QTD</div>
+      <div class="team-rows">
+        <div style="display:grid;grid-template-columns:90px 1fr 110px 90px;font-size:11px;color:#ccc;padding:0 12px;gap:8px;margin-bottom:2px;">
+          <span>Segment</span><span>Deals · ARR</span><span>Q1 QTD</span><span style="text-align:right">QoQ</span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">Enterprise</span>
+          <div><span class="team-val">47</span> <span class="team-arr">· $7.4M · avg $157.6K</span></div>
+          <span class="team-arr">51 · $7.8M</span>
+          <span class="team-vs delta-down" style="text-align:right">▼ 8% deals<br>▼ 5% ARR</span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">Mid-Market</span>
+          <div><span class="team-val">52</span> <span class="team-arr">· $3.4M · avg $64.7K</span></div>
+          <span class="team-arr">54 · $3.2M</span>
+          <span class="team-vs" style="text-align:right"><span class="delta-down">▼ 4% deals</span><br><span class="delta-up">▲ 4% ARR</span></span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">SMB</span>
+          <div><span class="team-val">77</span> <span class="team-arr">· $2.2M · avg $28.0K</span></div>
+          <span class="team-arr">80 · $3.9M</span>
+          <span class="team-vs delta-down" style="text-align:right">▼ 4% deals<br>▼ 44% ARR</span>
+        </div>
+      </div>
+      <div class="warn-note" style="background:#fdf3f3;color:#A32D2D;">
+        <i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:4px;"></i>
+        SMB ARR down 44% vs Q1 QTD despite similar deal count — avg deal size dropped significantly.
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY TREND -->
+  <div class="card full-col">
+    <div class="card-title">Weekly trend — deals created (SQL)</div>
+    <div class="card-sub">Q2 FY26 week by week</div>
+    <div style="position:relative;height:240px;">
+      <canvas id="weeklyChart" role="img" aria-label="Weekly SQL deal count Q2 FY26 weeks 1 through 8">Weekly deals created Q2 FY26.</canvas>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── SQO SECTION ── -->
+  <div class="section-label">SQO — sales qualified opportunities</div>
+
+  <!-- SQO HIGHLIGHT BAR -->
+  <div class="sqo-highlight">
+    <div class="sqo-hl-item">
+      <div class="lbl">SQO QTD</div>
+      <div class="val">89</div>
+      <div class="note">vs Q1 QTD: 91 <span style="color:#A32D2D;font-weight:500;">▼ -2%</span></div>
+    </div>
+    <div class="sqo-divider"></div>
+    <div class="sqo-hl-item">
+      <div class="lbl">SQO ARR QTD</div>
+      <div class="val">$8.2M</div>
+      <div class="note">vs Q1 QTD: $8.2M <span style="color:#888;font-weight:500;">— flat</span></div>
+    </div>
+    <div class="sqo-divider"></div>
+    <div class="sqo-hl-item">
+      <div class="lbl">SQL → SQO conversion</div>
+      <div class="val">49.2%</div>
+      <div class="note">vs Q1 QTD: 49.2% <span style="color:#888;font-weight:500;">— flat</span></div>
+    </div>
+    <div class="sqo-divider"></div>
+    <div class="sqo-hl-item">
+      <div class="lbl">SQO this week</div>
+      <div class="val">3</div>
+      <div class="note">vs last week: 7 <span style="color:#A32D2D;font-weight:500;">▼ -57%</span></div>
+    </div>
+    <div class="sqo-divider"></div>
+    <div class="sqo-hl-item">
+      <div class="lbl">SQO ARR this week</div>
+      <div class="val">$0.09M</div>
+      <div class="note">vs last week: $0.45M <span style="color:#A32D2D;font-weight:500;">▼ -81%</span></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+
+    <!-- SQO BY SOURCE -->
+    <div class="card">
+      <div class="card-title">SQO by source</div>
+      <div class="card-sub">Deal count QTD vs Q1 QTD</div>
+
+      <div class="src-hdr">
+        <span>Source</span>
+        <span style="display:flex;gap:20px;"><span>Q2 QTD</span><span>Q1 QTD</span><span style="width:48px;text-align:right">QoQ</span></span>
+      </div>
+
+      <div class="src-row">
+        <span class="src-lbl">Inbound</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:76%;background:#378ADD"></div></div>
+        <span class="src-count">68</span>
+        <span class="src-q1">55</span>
+        <span class="src-pct delta-up">▲ +24%</span>
+      </div>
+      <div class="src-arr">$4.9M QTD · $4.5M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Outbound</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#1D9E75"></div></div>
+        <span class="src-count">9</span>
+        <span class="src-q1">17</span>
+        <span class="src-pct delta-down">▼ -47%</span>
+      </div>
+      <div class="src-arr">$0.7M QTD · $1.4M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Partners</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:7%;background:#BA7517"></div></div>
+        <span class="src-count">6</span>
+        <span class="src-q1">12</span>
+        <span class="src-pct delta-down">▼ -50%</span>
+      </div>
+      <div class="src-arr">$0.3M QTD · $1.4M Q1 QTD</div>
+
+      <div class="src-row">
+        <span class="src-lbl">Other</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:7%;background:#888780"></div></div>
+        <span class="src-count">6</span>
+        <span class="src-q1">7</span>
+        <span class="src-pct delta-down">▼ -14%</span>
+      </div>
+      <div class="src-arr">$2.4M QTD · $1.0M Q1 QTD</div>
+
+      <div class="warn-note">
+        <i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:4px;"></i>
+        Outbound SQO down 47%, Partners down 50% vs Q1 QTD. Inbound up 24%.
+      </div>
+    </div>
+
+    <!-- SQO BY TEAM SIZE -->
+    <div class="card">
+      <div class="card-title">SQO by sales team size</div>
+      <div class="card-sub">Deal count &amp; ARR QTD · vs Q1 QTD</div>
+      <div class="team-rows">
+        <div style="display:grid;grid-template-columns:90px 1fr 110px 90px;font-size:11px;color:#ccc;padding:0 12px;gap:8px;margin-bottom:2px;">
+          <span>Segment</span><span>Deals · ARR</span><span>Q1 QTD</span><span style="text-align:right">QoQ</span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">Enterprise</span>
+          <div><span class="team-val">21</span> <span class="team-arr">· $4.8M · avg $229.4K</span></div>
+          <span class="team-arr">28 · $5.3M</span>
+          <span class="team-vs delta-down" style="text-align:right">▼ 25% deals<br>▼ 9% ARR</span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">Mid-Market</span>
+          <div><span class="team-val">32</span> <span class="team-arr">· $2.2M · avg $68.5K</span></div>
+          <span class="team-arr">30 · $1.8M</span>
+          <span class="team-vs delta-up" style="text-align:right">▲ 7% deals<br>▲ 21% ARR</span>
+        </div>
+        <div class="team-row">
+          <span class="team-seg">SMB</span>
+          <div><span class="team-val">35</span> <span class="team-arr">· $1.2M · avg $34.7K</span></div>
+          <span class="team-arr">33 · $1.1M</span>
+          <span class="team-vs delta-up" style="text-align:right">▲ 6% deals<br>▲ 12% ARR</span>
+        </div>
+      </div>
+      <div class="warn-note" style="background:#fdf3f3;color:#A32D2D;">
+        <i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:4px;"></i>
+        Enterprise SQO down 25% in deal count vs Q1 QTD. MM and SMB holding steady.
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── WHERE ARE DEMOS TODAY ── -->
+  <div class="section-label">Q2 demos — current status</div>
+  <div class="card full-col">
+    <div class="card-title">Where are Q2 demos today?</div>
+    <div class="card-sub">181 SQL created May 1 – Jun 18 · current status · Future = demo date today or later · TBD = demo date passed or status TBD</div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+
+      <div style="background:#f0f6fd;border-radius:8px;padding:14px;border:0.5px solid #B5D4F4;">
+        <div style="font-size:11px;color:#185FA5;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Pipeline</div>
+        <div style="font-size:22px;font-weight:500;color:#0C447C;">86</div>
+        <div style="font-size:11px;color:#378ADD;margin-top:2px;">$8.1M · 48%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Active in progress</div>
+      </div>
+
+      <div style="background:#FAEEDA;border-radius:8px;padding:14px;border:0.5px solid #FAC775;">
+        <div style="font-size:11px;color:#854F0B;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Future</div>
+        <div style="font-size:22px;font-weight:500;color:#633806;">28</div>
+        <div style="font-size:11px;color:#BA7517;margin-top:2px;">$1.7M · 15%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Demo date today or later</div>
+      </div>
+
+      <div style="background:#f8f8f6;border-radius:8px;padding:14px;border:0.5px solid #e0e0dc;">
+        <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">TBD</div>
+        <div style="font-size:22px;font-weight:500;color:#1a1a1a;">19</div>
+        <div style="font-size:11px;color:#888;margin-top:2px;">$0.9M · 10%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Demo passed, outcome pending</div>
+      </div>
+
+      <div style="background:#EAF3DE;border-radius:8px;padding:14px;border:0.5px solid #C0DD97;">
+        <div style="font-size:11px;color:#3B6D11;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Won</div>
+        <div style="font-size:22px;font-weight:500;color:#27500A;">3</div>
+        <div style="font-size:11px;color:#639922;margin-top:2px;">$0.1M · 2%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Closed won</div>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;">
+
+      <div style="background:#FCEBEB;border-radius:8px;padding:14px;border:0.5px solid #F7C1C1;">
+        <div style="font-size:11px;color:#A32D2D;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Lost</div>
+        <div style="font-size:22px;font-weight:500;color:#791F1F;">2</div>
+        <div style="font-size:11px;color:#E24B4A;margin-top:2px;">$0.1M · 1%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Closed lost</div>
+      </div>
+
+      <div style="background:#f8f8f6;border-radius:8px;padding:14px;border:0.5px solid #e0e0dc;">
+        <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">Disqualified</div>
+        <div style="font-size:22px;font-weight:500;color:#1a1a1a;">17</div>
+        <div style="font-size:11px;color:#888;margin-top:2px;">$0.8M · 9%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Disqualified excl. no show/cancelled</div>
+      </div>
+
+      <div style="background:#FBEAF0;border-radius:8px;padding:14px;border:0.5px solid #F4C0D1;">
+        <div style="font-size:11px;color:#993556;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">No show &amp; Cancelled</div>
+        <div style="font-size:22px;font-weight:500;color:#72243E;">26</div>
+        <div style="font-size:11px;color:#D4537E;margin-top:2px;">$1.3M · 14%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Substage: No Show or Cancelled</div>
+      </div>
+
+      <div style="background:#FAECE7;border-radius:8px;padding:14px;border:0.5px solid #F5C4B3;">
+        <div style="font-size:11px;color:#993C1D;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;">To be lost</div>
+        <div style="font-size:22px;font-weight:500;color:#712B13;">11</div>
+        <div style="font-size:11px;color:#D85A30;margin-top:2px;">$0.5M · 6%</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">Substage: To Be Lost</div>
+      </div>
+
+    </div>
+
+    <div style="position:relative;height:52px;background:#f5f5f3;border-radius:8px;overflow:hidden;margin-bottom:8px;" aria-label="Q2 status distribution bar">
+      <div style="position:absolute;left:0;top:0;height:100%;width:48%;background:#378ADD;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">Pipeline 48%</div>
+      <div style="position:absolute;left:48%;top:0;height:100%;width:15%;background:#FAC775;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#633806;">Future 15%</div>
+      <div style="position:absolute;left:63%;top:0;height:100%;width:14%;background:#F4C0D1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#72243E;">NS/Canc 14%</div>
+      <div style="position:absolute;left:77%;top:0;height:100%;width:10%;background:#D3D1C7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#444;">TBD 10%</div>
+      <div style="position:absolute;left:87%;top:0;height:100%;width:6%;background:#F5C4B3;display:flex;align-items:center;justify-content:center;font-size:11px;color:#712B13;">TBL 6%</div>
+      <div style="position:absolute;left:93%;top:0;height:100%;width:5%;background:#e0e0dc;display:flex;align-items:center;justify-content:center;font-size:10px;color:#666;">Disq</div>
+      <div style="position:absolute;left:98%;top:0;height:100%;width:2%;background:#97C459;"></div>
+    </div>
+    <div style="font-size:11px;color:#aaa;text-align:center;">181 Q2 demos · $13.0M ARR · 73% still active or pending (Pipeline + Future + TBD)</div>
+
+  </div>
+
+  <div style="font-size:11px;color:#bbb;text-align:center;margin-top:4px;">
+    DealHub GTM Ops · Salesforce export · Jun 18, 2026 · QoQ = Q1 QTD Feb 1–Mar 21
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('weeklyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Wk1 May 1','Wk2','Wk3','Wk4','Wk5','Wk6','Wk7','Wk8 Jun 15'],
+    datasets: [{ label: 'SQL deals', data: [12,17,36,16,32,28,16,24], backgroundColor: '#378ADD', borderRadius: 4, borderSkipped: false }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw + ' deals' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#f0f0ee' }, ticks: { font: { size: 11 }, stepSize: 10 }, beginAtZero: true }
+    }
+  }
+});
+
+</script>
+</body>
+</html>
