@@ -77,16 +77,21 @@ const CRO_COLORS = {'1-Commit':'#15803D','2-Strong Upside':'#059669','3-Upside':
 
 function closeQ(dateStr) {
   if(!dateStr) return 'Unknown';
-  // Try both date formats
   let d = new Date(dateStr);
   if(isNaN(d)) {
     const parts = dateStr.split('/');
     if(parts.length===3) d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
   }
   if(isNaN(d)) return 'Unknown';
-  const m = d.getMonth();
+  const mo = d.getMonth()+1;
   const y = d.getFullYear();
-  return `Q${Math.floor(m/3)+1} FY${String(y).slice(2)}`;
+  let q, fy;
+  if(mo===1){q=4;fy=y-1;}
+  else if(mo<=4){q=1;fy=y;}
+  else if(mo<=7){q=2;fy=y;}
+  else if(mo<=10){q=3;fy=y;}
+  else{q=4;fy=y;}
+  return `Q${q} FY${String(fy).slice(2)}`;
 }
 
 Papa.parse('pipeline_data.csv',{
