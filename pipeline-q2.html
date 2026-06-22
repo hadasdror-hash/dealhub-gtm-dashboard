@@ -3,542 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTM Dashboard — Q2 Pipeline & Won</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<title>GTM Dashboard — Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; font-size: 14px; }
-  .page { max-width: 1200px; margin: 0 auto; padding: 24px; }
-
-  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 0.5px solid #ddd; }
-  .page-header h1 { font-size: 18px; font-weight: 500; }
-  .page-header .meta { font-size: 12px; color: #888; margin-top: 3px; }
-  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; }
-  .badge-live { background: #EAF3DE; color: #3B6D11; }
-
-  .section-label { font-size: 11px; font-weight: 500; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-  .section-divider { border: none; border-top: 0.5px solid #e8e8e5; margin: 28px 0; }
-
-  .kpi-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
-  .kpi-card { background: #fff; border-radius: 10px; border: 0.5px solid #e5e5e5; padding: 16px 20px; flex: 1; min-width: 150px; }
-  .kpi-card .lbl { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
-  .kpi-card .val { font-size: 26px; font-weight: 500; line-height: 1; margin-bottom: 4px; }
-  .kpi-card .sub { font-size: 12px; color: #888; }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .full-col { margin-bottom: 24px; }
-  .card { background: #fff; border-radius: 10px; border: 0.5px solid #e5e5e5; padding: 20px; }
-  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
-  .card-sub { font-size: 11px; color: #aaa; margin-bottom: 16px; }
-
-  .pipeline-stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-  .stage-card { border-radius: 10px; padding: 16px; border: 0.5px solid; }
-  .stage-card .stage-lbl { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
-  .stage-card .stage-sub { font-size: 10px; margin-bottom: 10px; }
-  .stage-card .stage-deals { font-size: 24px; font-weight: 500; line-height: 1; margin-bottom: 3px; }
-  .stage-card .stage-arr { font-size: 12px; }
-
-  .s-early { background: #E6F1FB; border-color: #B5D4F4; }
-  .s-early .stage-lbl { color: #185FA5; }
-  .s-early .stage-sub { color: #378ADD; }
-  .s-early .stage-deals { color: #0C447C; }
-  .s-early .stage-arr { color: #378ADD; }
-
-  .s-soleval { background: #f0f6fd; border-color: #85B7EB; }
-  .s-soleval .stage-lbl { color: #185FA5; }
-  .s-soleval .stage-sub { color: #378ADD; }
-  .s-soleval .stage-deals { color: #0C447C; }
-  .s-soleval .stage-arr { color: #378ADD; }
-
-  .s-commercial { background: #E1F5EE; border-color: #9FE1CB; }
-  .s-commercial .stage-lbl { color: #0F6E56; }
-  .s-commercial .stage-sub { color: #1D9E75; }
-  .s-commercial .stage-deals { color: #085041; }
-  .s-commercial .stage-arr { color: #1D9E75; }
-
-  .s-tbl { background: #FAECE7; border-color: #F5C4B3; }
-  .s-tbl .stage-lbl { color: #993C1D; }
-  .s-tbl .stage-sub { color: #D85A30; }
-  .s-tbl .stage-deals { color: #712B13; }
-  .s-tbl .stage-arr { color: #D85A30; }
-
-  .dim-table { width: 100%; border-collapse: collapse; }
-  .dim-table th { font-size: 11px; color: #aaa; font-weight: 500; text-align: left; padding: 4px 0 8px; border-bottom: 0.5px solid #eee; }
-  .dim-table th:not(:first-child) { text-align: right; }
-  .dim-table td { padding: 7px 0; font-size: 12px; border-bottom: 0.5px solid #f5f5f5; color: #1a1a1a; vertical-align: middle; }
-  .dim-table td:not(:first-child) { text-align: right; }
-  .dim-table tr:last-child td { border-bottom: none; }
-
-  .bar-mini { display: inline-block; height: 6px; border-radius: 3px; vertical-align: middle; margin-left: 6px; }
-
-  .cro-badge { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 500; }
-  .cro-1 { background: #EAF3DE; color: #3B6D11; }
-  .cro-2 { background: #E1F5EE; color: #0F6E56; }
-  .cro-3 { background: #E6F1FB; color: #185FA5; }
-  .cro-4 { background: #FAEEDA; color: #854F0B; }
-  .cro-5 { background: #f5f5f3; color: #888; }
-
-  .won-highlight { background: #EAF3DE; border: 0.5px solid #C0DD97; border-radius: 10px; padding: 16px 20px; }
-  .won-highlight .lbl { font-size: 11px; color: #3B6D11; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
-  .won-highlight .val { font-size: 32px; font-weight: 500; color: #27500A; line-height: 1; margin-bottom: 4px; }
-  .won-highlight .sub { font-size: 13px; color: #639922; }
-
-  .qual-chip { display: inline-flex; align-items: center; gap: 5px; background: #f5f5f3; border-radius: 6px; padding: 5px 10px; font-size: 11px; margin: 3px; }
-  .qual-chip .qlbl { color: #888; }
-  .qual-chip .qval { font-weight: 500; color: #1a1a1a; }
-  .qual-chip .qarr { color: #aaa; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#F7F6F3;--surface:#fff;--border:#E4E3DF;--text:#1A1917;--muted:#888580;--tiny:#B0ADA8}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+  .header{padding:18px 28px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
+  .header h1{font-size:15px;font-weight:600}
+  .header p{font-size:11px;color:var(--muted);margin-top:2px}
+  .back{font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+  .canvas{max-width:1100px;margin:0 auto;padding:24px 28px}
+  .sep{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+  .sep .sl{flex:1;height:1px;background:var(--border)}
+  .sep .st{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);white-space:nowrap}
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .kpi .kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+  .kpi .kv{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:500;line-height:1;margin-bottom:5px}
+  .kpi .kd{font-size:11px;color:var(--muted)}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .card-title{font-size:13px;font-weight:600;margin-bottom:3px}
+  .card-sub{font-size:11px;color:var(--muted);margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{text-align:left;padding:5px 8px 8px 0;font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;border-bottom:1px solid var(--border)}
+  th:not(:first-child){text-align:right}
+  td{padding:7px 8px 7px 0;border-bottom:0.5px solid #f3f2ef}
+  td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px}
+  tr:last-child td{border-bottom:none}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .q-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+  .q-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:6px}
+  .q-arr{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:500;margin-bottom:3px}
+  .q-sub{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .q-weighted{font-size:11px;color:#15803D;font-weight:600}
+  .cro-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+  .update-note{font-size:10px;color:var(--muted);background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;padding:6px 12px;margin-bottom:16px}
+  .footnote{font-size:10px;color:var(--tiny);text-align:center;margin-top:24px;padding-top:14px;border-top:1px solid var(--border)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="page">
-
-  <div class="page-header">
-    <div>
-      <h1>Q2 FY26 — Pipeline &amp; Won</h1>
-      <div class="meta">Close date May 1 – Jul 31 2026 · As of Jun 18, 2026 · FY Q2 = May–Jul</div>
-    </div>
-    <span class="badge badge-live"><i class="ti ti-refresh" aria-hidden="true"></i> Live report</span>
-  </div>
-
-  <!-- WON -->
-  <div class="section-label">Won this quarter</div>
-  <div class="kpi-row" style="margin-bottom:28px;">
-    <div class="won-highlight" style="flex:1;min-width:160px;">
-      <div class="lbl">Deals won</div>
-      <div class="val">12</div>
-      <div class="sub">Q2 FY26 closed won</div>
-    </div>
-    <div class="won-highlight" style="flex:1;min-width:160px;">
-      <div class="lbl">ARR won</div>
-      <div class="val">$609K</div>
-      <div class="sub">Q2 FY26 closed won</div>
-    </div>
-    <div class="won-highlight" style="flex:1;min-width:160px;">
-      <div class="lbl">Avg ARR / deal</div>
-      <div class="val">$50.8K</div>
-      <div class="sub">Q2 FY26</div>
-    </div>
-  </div>
-
-  <!-- WON BY OWNER -->
-  <div class="full-col">
-    <div class="card">
-      <div class="card-title">Won by owner</div>
-      <div class="card-sub">Q2 FY26</div>
-      <table class="dim-table">
-        <thead><tr><th>Owner</th><th>Deals</th><th>ARR</th><th></th></tr></thead>
-        <tbody>
-          <tr><td>Boaz Buch</td><td>3</td><td>$182.9K</td><td><span class="bar-mini" style="width:60px;background:#639922;"></span></td></tr>
-          <tr><td>Dov Dewar</td><td>1</td><td>$115.6K</td><td><span class="bar-mini" style="width:38px;background:#639922;"></span></td></tr>
-          <tr><td>Nathan Goldstein</td><td>2</td><td>$96.6K</td><td><span class="bar-mini" style="width:32px;background:#639922;"></span></td></tr>
-          <tr><td>Becky Gilor</td><td>1</td><td>$75.6K</td><td><span class="bar-mini" style="width:25px;background:#639922;"></span></td></tr>
-          <tr><td>Jonathan Weksler</td><td>2</td><td>$55.5K</td><td><span class="bar-mini" style="width:18px;background:#639922;"></span></td></tr>
-          <tr><td>Chris Jankos</td><td>2</td><td>$53.9K</td><td><span class="bar-mini" style="width:18px;background:#639922;"></span></td></tr>
-          <tr><td>Rebecca Gerger</td><td>1</td><td>$29.2K</td><td><span class="bar-mini" style="width:10px;background:#639922;"></span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- PIPELINE STAGE CARDS -->
-  <div class="section-label">Open pipeline — Q2 close date · 112 deals · $9.6M ARR</div>
-  <div class="pipeline-stages">
-    <div class="stage-card s-early">
-      <div class="stage-lbl">Early stage</div>
-      <div class="stage-sub">Sales Qualified</div>
-      <div class="stage-deals">54</div>
-      <div class="stage-arr">$4.0M ARR</div>
-    </div>
-    <div class="stage-card s-soleval">
-      <div class="stage-lbl">Solution evaluation</div>
-      <div class="stage-sub">Selection Started · Value Proven</div>
-      <div class="stage-deals">43</div>
-      <div class="stage-arr">$4.3M ARR</div>
-    </div>
-    <div class="stage-card s-commercial">
-      <div class="stage-lbl">Commercial</div>
-      <div class="stage-sub">Selected Vendor</div>
-      <div class="stage-deals">15</div>
-      <div class="stage-arr">$1.3M ARR</div>
-    </div>
-    <div class="stage-card s-tbl">
-      <div class="stage-lbl">To be lost</div>
-      <div class="stage-sub">Substage: To Be Lost</div>
-      <div class="stage-deals">17</div>
-      <div class="stage-arr">$867K ARR</div>
-    </div>
-  </div>
-
-  <!-- PIPELINE CHART -->
-  <div class="card full-col">
-    <div class="card-title">Pipeline ARR by stage group</div>
-    <div class="card-sub">Q2 open deals excl. To Be Lost · $9.6M total</div>
-    <div style="position:relative;height:200px;">
-      <canvas id="stageChart" role="img" aria-label="Pipeline ARR by stage group Q2">Pipeline ARR by stage.</canvas>
-    </div>
-  </div>
-
-  <!-- DIMENSIONS -->
-  <div class="section-label">Pipeline breakdown by dimension</div>
-  <div class="two-col">
-
-    <!-- BY OWNER -->
-    <div class="card">
-      <div class="card-title">By owner</div>
-      <div class="card-sub">Open pipeline excl. To Be Lost · Q2 close date</div>
-      <table class="dim-table">
-        <thead><tr><th>Owner</th><th>Deals</th><th>ARR</th><th>Weighted ARR</th></tr></thead>
-        <tbody>
-          <tr><td>Boaz Buch</td><td>16</td><td>$3.54M</td><td>$1.54M</td></tr>
-          <tr><td>Becky Gilor</td><td>20</td><td>$1.97M</td><td>$300K</td></tr>
-          <tr><td>Nathan Goldstein</td><td>20</td><td>$1.57M</td><td>$113K</td></tr>
-          <tr><td>Rebecca Gerger</td><td>10</td><td>$0.57M</td><td>$144K</td></tr>
-          <tr><td>Jonathan Weksler</td><td>10</td><td>$0.56M</td><td>$112K</td></tr>
-          <tr><td>Ivan Brin</td><td>14</td><td>$0.47M</td><td>$174K</td></tr>
-          <tr><td>Benjamin Friedman</td><td>10</td><td>$0.42M</td><td>$85K</td></tr>
-          <tr><td>Dov Dewar</td><td>5</td><td>$0.25M</td><td>$18K</td></tr>
-          <tr><td>Others</td><td>7</td><td>$0.26M</td><td>$26K</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- BY CRO FORECAST + WEIGHTED -->
-    <div class="card">
-      <div class="card-title">By CRO forecast &amp; weighted ARR</div>
-      <div class="card-sub">1=90% · 2=75% · 3=50% · 4=25% · 5=0%</div>
-      <div style="background:#f8f8f6;border-radius:8px;padding:14px;margin-bottom:14px;">
-        <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">Total weighted ARR</div>
-        <div style="font-size:28px;font-weight:500;color:#1a1a1a;">$2.51M</div>
-        <div style="font-size:11px;color:#aaa;margin-top:2px;">vs $9.6M raw pipeline · 26% weighted</div>
-      </div>
-      <table class="dim-table">
-        <thead><tr><th>Forecast</th><th>Deals</th><th>Raw ARR</th><th>Weighted</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cro-badge cro-1">1 — Commit</span></td><td>3</td><td>$368K</td><td>$331K</td></tr>
-          <tr><td><span class="cro-badge cro-2">2 — Strong upside</span></td><td>11</td><td>$1.10M</td><td>$821K</td></tr>
-          <tr><td><span class="cro-badge cro-3">3 — Upside</span></td><td>15</td><td>$1.66M</td><td>$828K</td></tr>
-          <tr><td><span class="cro-badge cro-4">4 — Longshot</span></td><td>22</td><td>$2.11M</td><td>$529K</td></tr>
-          <tr><td><span class="cro-badge cro-5">5 — Not projected</span></td><td>61</td><td>$4.37M</td><td>—</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-
-  <div class="two-col">
-
-    <!-- BY TYPE -->
-    <div class="card">
-      <div class="card-title">By type</div>
-      <div class="card-sub">Open pipeline excl. To Be Lost</div>
-      <table class="dim-table">
-        <thead><tr><th>Type</th><th>Deals</th><th>ARR</th></tr></thead>
-        <tbody>
-          <tr><td>New Business</td><td>79</td><td>$6.14M</td></tr>
-          <tr><td>Competitive Displacement</td><td>33</td><td>$3.47M</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:14px;">
-        <div style="position:relative;height:36px;background:#f5f5f3;border-radius:6px;overflow:hidden;">
-          <div style="position:absolute;left:0;top:0;height:100%;width:64%;background:#378ADD;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">New Biz 64%</div>
-          <div style="position:absolute;left:64%;top:0;height:100%;width:36%;background:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">DISP 36%</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BY SAAS -->
-    <div class="card">
-      <div class="card-title">By SaaS</div>
-      <div class="card-sub">Verified SaaS industry · open pipeline</div>
-      <table class="dim-table">
-        <thead><tr><th>SaaS</th><th>Deals</th><th>ARR</th></tr></thead>
-        <tbody>
-          <tr><td>Yes — verified SaaS</td><td>64</td><td>$5.90M</td></tr>
-          <tr><td>No</td><td>18</td><td>$1.27M</td></tr>
-          <tr><td>Unknown</td><td>30</td><td>$2.44M</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:14px;">
-        <div style="position:relative;height:36px;background:#f5f5f3;border-radius:6px;overflow:hidden;">
-          <div style="position:absolute;left:0;top:0;height:100%;width:57%;background:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">SaaS 57%</div>
-          <div style="position:absolute;left:57%;top:0;height:100%;width:16%;background:#E24B4A;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">No</div>
-          <div style="position:absolute;left:73%;top:0;height:100%;width:27%;background:#D3D1C7;display:flex;align-items:center;justify-content:center;font-size:11px;color:#555;">Unknown</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- BY SALES TEAM SIZE + QUALIFIED Q -->
-  <div class="two-col">
-
-    <div class="card">
-      <div class="card-title">By sales team size</div>
-      <div class="card-sub">Open pipeline excl. To Be Lost</div>
-      <table class="dim-table">
-        <thead><tr><th>Segment</th><th>Deals</th><th>ARR</th><th>Avg deal</th></tr></thead>
-        <tbody>
-          <tr><td>Enterprise</td><td>32</td><td>$5.12M</td><td>$160.1K</td></tr>
-          <tr><td>Mid-Market</td><td>41</td><td>$3.10M</td><td>$75.7K</td></tr>
-          <tr><td>SMB</td><td>39</td><td>$1.38M</td><td>$35.4K</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:14px;position:relative;height:36px;background:#f5f5f3;border-radius:6px;overflow:hidden;">
-        <div style="position:absolute;left:0;top:0;height:100%;width:53%;background:#0C447C;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">Enterprise 53%</div>
-        <div style="position:absolute;left:53%;top:0;height:100%;width:32%;background:#378ADD;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">MM 32%</div>
-        <div style="position:absolute;left:85%;top:0;height:100%;width:15%;background:#B5D4F4;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0C447C;">SMB</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">By qualified quarter</div>
-      <div class="card-sub">When was the opp qualified (Sales Qualified Date) · all Q2 opps</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-        <div class="qual-chip"><span class="qlbl">Q2 FY26</span><span class="qval">74</span><span class="qarr">$4.3M</span></div>
-        <div class="qual-chip"><span class="qlbl">Q1 FY26</span><span class="qval">50</span><span class="qarr">$5.2M</span></div>
-        <div class="qual-chip"><span class="qlbl">Q4 FY25</span><span class="qval">10</span><span class="qarr">$0.7M</span></div>
-        <div class="qual-chip"><span class="qlbl">Earlier</span><span class="qval">5</span><span class="qarr">$0.8M</span></div>
-        <div class="qual-chip"><span class="qlbl">Unknown</span><span class="qval">2</span><span class="qarr">$0.1M</span></div>
-      </div>
-      <div style="margin-top:14px;position:relative;height:36px;background:#f5f5f3;border-radius:6px;overflow:hidden;">
-        <div style="position:absolute;left:0;top:0;height:100%;width:52%;background:#378ADD;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">Q2 FY26 52%</div>
-        <div style="position:absolute;left:52%;top:0;height:100%;width:36%;background:#B5D4F4;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0C447C;">Q1 FY26 36%</div>
-        <div style="position:absolute;left:88%;top:0;height:100%;width:12%;background:#e0e0dc;display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;">Older</div>
-      </div>
-      <div style="font-size:11px;color:#aaa;margin-top:8px;">36% of Q2 pipeline was qualified in Q1 — carry-over deals represent $5.2M ARR.</div>
-    </div>
-
-  </div>
-
-  <div style="font-size:11px;color:#bbb;text-align:center;margin-top:4px;">
-    DealHub GTM Ops · Salesforce export · Jun 18, 2026 · Q2 FY26 = May 1 – Jul 31
-  </div>
-
+<div class="header">
+  <div><h1>Pipeline Dashboard</h1><p id="header-sub">Loading...</p></div>
+  <a class="back" href="home.html">← Home</a>
+</div>
+<div class="canvas">
+  <div class="update-note">📊 Dashboard loads from <strong>pipeline_fy.csv</strong> — update that file in GitHub to refresh all numbers automatically.</div>
+  <div id="dashboard"><div class="loading">Loading data from CSV...</div></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-new Chart(document.getElementById('stageChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Early stage\n(Sales Qualified)', 'Solution evaluation\n(Selection Started + Value Proven)', 'Commercial\n(Selected Vendor)'],
-    datasets: [{
-      label: 'ARR ($M)',
-      data: [3.97, 4.31, 1.33],
-      backgroundColor: ['#B5D4F4', '#378ADD', '#0C447C'],
-      borderRadius: 4,
-      borderSkipped: false
-    }]
+function fmt(n){ return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+(n/1000).toFixed(0)+'K'; }
+function fmtN(n){ return n.toLocaleString(); }
+
+const CRO_WEIGHTS = {'1-Commit':0.9,'2-Strong Upside':0.75,'3-Upside':0.5,'4-Longshot':0.25,'5 - Not Projected':0};
+const STAGE_COLORS = {'Sales Qualified':'#2563EB','Selection Started':'#7C3AED','Value Proven':'#059669','Selected Vendor':'#D97706','Won':'#15803D'};
+
+Papa.parse('pipeline_fy.csv',{
+  download:true, header:true,
+  complete: function(results){
+    const rows = results.data.filter(r=>r['Stage']);
+    rows.forEach(r=>{
+      r._arr = parseFloat(r['ARR (converted)'])||0;
+      r._close = new Date(r['Close Date']);
+      r._weight = CRO_WEIGHTS[r['CRO Forecast Status']]||0;
+      r._weighted = r._arr * r._weight;
+      // close quarter
+      const d = r._close;
+      if(!isNaN(d)){
+        const m = d.getMonth();
+        r._closeQ = `${d.getFullYear()} Q${Math.floor(m/3)+1}`;
+      } else { r._closeQ = 'Unknown'; }
+    });
+
+    const active = rows.filter(r=>r['Stage']!=='Won');
+    const won = rows.filter(r=>r['Stage']==='Won');
+
+    const sumArr = arr => arr.reduce((s,r)=>s+r._arr,0);
+    const sumW = arr => arr.reduce((s,r)=>s+r._weighted,0);
+
+    const totalArr = sumArr(active);
+    const totalWeighted = sumW(active);
+    const wonArr = sumArr(won);
+    const winRate = rows.length ? (won.length/rows.length*100).toFixed(0) : 0;
+
+    // By stage
+    const stageMap = {};
+    active.forEach(r=>{
+      const s=r['Stage'];
+      if(!stageMap[s])stageMap[s]={deals:0,arr:0};
+      stageMap[s].deals++;stageMap[s].arr+=r._arr;
+    });
+
+    // By close quarter
+    const qMap = {};
+    active.forEach(r=>{
+      const q=r._closeQ;
+      if(!qMap[q])qMap[q]={deals:0,arr:0,weighted:0};
+      qMap[q].deals++;qMap[q].arr+=r._arr;qMap[q].weighted+=r._weighted;
+    });
+
+    // By CRO forecast
+    const croMap = {};
+    active.forEach(r=>{
+      const c=r['CRO Forecast Status']||'Unknown';
+      if(!croMap[c])croMap[c]={deals:0,arr:0,weighted:0};
+      croMap[c].deals++;croMap[c].arr+=r._arr;croMap[c].weighted+=r._weighted;
+    });
+
+    // By owner
+    const ownerMap = {};
+    rows.forEach(r=>{
+      const o=r['Opportunity Owner']||'Unknown';
+      if(!ownerMap[o])ownerMap[o]={deals:0,arr:0,won:0,wonArr:0};
+      ownerMap[o].deals++;ownerMap[o].arr+=r._arr;
+      if(r['Stage']==='Won'){ownerMap[o].won++;ownerMap[o].wonArr+=r._arr;}
+    });
+    const topOwners = Object.entries(ownerMap).sort((a,b)=>b[1].arr-a[1].arr).slice(0,8);
+
+    // By segment
+    const segMap = {};
+    active.forEach(r=>{
+      const s=r['Sales Team Size']||'Unknown';
+      if(!segMap[s])segMap[s]={deals:0,arr:0,weighted:0};
+      segMap[s].deals++;segMap[s].arr+=r._arr;segMap[s].weighted+=r._weighted;
+    });
+
+    document.getElementById('header-sub').textContent = 'FY26 · Active pipeline & Won · Updated from CSV';
+
+    const quarters = Object.keys(qMap).filter(q=>q!=='Unknown').sort();
+
+    document.getElementById('dashboard').innerHTML = `
+      <div class="sep"><div class="sl"></div><div class="st">Pipeline summary</div><div class="sl"></div></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kl">Active pipeline</div><div class="kv">${fmt(totalArr)}</div><div class="kd">${fmtN(active.length)} open opps</div></div>
+        <div class="kpi"><div class="kl">CRO weighted ARR</div><div class="kv">${fmt(totalWeighted)}</div><div class="kd">${(totalWeighted/totalArr*100).toFixed(0)}% of pipeline</div></div>
+        <div class="kpi"><div class="kl">Won FY26</div><div class="kv">${fmt(wonArr)}</div><div class="kd">${fmtN(won.length)} deals · ${winRate}% win rate</div></div>
+        <div class="kpi"><div class="kl">Avg deal size</div><div class="kv">${fmt(totalArr/Math.max(active.length,1))}</div><div class="kd">active opps</div></div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">By close quarter</div><div class="sl"></div></div>
+      <div class="g3">
+        ${quarters.slice(0,3).map(q=>{
+          const d=qMap[q];
+          return `<div class="q-card">
+            <div class="q-label">${q}</div>
+            <div class="q-arr">${fmt(d.arr)}</div>
+            <div class="q-sub">${fmtN(d.deals)} opps</div>
+            <div class="q-weighted">⚡ Weighted: ${fmt(d.weighted)}</div>
+            <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border)">
+              ${Object.entries(CRO_WEIGHTS).map(([k,w])=>{
+                const sub=active.filter(r=>r._closeQ===q&&r['CRO Forecast Status']===k);
+                if(!sub.length) return '';
+                return `<div class="cro-row"><span>${k}</span><span>${fmtN(sub.length)} · ${fmt(sub.reduce((s,r)=>s+r._arr,0))}</span></div>`;
+              }).join('')}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">By stage</div>
+          <div class="card-sub">Active pipeline only</div>
+          <table>
+            <thead><tr><th>Stage</th><th>Opps</th><th>ARR</th></tr></thead>
+            <tbody>
+              ${Object.entries(stageMap).sort((a,b)=>b[1].arr-a[1].arr).map(([s,d])=>`
+                <tr><td><span class="dot" style="background:${STAGE_COLORS[s]||'#888'}"></span>${s}</td>
+                <td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">By sales team size</div>
+          <div class="card-sub">Active pipeline</div>
+          <table>
+            <thead><tr><th>Segment</th><th>Opps</th><th>ARR</th><th>Weighted</th></tr></thead>
+            <tbody>
+              ${['Enterprise','MM','SMB'].map(s=>{
+                const d=segMap[s]||{deals:0,arr:0,weighted:0};
+                return `<tr><td>${s}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmt(d.weighted)}</td></tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">By owner — pipeline & won</div><div class="sl"></div></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Owner</th><th>Open opps</th><th>Pipeline ARR</th><th>Won opps</th><th>Won ARR</th></tr></thead>
+          <tbody>
+            ${topOwners.map(([o,d])=>`
+              <tr><td>${o}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmtN(d.won)}</td><td>${fmt(d.wonArr)}</td></tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footnote">DealHub GTM Ops · CSV-driven dashboard · Upload new pipeline_fy.csv to GitHub to update</div>
+    `;
   },
-  options: {
-    indexAxis: 'y',
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toFixed(2) + 'M ARR' } }
-    },
-    scales: {
-      x: { grid: { color: '#f0f0ee' }, ticks: { font: { size: 11 }, callback: v => '$' + v + 'M' }, beginAtZero: true },
-      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
-    }
-  }
+  error: function(){ document.getElementById('dashboard').innerHTML='<div class="loading">Error loading pipeline_fy.csv</div>'; }
 });
 </script>
 </body>
 </html>
-
-<!-- ============================================================ -->
-<!-- Q3 & Q4 FUTURE QUARTERS SECTION — appended                   -->
-<!-- ============================================================ -->
-<style>
-  .fq-page { max-width: 1200px; margin: 0 auto; padding: 40px 24px 24px; border-top: 2px solid #e5e5e5; margin-top: 40px; }
-  .fq-header { margin-bottom: 28px; }
-  .fq-header h2 { font-size: 18px; font-weight: 500; color: #1a1a1a; }
-  .fq-header .meta { font-size: 12px; color: #888; margin-top: 3px; }
-  .q-summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-  .q-summary-card { border-radius: 10px; padding: 18px 20px; border: 0.5px solid; }
-  .q3-card { background: #f0f6fd; border-color: #B5D4F4; }
-  .q4-card { background: #f8f8f6; border-color: #e0e0dc; }
-  .q-summary-card .q-lbl { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
-  .q3-card .q-lbl { color: #185FA5; }
-  .q4-card .q-lbl { color: #888; }
-  .q-summary-card .q-deals { font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: 3px; }
-  .q3-card .q-deals { color: #0C447C; }
-  .q4-card .q-deals { color: #1a1a1a; }
-  .q-summary-card .q-arr { font-size: 13px; }
-  .q3-card .q-arr { color: #378ADD; }
-  .q4-card .q-arr { color: #888; }
-  .q-summary-card .q-note { font-size: 11px; color: #888; margin-top: 6px; }
-</style>
-
-<div class="fq-page">
-  <div class="fq-header">
-    <h2>Future quarters — pipeline outlook</h2>
-    <div class="meta">Q3 FY26 (Aug–Oct 2026) &amp; Q4 FY26 (Nov 2026–Jan 2027) · close date based</div>
-  </div>
-
-  <!-- Q3 + Q4 SUMMARY -->
-  <div class="section-label">Pipeline summary</div>
-  <div class="q-summary-row">
-    <div class="q-summary-card q3-card">
-      <div class="q-lbl">Q3 FY26 — Aug–Oct 2026</div>
-      <div class="q-deals">77 deals</div>
-      <div class="q-arr">$12.9M ARR open pipeline</div>
-      <div class="q-note">+ 8 To Be Lost · $261K · excluded above</div>
-    </div>
-    <div class="q-summary-card q4-card">
-      <div class="q-lbl">Q4 FY26 — Nov 2026–Jan 2027</div>
-      <div class="q-deals">10 deals</div>
-      <div class="q-arr">$949K ARR open pipeline</div>
-      <div class="q-note">Early stage — all Sales Qualified or later · no Won yet</div>
-    </div>
-  </div>
-
-  <!-- Q3 STAGE CARDS -->
-  <div class="section-label">Q3 pipeline — by stage</div>
-  <div class="pipeline-stages">
-    <div class="stage-card s-early">
-      <div class="stage-lbl">Early stage</div>
-      <div class="stage-sub">Sales Qualified</div>
-      <div class="stage-deals">57</div>
-      <div class="stage-arr">$10.5M ARR</div>
-    </div>
-    <div class="stage-card s-soleval">
-      <div class="stage-lbl">Solution evaluation</div>
-      <div class="stage-sub">Selection Started · Value Proven</div>
-      <div class="stage-deals">19</div>
-      <div class="stage-arr">$2.3M ARR</div>
-    </div>
-    <div class="stage-card s-commercial">
-      <div class="stage-lbl">Commercial</div>
-      <div class="stage-sub">Selected Vendor</div>
-      <div class="stage-deals">1</div>
-      <div class="stage-arr">$72K ARR</div>
-    </div>
-    <div class="stage-card s-tbl">
-      <div class="stage-lbl">To be lost</div>
-      <div class="stage-sub">Substage: To Be Lost</div>
-      <div class="stage-deals">8</div>
-      <div class="stage-arr">$261K ARR</div>
-    </div>
-  </div>
-
-  <!-- Q3 BY OWNER + WEIGHTED ARR -->
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Q3 — by owner</div>
-      <div class="card-sub">Open pipeline excl. To Be Lost</div>
-      <table class="dim-table">
-        <thead><tr><th>Owner</th><th>Deals</th><th>ARR</th><th>Weighted ARR</th></tr></thead>
-        <tbody>
-          <tr><td>Becky Gilor</td><td>27</td><td>$8.90M</td><td>$60.0K</td></tr>
-          <tr><td>Boaz Buch</td><td>13</td><td>$1.43M</td><td>$179.1K</td></tr>
-          <tr><td>Nathan Goldstein</td><td>13</td><td>$1.05M</td><td>$33.5K</td></tr>
-          <tr><td>Clifton Mhlanga</td><td>6</td><td>$400K</td><td>—</td></tr>
-          <tr><td>Rebecca Gerger</td><td>5</td><td>$384K</td><td>—</td></tr>
-          <tr><td>Chris Jankos</td><td>3</td><td>$251K</td><td>—</td></tr>
-          <tr><td>Dov Dewar</td><td>5</td><td>$194K</td><td>—</td></tr>
-          <tr><td>Ivan Brin</td><td>3</td><td>$167K</td><td>$18.9K</td></tr>
-          <tr><td>Benjamin Friedman</td><td>2</td><td>$140K</td><td>—</td></tr>
-        </tbody>
-      </table>
-      <div style="background:#FAEEDA;border-radius:6px;padding:9px 12px;font-size:11px;color:#854F0B;margin-top:12px;">
-        <i class="ti ti-alert-triangle" aria-hidden="true" style="margin-right:4px;"></i>
-        Becky Gilor holds 69% of Q3 ARR ($8.9M) — high concentration risk.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Q3 — CRO weighted ARR</div>
-      <div class="card-sub">1=90% · 2=75% · 3=50% · 4=25% · 5=0%</div>
-      <div style="background:#f8f8f6;border-radius:8px;padding:14px;margin-bottom:14px;">
-        <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">Total weighted ARR</div>
-        <div style="font-size:28px;font-weight:500;color:#1a1a1a;">$291K</div>
-        <div style="font-size:11px;color:#aaa;margin-top:2px;">vs $12.9M raw pipeline · 2% weighted</div>
-        <div style="font-size:11px;color:#854F0B;margin-top:6px;"><i class="ti ti-info-circle" aria-hidden="true" style="margin-right:3px;"></i>87% of Q3 pipeline is "Not Projected" (0% weight) — expected for deals 2–4 months out.</div>
-      </div>
-      <table class="dim-table">
-        <thead><tr><th>Forecast</th><th>Weight</th><th>Raw ARR</th><th>Weighted</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cro-badge cro-4">4 — Longshot</span></td><td>25%</td><td>$940K</td><td>$235K</td></tr>
-          <tr><td><span class="cro-badge cro-3">3 — Upside</span></td><td>50%</td><td>$113K</td><td>$56K</td></tr>
-          <tr><td><span class="cro-badge cro-5">5 — Not projected</span></td><td>0%</td><td>$11.7M</td><td>—</td></tr>
-        </tbody>
-      </table>
-
-      <div style="margin-top:16px;">
-        <div class="card-title" style="margin-bottom:3px;">Q3 — by sales team size</div>
-        <div class="card-sub">Open pipeline</div>
-        <table class="dim-table">
-          <thead><tr><th>Segment</th><th>Deals</th><th>ARR</th><th>Avg deal</th></tr></thead>
-          <tbody>
-            <tr><td>Enterprise</td><td>41</td><td>$10.74M</td><td>$261.9K</td></tr>
-            <tr><td>Mid-Market</td><td>25</td><td>$1.80M</td><td>$72.1K</td></tr>
-            <tr><td>SMB</td><td>11</td><td>$373K</td><td>$33.9K</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q3 TYPE + SAAS -->
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title">Q3 — by type</div>
-      <div class="card-sub">Open pipeline excl. To Be Lost</div>
-      <table class="dim-table">
-        <thead><tr><th>Type</th><th>Deals</th><th>ARR</th></tr></thead>
-        <tbody>
-          <tr><td>New Business</td><td>55</td><td>$9.32M</td></tr>
-          <tr><td>Competitive Displacement</td><td>22</td><td>$3.60M</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:12px;position:relative;height:36px;background:#f5f5f3;border-radius:6px;overflow:hidden;">
-        <div style="position:absolute;left:0;top:0;height:100%;width:72%;background:#378ADD;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">New Biz 72%</div>
-        <div style="position:absolute;left:72%;top:0;height:100%;width:28%;background:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;">DISP 28%</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">Q3 — by SaaS</div>
-      <div class="card-sub">Verified SaaS industry · open pipeline</div>
-      <table class="dim-table">
-        <thead><tr><th>SaaS</th><th>Deals</th><th>ARR</th></tr></thead>
-        <tbody>
-          <tr><td>Yes — verified SaaS</td><td>39</td><td>$7.15M</td></tr>
-          <tr><td>No</td><td>5</td><td>$598K</td></tr>
-          <tr><td>Unknown</td><td>33</td><td>$5.17M</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- Q4 SUMMARY -->
-  <div class="section-label">Q4 FY26 — early outlook (Nov 2026–Jan 2027)</div>
-  <div class="card full-col">
-    <div class="card-title">Q4 pipeline — 10 deals · $949K ARR</div>
-    <div class="card-sub">Early stage deals — all currently Sales Qualified or later · no To Be Lost</div>
-    <table class="dim-table">
-      <thead><tr><th>Owner</th><th>Deals</th><th>ARR</th><th>Segment</th><th>CRO Forecast</th></tr></thead>
-      <tbody>
-        <tr><td>Boaz Buch</td><td>3</td><td>$329.2K</td><td>MM / Enterprise</td><td><span class="cro-badge cro-5">Not projected</span></td></tr>
-        <tr><td>Nathan Goldstein</td><td>3</td><td>$246.9K</td><td>MM / Enterprise</td><td><span class="cro-badge cro-5">Not projected</span></td></tr>
-        <tr><td>Jonathan Weksler</td><td>1</td><td>$230.2K</td><td>Enterprise</td><td><span class="cro-badge cro-5">Not projected</span></td></tr>
-        <tr><td>Benjamin Friedman</td><td>1</td><td>$100.0K</td><td>MM</td><td><span class="cro-badge cro-5">Not projected</span></td></tr>
-        <tr><td>Rebecca Gerger</td><td>2</td><td>$42.6K</td><td>SMB / MM</td><td><span class="cro-badge cro-3">Upside</span></td></tr>
-      </tbody>
-    </table>
-    <div style="background:#f0f6fd;border-radius:6px;padding:9px 12px;font-size:11px;color:#185FA5;margin-top:12px;">
-      <i class="ti ti-info-circle" aria-hidden="true" style="margin-right:4px;"></i>
-      Q4 is very early — expect this to grow significantly as Q2 and Q3 deals progress or slip.
-    </div>
-  </div>
-
-  <div style="font-size:11px;color:#bbb;text-align:center;margin-top:4px;">
-    DealHub GTM Ops · Salesforce export · Jun 18, 2026 · Q3 = Aug–Oct 2026 · Q4 = Nov 2026–Jan 2027
-  </div>
-</div>

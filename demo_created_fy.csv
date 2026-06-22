@@ -1,0 +1,531 @@
+Opportunity Owner,Account Name,Opportunity Name,Stage,Close Date,Created Date,Type,Substage,ARR (converted) Currency,ARR (converted),Sales Team Size,Attribution,Source,Status,Sales Qualified Date,Demo Call Date,Account ID
+Haim Cohen Mintz,orolabs,Orolabs-21-DR-SF-NAM-RFI,Meeting Booked,2026-07-31,2026-04-23,New Business,,USD,30240.0,SMB,Inbound,Inbound,Future,,2026-05-11,0016Q00001aybwg
+Haim Cohen Mintz,Anatomy Financial,Anatomy Financial-10-Q2C-HS-NAM-RFP,Disqualified,2026-02-24,2026-02-17,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-02,001Rn00000ytQc6
+Boaz Buch,Okta,Okta-1000+-CPQ-SF-NAM-DISP,Meeting Booked,2026-07-31,2026-06-16,New Business - Competitive Displacement,Demo Scheduled,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-22,0010B00001zFydE
+Boaz Buch,American Express Global Business Travel,Amexgbt-30-CPQ-SF-NAM,Meeting Booked,2026-09-01,2026-06-16,New Business - Competitive Displacement,Demo Scheduled,USD,77040.0,Empty,Outbound,Outbound,Future,,2026-06-30,0016Q00001xZZVG
+Boaz Buch,DDN,DDN-250-CPQ-SF DISP-NAM,Sales Qualified,2026-08-12,2026-06-15,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-18,2026-06-18,001U000001dQJ8V
+Boaz Buch,In Place Machining Company,In Place Machining Company-20-CPQ-HS-NAM-CP,Won,2026-06-16,2026-06-15,New Business,,USD,36000.0,SMB,Referral + Partners,Partners,Won,,2026-07-01,001Rn00000AcrTm
+Boaz Buch,Quorum Software,Quorum Software-100-CPQ-SF-NAM-CP,Meeting Booked,2026-11-30,2026-06-09,New Business,Demo Scheduled,USD,100000.0,Enterprise,Referral + Partners,Partners,Future,,2026-06-22,0016Q00001aybyf
+Boaz Buch,Molex,Molex-40-CPQ-SF-NAM,Meeting Happened,2026-07-31,2026-06-08,New Business,,USD,57600.0,MM,Inbound,Inbound,TBD,,2026-06-09,0016Q00001gvkzX
+Boaz Buch,Clinisys,Clinisys-90-CPQ-API-Oracle DISP-EMEA,Meeting Booked,2026-08-31,2026-06-03,New Business - Competitive Displacement,Demo Scheduled,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-25,001Rn00000szdSO
+Boaz Buch,Svea Solar,SveaSolar-110-Q2C-SF-EMEA,Meeting Booked,2026-10-02,2026-06-01,New Business,Demo Scheduled,USD,92400.0,Enterprise,Outbound,Outbound,Future,,2026-06-23,0016Q00001dhBbs
+Boaz Buch,Cognism,Cognism-110-CPQ-SF-EMEA,Meeting Booked,2026-10-02,2026-06-01,New Business,Demo Scheduled,USD,100000.0,Enterprise,Outbound,Outbound,Future,,2026-08-11,0014P00002wMxqK
+Boaz Buch,Providence Health & Services,Providence Health & Services-100-CPQ-API-APAC,Disqualified,2026-06-08,2026-05-29,New Business,No product fit,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-06-08,0014P000029gygW
+Boaz Buch,ZoomInfo,Zoominfo-1300-CPQ-SF-NAM,Sales Qualified,2026-10-02,2026-05-28,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-06-03,2026-06-02,0010B00001wvhMH
+Boaz Buch,Cognition,Cognition-100-CPQ-SF-NAM,Sales Qualified,2026-08-31,2026-05-28,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-05-29,2026-05-28,001Rn00000tOXBY
+Boaz Buch,Assessio,Assessio-100-CPQ-HS-EMEA,Sales Qualified,2026-07-28,2026-05-26,New Business,,USD,86400.0,Enterprise,Sales Direct,Other,Pipeline,2026-05-28,2026-05-27,0016Q00001igfqS
+Boaz Buch,Wallapop,Wallapop-40-CPQ-SF-EMEA,Disqualified,2026-06-03,2026-05-20,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-05-22,0014P00002wMx3u
+Boaz Buch,Nedap,Nedap-133-CPQ-HS-EMEA,Disqualified,2026-06-03,2026-05-18,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-05-29,0014P00002wMwbl
+Boaz Buch,Veranex,Veranex-50-CPQ-SF-NAM,Value Proven,2026-07-31,2026-05-15,New Business,,USD,67500.0,MM,Inbound,Inbound,Pipeline,2026-05-25,2026-05-18,001Rn00000qGT8D
+Boaz Buch,Antalis,Antalis-100-CPQ-SF-EMEA,Sales Qualified,2026-08-02,2026-05-14,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-06-03,2026-05-22,0016Q00001WpvYf
+Boaz Buch,SIX,SIX-100-CPQ-API-DACH,Disqualified,2026-06-03,2026-05-14,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-05-19,0016Q00001xYPvB
+Boaz Buch,Quest Software,Quest Software-706-CPQ-SF-NAM,Disqualified,2026-06-03,2026-05-13,New Business,No Active Project,USD,100000.0,Enterprise,Executive,Other,Disqualifyed,,2026-05-18,0010B000021hYpB
+Boaz Buch,DataRails,DataRails-50-Q2C-SF-NAM,Meeting Booked,2026-08-22,2026-05-12,New Business,Demo Scheduled,USD,120000.0,MM,Outbound,Outbound,Future,,2026-06-22,0010B00001zI7nX
+Boaz Buch,Datasite,Datasite-323-Q2C-SF-NAM,Meeting Booked,2026-08-05,2026-05-11,New Business,Demo Scheduled,USD,100000.0,Enterprise,Outbound,Outbound,Future,,2026-07-14,0016Q00001WqgCk
+Boaz Buch,The Channel Company,The Channel Company-75-CPQ-SF DISP-NAM,Selection Started,2026-07-31,2026-05-06,New Business - Competitive Displacement,,USD,99000.0,MM,Inbound,Inbound,Pipeline,2026-05-13,2026-05-13,0014P000037OWQ5
+Boaz Buch,Berkeley Research,Berkeley Research-TBD-CPQ-SF-NAM,Disqualified,2026-05-12,2026-05-04,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-05-05,0016Q00001ouhde
+Boaz Buch,Harmonic,Harmonic-70-CPQ-HS-NAM-CP,Sales Qualified,2026-10-26,2026-05-04,New Business,,USD,84000.0,MM,Referral + HubSpot,Partners,Pipeline,2026-06-03,2026-05-07,0010B000021hbrD
+Boaz Buch,Commvault,Commvault-722-CPQ-SF-NAM-DISP,Disqualified,2026-05-11,2026-05-04,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Executive,Other,Disqualifyed,,2026-05-04,0014P00003Y6oPW
+Boaz Buch,Gilat Satellite Networks,Gilat Satellite Networks-125-CPQ-SF-DISP-ISR,Sales Qualified,2026-10-26,2026-04-30,New Business - Competitive Displacement,,USD,156000.0,Enterprise,Outbound,Outbound,Pipeline,2026-05-12,2026-05-12,001U000001jgzZu
+Boaz Buch,Veson Nautical,Veson Nautical-85-CPQ-SF-NAM-SF CPQ,Selection Started,2026-07-31,2026-04-28,New Business - Competitive Displacement,,USD,51600.0,MM,Outbound,Outbound,Pipeline,2026-05-05,2026-05-04,0010B000021hb8b
+Boaz Buch,Brandwatch,Brandwatch-250-CPQ-EMEA,Disqualified,2026-05-11,2026-04-27,New Business,Find the right Stakeholders,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-05-04,001Rn00000ilMNK
+Boaz Buch,Ashby,Ashby-CPQ-HS-76-NAM,Value Proven,2026-06-30,2026-04-23,New Business,,USD,91200.0,Enterprise,Sales Direct,Other,Pipeline,2026-04-30,2026-05-04,0016Q00001ouZQt
+Boaz Buch,Assessio,Assessio-100-CPQ-HS-EMEA,Disqualified,2026-04-30,2026-04-23,New Business,No Active Project,USD,33103.45,SMB,Sales Direct,Other,Disqualifyed,,2026-04-27,0016Q00001igfqS
+Boaz Buch,CARFAX,CARFAX-381-CPQ-SF-NAM,Disqualified,2026-04-24,2026-04-22,New Business,Find the right Stakeholders,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-04-23,0014P000037OVeT
+Boaz Buch,Nokia,Nokia-100+-CPQ-SF-DISP-NORDICS,Disqualified,2026-06-01,2026-04-20,New Business - Competitive Displacement,No Active Project,USD,116279.07,Enterprise,Executive,Other,Disqualifyed,,2026-05-05,0010B000021hbMm
+Boaz Buch,DXC Eclipse,DXC Eclipse-100-CPQ-SF-NAM,Sales Qualified,2026-06-30,2026-04-17,New Business,,USD,132000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-20,2026-04-20,001Rn00000EBifO
+Boaz Buch,Workiz,Workiz-50-CPQ-HS-NAM,Disqualified,2026-05-13,2026-04-15,New Business,Cancelled,USD,60000.0,MM,Outbound,Outbound,Disqualifyed,,2026-05-13,0016Q00001gw6SV
+Boaz Buch,Kingspan,Kingspan-167-CPQ-SF-EMEA,Disqualified,2026-04-15,2026-04-14,New Business,No product fit,USD,131578.95,Enterprise,Inbound,Inbound,Disqualifyed,,2026-04-15,0010B000021hOE4
+Boaz Buch,Enghouse Systems,Enghouse Systems-114-CPQ-SF-NAM-SF DISP,Disqualified,2026-04-21,2026-04-06,New Business - Competitive Displacement,Cancelled,USD,95760.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-04-20,001U000001UBm9h
+Boaz Buch,Hitachi Digital Services,Hitachi Digital Services-31-CPQ-SF-NAM-DISP,Disqualified,2026-04-10,2026-04-06,New Business - Competitive Displacement,No Show,USD,37200.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-10,001Rn000007lPB3
+Boaz Buch,Olo,Olo-300-CLM-SF-NAM,Disqualified,2026-04-16,2026-04-03,New Business,Cancelled,USD,81600.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-15,0010B000021hbh1
+Boaz Buch,Cadence Design Systems,Cadence Design Systems-587-CPQ-SF-NAM,Disqualified,2026-04-11,2026-04-03,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-04-09,0010B000021hbE5
+Boaz Buch,Datasite,Datasite-323-Q2C-SF-NAM,Disqualified,2026-04-29,2026-04-01,New Business,Cancelled,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-04-16,0016Q00001WqgCk
+Boaz Buch,EPI-USE LABS,EPIUSE-70-Q2C-HS-EMEA,Sales Qualified,2026-10-26,2026-04-01,New Business,,USD,80000.0,MM,Sales Direct,Other,Pipeline,2026-04-15,2026-04-08,0016Q00001oujMR
+Boaz Buch,Productsup,Productsup-35-CPQ-DACH-DISP,Disqualified,2026-04-30,2026-04-01,New Business - Competitive Displacement,No Active Project,USD,69000.0,MM,Outbound,Outbound,Disqualifyed,,2026-03-31,001Rn00000K81wq
+Boaz Buch,MeridianLink,MeridianLink-80-CPQ-SF-NAM,Meeting Booked,2026-07-08,2026-03-31,New Business,,USD,100000.0,Enterprise,Executive,Other,Future,,2026-06-08,0014P000029gx5L
+Boaz Buch,Acumatica,Acumatica-30-300Partner-Q2C-HS-NAM,Value Proven,2026-07-31,2026-03-31,New Business,,USD,565200.0,MM,Inbound,Inbound,Pipeline,2026-04-02,2026-04-02,0010B00001wwRhM
+Boaz Buch,Algolia,Algolia-130-SF-Q2C-DISP-NAM,Disqualified,2026-04-14,2026-03-31,New Business - Competitive Displacement,Cancelled,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-04-13,0014P000037OVXa
+Boaz Buch,NICE,NICE-1500-CPQ-SF-DISP,Sales Qualified,2027-01-31,2026-03-26,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Executive,Other,Pipeline,2026-04-20,2026-04-14,0014P00002wMwlg
+Boaz Buch,Resolver,Resolver-100-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-24,New Business,No Active Project,USD,95760.0,Enterprise,Outbound,Outbound,Lost,2026-04-06,2026-04-02,0010B00001wwTFI
+Boaz Buch,Amdocs,Amdocs-CPQ-SF-ISR,Disqualified,2026-03-31,2026-03-19,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-03-30,0016Q00001axtQT
+Boaz Buch,"DigitalOcean, LLC",DigitalOcean-40-CPQ-SF-NAM,Won,2026-06-03,2026-03-18,New Business,,USD,67200.0,MM,Inbound,Inbound,Won,2026-04-14,2026-03-19,0014P00002wMMc8
+Boaz Buch,Speedcast,Speedcast-100-CPQ-MSD-NAM,Disqualified,2026-05-07,2026-03-17,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,2026-04-14,2026-03-25,0014P00003CF1B9
+Boaz Buch,Haemonetics,Haemonetics-300-CPQ-SF-NAM,Disqualified,2026-04-30,2026-03-14,New Business,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-16,0010B000021haGH
+Boaz Buch,Cato Networks,Cato Networks-325-CPQ-SF-EMEA,Disqualified,2026-03-17,2026-03-14,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-16,0010B00001pqAxD
+Boaz Buch,willhaben,willhaben-90-Q2R-SF/HS-DACH,Value Proven,2026-06-30,2026-03-10,New Business,,USD,193400.0,Enterprise,Inbound,Inbound,Pipeline,2026-03-12,2026-03-12,0016Q00001vRndb
+Boaz Buch,Temenos SA,Temenos-140-CPQ-SF-DISP-EMEA,Disqualified,2026-04-11,2026-03-10,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-04-09,0010B000021hYoN
+Boaz Buch,Similarweb,Similarweb-300-Q2R-SF-IL-CP,Selected Vendor,2026-07-31,2026-03-05,New Business,,USD,412400.0,Enterprise,Referral + Partners,Partners,Pipeline,2026-03-30,2026-03-23,0010B00001wvh97
+Boaz Buch,Wonderful,Wonderful-100-CPQ-SF-EMEA,Won,2026-03-26,2026-03-04,New Business,,USD,46800.0,Enterprise,Inbound,Inbound,Won,2026-03-09,2026-03-09,001Rn00000qIVVd
+Boaz Buch,Rocket Software,Rocket Software-525-CPQ-SF DISP-NAM,Disqualified,2026-04-15,2026-02-27,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-05,0016Q00001dh0VJ
+Boaz Buch,Origence,Origence-250-CPQ-SF-NAM,Disqualified,2026-04-15,2026-02-27,New Business,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-05,0016Q00001zGKby
+Boaz Buch,Personify Health,Personify Health-9-CPQ-SF-NAM,Disqualified,2026-02-26,2026-02-25,New Business,No Active Project,USD,12960.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-25,001Rn000007lPG7
+Boaz Buch,Pantheon Platform,Pantheon-70-CPQ-SF-NAM,Value Proven,2026-12-31,2026-02-24,New Business,,USD,75600.0,MM,Sales Direct,Other,Pipeline,2026-03-27,2026-03-02,0016Q00001gw3JA
+Boaz Buch,Verizon Connect,verizon connect-40-CPQ-SF-NAM-DISP,Disqualified,2026-03-01,2026-02-20,New Business - Competitive Displacement,Cancelled,USD,48000.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-26,0016Q00001ouVzd
+Boaz Buch,LTGplc,LTGplc-120-CPQ-SF-EMEA-DISP,Disqualified,2026-04-15,2026-02-19,New Business - Competitive Displacement,No Active Project,USD,100800.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-19,0014P00002wMhFj
+Boaz Buch,Check Point Software Technologies Ltd.,"Check Point Software-1,834-CPQ-SF-DISP-IL",Disqualified,2026-03-07,2026-02-15,New Business - Competitive Displacement,Cancelled,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-03-05,0014P00002wMxB9
+Boaz Buch,Comply365,Comply365-60-CPQ-SF-NAM,Selection Started,2026-10-29,2026-02-14,New Business,,USD,86400.0,MM,Inbound,Inbound,Pipeline,2026-02-18,2026-02-18,0010B00001wwTFe
+Boaz Buch,Semco Maritime,Semco Maritime-150-CPQ-MSD-Nordics,Disqualified,2026-02-18,2026-02-13,New Business,No product fit,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-18,0016Q00001ieZxP
+Boaz Buch,Bonterra,Bonterra Tech-180-CPQ-SF-NAM-DISP,Disqualified,2026-02-12,2026-02-11,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-02-12,0016Q00001ihcS6
+Boaz Buch,IFS,IFS-400-CPQ-HS-EMEA-CP,Selected Vendor,2026-05-31,2026-02-09,New Business,,USD,350117.65,Enterprise,Referral + HubSpot,Partners,Pipeline,2026-02-09,2026-02-10,0016Q00001dh0f1
+Boaz Buch,Wingify Software Private Limited,VWO-CPQ-160-SF-India,Won,2026-05-25,2026-02-09,New Business,,USD,79680.0,Enterprise,Sales Direct,Other,Won,2026-02-23,2026-02-02,0016Q00001mnqaI
+Boaz Buch,Vertex,Vertex-273-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-02-06,New Business,Lost Touch With Account,USD,100000.0,Enterprise,Inbound,Inbound,Lost,2026-02-16,2026-02-16,0014P00003Y6kIq
+Boaz Buch,nCino,nCino-300-CPQ-SF-DISP-NAM,Selection Started,2026-08-30,2026-02-06,New Business - Competitive Displacement,,USD,307800.0,Enterprise,Outbound,Outbound,Pipeline,2026-02-16,2026-02-11,0010B00001wwTDz
+Boaz Buch,Digital Tags,BeOnTag-40-CPQ-HS-NAM/LATAM-CP,Disqualified,2026-04-09,2026-02-04,New Business,No Active Project,USD,57600.0,MM,Referral + Partners,Partners,Disqualifyed,,2026-02-16,001Rn000008ArzA
+Boaz Buch,Inovalon,Inovalon-330-CPQ-SF DISP-NAM,Value Proven,2026-07-31,2026-02-04,New Business - Competitive Displacement,,USD,316800.0,Enterprise,Inbound,Inbound,Pipeline,2026-02-16,2026-02-12,0010B000021haaA
+Boaz Buch,Recorded Future,Recorded Future-231-CPQ-SF-NAM-SF DISP,Sales Qualified,2026-10-26,2026-02-04,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-02-05,2026-02-05,0010B00001wwP7S
+Boaz Buch,Cargurus,Cargurus-466-CPQ-SF-NAM,Disqualified,2026-02-10,2026-02-03,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-04,0014P000037OVeU
+Boaz Buch,BroadSign,BroadSign-65-CLM-SF-NAM,Disqualified,2026-02-10,2026-02-03,New Business,No Active Project,USD,78000.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-09,0010B000020IrGV
+Boaz Buch,Sojern,Sojern-275-CPQ-SF-NAM-SF DISP,Won,2026-06-19,2026-02-02,New Business - Competitive Displacement,,USD,165000.0,Enterprise,Outbound,Outbound,Won,2026-02-03,2026-02-02,0010B000021hadi
+Boaz Buch,LevelBlue,LevelBlue-200-CPQ-NAM,Selection Started,2026-07-22,2026-02-02,New Business,,USD,528000.0,Enterprise,Referral + Customer,Partners,Pipeline,2026-02-23,2026-02-12,001Rn00000l6WJv
+Nathan Goldstein,Dataminr,Dataminr-120-CPQ-SF DISP-NAM,Sales Qualified,2026-07-31,2026-06-08,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-12,2026-06-12,0010B000021h0YN
+Nathan Goldstein,Zig,Zig-30-CPQ-SFDC-DISP-EU-CP,Sales Qualified,2026-07-31,2026-06-08,New Business - Competitive Displacement,,USD,54418.6,MM,Referral + Partners,Partners,Pipeline,2026-06-11,2026-06-10,001Rn00000u28Cg
+Nathan Goldstein,Front,Front-48-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-06-05,New Business,,USD,57600.0,MM,Inbound,Inbound,Pipeline,2026-06-09,2026-06-09,001Rn00000BKDNZ
+Nathan Goldstein,Beta Systems Software AG,Beta Systems Software AG-5-CPQ-HS-DACH,Sales Qualified,2026-07-31,2026-06-02,New Business,,USD,121395.35,SMB,Inbound,Inbound,Pipeline,2026-06-03,2026-06-03,0016Q00001mmM1t
+Nathan Goldstein,VEDA,VEDA-10-CPQ-SF-DACH,Disqualified,2026-06-08,2026-06-02,New Business,Qualification criteria not met,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-08,0016Q00001ouVfY
+Nathan Goldstein,ENRX Group,ENRX Group-40-CPQ-MD-NORDICS,Sales Qualified,2026-07-31,2026-06-02,New Business,,USD,46046.51,MM,Inbound,Inbound,Pipeline,2026-06-02,2026-06-01,001Rn000010gJvS
+Nathan Goldstein,Sogelink Group,Sogelink Group-59-CPQ-SF-FR-DISP,Sales Qualified,2026-12-31,2026-05-27,New Business - Competitive Displacement,,USD,115116.28,Enterprise,Inbound,Inbound,Pipeline,2026-05-28,2026-05-28,0016Q00001azMnj
+Nathan Goldstein,cohere,cohere-25-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-25,New Business,,USD,21000.0,SMB,Inbound,Inbound,Pipeline,2026-05-26,2026-05-26,0016Q00001aybl8
+Nathan Goldstein,Times Higher Education,Times Higher Education-55-CPQ-SF-EMEA,Sales Qualified,2026-09-30,2026-05-22,New Business,,USD,84648.65,MM,Inbound,Inbound,Pipeline,2026-06-03,2026-05-26,001Rn00000Enzs6
+Nathan Goldstein,Riverside.fm,Riverside.fm-50-CPQ-HS-EMEA,Disqualified,2026-06-03,2026-05-21,New Business,No Active Project,USD,86400.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-25,0016Q00001c3v5R
+Nathan Goldstein,Apartment Group,Apartment Group-15-CPQ-HS-EMEA,Disqualified,2026-05-21,2026-05-21,New Business,No Show,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-21,001Rn00001BHlZx
+Nathan Goldstein,Betterment,Betterment-25-CPQ-SF-NAM,Disqualified,2026-06-03,2026-05-16,New Business,No Active Project,USD,21000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-19,0014P00002wMQ7G
+Nathan Goldstein,US Signal,US Signal-50-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-15,New Business,,USD,90000.0,MM,Inbound,Inbound,Pipeline,2026-06-03,2026-05-20,0014P00002wMF2S
+Nathan Goldstein,Inforcer,Inforcer-49-CPQ-HS-EMEA,Sales Qualified,2026-07-31,2026-05-15,New Business,,USD,58800.0,MM,Inbound,Inbound,Pipeline,2026-05-19,2026-05-19,001Rn00000JBdmL
+Nathan Goldstein,Rocky Mountain Hot Tub Holdings,Rocky Mountain Hot Tub Holdings-30-CPQ-NetSuite-NAM,Disqualified,2026-06-03,2026-05-13,New Business,No Active Project,USD,36000.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-14,001Rn00001AFxCp
+Nathan Goldstein,TelmarHelixa,TelmarHelixa-45-CPQ-SF-DISP-NAM,Disqualified,2026-06-03,2026-05-13,New Business - Competitive Displacement,Cancelled,USD,54000.0,MM,Outbound,Outbound,Disqualifyed,,2026-06-01,0016Q00001ayc2h
+Nathan Goldstein,Promethean,Promethean-50-CPQ-SF-NAM-SF DISP,Sales Qualified,2026-08-31,2026-05-12,New Business - Competitive Displacement,,USD,60000.0,MM,Inbound,Inbound,Pipeline,2026-06-17,2026-05-14,0010B00001wwKKe
+Nathan Goldstein,Elliptic,Elliptic-26-HS-CPQ-UK,Meeting Booked,2026-08-04,2026-05-12,New Business,Demo Scheduled,USD,31200.0,SMB,Outbound,Outbound,Future,,2026-07-15,0014P00002wMxiJ
+Nathan Goldstein,Salt Security,Salt Security-15-CPQ-SF-NAM,Disqualified,2026-06-05,2026-05-06,New Business,Qualification criteria not met,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-11,0016Q00001WrABi
+Nathan Goldstein,Incode,Incode-55-CPQ-SF DISP-NAM,Sales Qualified,2026-07-31,2026-05-05,New Business - Competitive Displacement,,USD,108000.0,MM,Inbound,Inbound,Pipeline,2026-06-03,2026-05-06,0014P00002wMPLt
+Nathan Goldstein,LEAP Legal Software,LEAP Legal Software-20-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-04,New Business,To Be Lost,USD,90000.0,SMB,Inbound,Inbound,Pipeline,2026-05-06,2026-05-06,0016Q00001a8Ebw
+Nathan Goldstein,Swisslog Healthcare,Swisslog Healthcare-100-CPQ-SF-DACH,Disqualified,2026-06-03,2026-04-29,New Business,No product fit,USD,120000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-04-29,0010B000021hbnl
+Nathan Goldstein,D-EDGE,dedge-60-CPQ-SF-EMEA,Sales Qualified,2026-10-31,2026-04-28,New Business,,USD,83720.93,MM,Inbound,Inbound,Pipeline,2026-06-10,2026-05-06,0016Q00001ougvH
+Nathan Goldstein,Chainalysis,Chainalysis-300-CPQ-SF-DISP-NAM-RFP,Sales Qualified,2026-07-31,2026-04-28,New Business - Competitive Displacement,,USD,14400.0,SMB,Inbound,Inbound,Pipeline,2026-05-07,2026-05-11,0014P00002wMO75
+Nathan Goldstein,Coder,Coder-40-CPQ-SF DISP-NAM,Won,2026-05-15,2026-04-28,New Business - Competitive Displacement,,USD,57600.0,MM,Sales Direct,Other,Won,2026-04-29,2026-04-20,0014P00002wMFLG
+Nathan Goldstein,Algonomy,Algonomy-25-SF-CPQ-India-DISP,Disqualified,2026-04-28,2026-04-27,New Business - Competitive Displacement,No Active Project,USD,30240.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-28,0016Q00001WqIo3
+Nathan Goldstein,MANGOPAY,Mangopay-80-CPQ-SF DISP-EMEA,Sales Qualified,2026-10-31,2026-04-22,New Business - Competitive Displacement,,USD,133953.49,Enterprise,Inbound,Inbound,Pipeline,2026-04-24,2026-04-24,0014P00002wMOZV
+Nathan Goldstein,Shopware,Shopware-25-CPQ-HS-DACH,Sales Qualified,2026-07-31,2026-04-22,New Business,To Be Lost,USD,27837.21,MM,Inbound,Inbound,Pipeline,2026-04-24,2026-04-23,001Rn00000Hkrud
+Nathan Goldstein,DataSnipper,DataSnipper-72-CPQ-HS-EMEA,Sales Qualified,2026-07-31,2026-04-22,New Business,,USD,214534.88,Enterprise,Inbound,Inbound,Pipeline,2026-04-24,2026-04-24,0016Q00001dgwqK
+Nathan Goldstein,Amplēo,Amplēo-25-CPQ-HS-NAM,Disqualified,2026-04-30,2026-04-16,New Business,No Budget,USD,30000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-20,0016Q00001ouYRM
+Nathan Goldstein,Ryan Lawn And Tree,Ryan Lawn And Tree-300-SF-NAM,Disqualified,2026-04-28,2026-04-15,New Business - Competitive Displacement,No product fit,USD,60000.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-16,0016Q00001WqjG7
+Nathan Goldstein,ScaleOps,ScaleOps-37-Q2C-SF-NAM,Disqualified,2026-05-11,2026-04-13,New Business,Cancelled,USD,44400.0,MM,Outbound,Outbound,Disqualifyed,,2026-05-11,001Rn00000qv9vD
+Nathan Goldstein,Dataprise,Dataprise-30-CPQ-MSD-NAM,Sales Qualified,2026-07-31,2026-04-12,New Business - Competitive Displacement,,USD,108000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-30,2026-04-16,0014P00003CF2ih
+Nathan Goldstein,Accountor Finago Oy,Accountor Finago Oy-55-CPQ-MD-NORDICS,Sales Qualified,2026-12-31,2026-04-10,New Business,,USD,76744.19,MM,Inbound,Inbound,Pipeline,2026-04-16,2026-04-13,001Rn00000G8RI3
+Nathan Goldstein,Velory,Velory-6-CPQ-HS-EU,Disqualified,2026-06-05,2026-03-30,New Business,No product fit,USD,1440.0,SMB,Referral - Prior Customer,Other,Disqualifyed,,2026-05-11,0014P00002wMyC2
+Nathan Goldstein,RegEd,RegEd-30-CPQ-SF-NAM,Sales Qualified,2026-08-31,2026-03-27,New Business,,USD,54000.0,MM,Inbound,Inbound,Pipeline,2026-04-30,2026-04-14,0010B00001wwTD0
+Nathan Goldstein,SiteMinder,SiteMinder-220-CPQ-SF-ANZ,Selection Started,2026-07-31,2026-03-26,New Business,,USD,240258.99,Enterprise,Outbound,Outbound,Pipeline,2026-04-14,2026-04-13,0014P00002wMvWJ
+Nathan Goldstein,Visualfabriq,Visualfabriq-20-Q2C-SF-EMEA,Disqualified,2026-04-23,2026-03-25,New Business - Competitive Displacement,Cancelled,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-21,0016Q00001ouWFv
+Nathan Goldstein,Prompt Health,Prompt Health-50-CPQ-HS-NAM,Sales Qualified,2026-07-31,2026-03-24,New Business,,USD,90000.0,MM,Inbound,Inbound,Pipeline,2026-03-26,2026-03-25,001Rn000013yhJF
+Nathan Goldstein,Modell Aachen GmbH,Modell Aachen GmbH-45-Q2C-HS-DACH,Disqualified,2026-03-18,2026-03-17,New Business,No Show,USD,54000.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-18,001Rn00000BKOlk
+Nathan Goldstein,SpyCloud,Spycloud-53-CPQ-NAM,Disqualified,2026-03-27,2026-03-12,New Business,No Active Project,USD,63600.0,MM,Executive,Other,Disqualifyed,,2026-03-19,0014P00002wMPNI
+Nathan Goldstein,Solix Technologies,Solix Technologies-CPQ-30-HS-NAM,Sales Qualified,2026-06-30,2026-03-11,New Business,,USD,54000.0,MM,Outbound,Outbound,Pipeline,2026-03-11,2026-03-11,0014P000029gwjv
+Nathan Goldstein,Alacriti,Alacriti-21-CPQ-SF-NAM,Disqualified,2026-04-16,2026-03-10,New Business,No Active Project,USD,64800.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-10,0016Q00001YUat6
+Nathan Goldstein,Perceptyx,Perceptyx-50-CPQ-SF DISP-NAM,Sales Qualified,2026-08-31,2026-03-09,New Business - Competitive Displacement,,USD,46800.0,MM,Inbound,Inbound,Pipeline,2026-03-10,2026-03-10,0014P00002gLTcz
+Nathan Goldstein,Soltechhome,Soltechhome-60-CPQ-HS-NRD,Disqualified,2026-04-09,2026-03-06,New Business,Cancelled,USD,72000.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-07,001Rn00000uZfg1
+Nathan Goldstein,ENRX Group,ENRX Group-54-CPQ-MD-NORDICS,Disqualified,2026-03-16,2026-03-02,New Business,,USD,73636.36,MM,Inbound,Inbound,Disqualifyed,,2026-03-05,001Rn000010gJvS
+Nathan Goldstein,TestMu,TestMu AI-70-CPQ-SF-NAM-CP,Sales Qualified,2026-07-31,2026-02-27,New Business,,USD,42000.0,MM,Referral + Partners,Partners,Pipeline,2026-03-27,2026-05-04,0014P00002wMN6w
+Nathan Goldstein,Cleerly,Cleerly-35-CPQ-SF DISP-NAM,Disqualified,2026-03-07,2026-02-26,New Business - Competitive Displacement,Find the right Stakeholders,USD,42000.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-02,0016Q00001ouf8g
+Nathan Goldstein,Odessa,Odessa-50-CPQ-SF DISP-NAM,Selection Started,2026-08-31,2026-02-24,New Business - Competitive Displacement,,USD,60000.0,MM,Inbound,Inbound,Pipeline,2026-03-18,2026-02-26,0014P00002wMEpY
+Nathan Goldstein,Dalux,Dalux-170-CPQ/CLM-HS-EMEA,Closed Lost,2026-06-09,2026-02-23,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Lost,2026-04-15,2026-02-27,0016Q00001YVIXl
+Nathan Goldstein,DQS,DQS-70-CPQ-HS-DACH,Closed Lost,2026-04-01,2026-02-19,New Business,No Active Project,USD,96551.72,MM,Inbound,Inbound,Lost,2026-02-20,2026-02-20,0016Q00001oui8x
+Nathan Goldstein,Bui.co,Bui-17-CPQ-HS-EMEA,Disqualified,2026-02-19,2026-02-09,New Business,No product fit,USD,24480.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-17,001Rn00000xcVdV
+Nathan Goldstein,PenLink,PenLink-36-Q2C-SF-DISP-NAM,Disqualified,2026-02-17,2026-02-09,New Business - Competitive Displacement,Cancelled,USD,43200.0,MM,Outbound,Outbound,Disqualifyed,,2026-02-16,0014P00002wMH2v
+Nathan Goldstein,London Stock Exchange,London Stock Exchange-141-CPQ-SF-EMEA,Disqualified,2026-02-09,2026-02-09,New Business,Cancelled,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-09,0010B000021hb23
+Nathan Goldstein,LRQA,LloydsRegisterQualityAssurance-316-CPQ-MD-EMEA,Sales Qualified,2026-12-31,2026-02-06,New Business,To Be Lost,USD,583783.78,Enterprise,Inbound,Inbound,Pipeline,2026-02-10,2026-02-10,0014P00003Y6Xk5
+Nathan Goldstein,Q4,Q4-35-CPQ-SF-NAM-SF DISP,Disqualified,2026-04-16,2026-02-05,New Business - Competitive Displacement,Lost Touch With Account,USD,48000.0,MM,Outbound,Outbound,Disqualifyed,,2026-02-10,0016Q00001aybyW
+Nathan Goldstein,Moxi Works,MoxiWorks-30-CPQ-HS-NAM,Won,2026-04-02,2026-02-03,New Business,,USD,32400.0,MM,Inbound,Inbound,Won,2026-02-04,2026-02-04,0014P00002wMOiw
+Nathan Goldstein,Upwind,Upwind-50-CPQ-SF-NAM,Disqualified,2026-04-16,2026-02-03,New Business,No Active Project,USD,100800.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-05,001Rn00000MF5cM
+Nathan Goldstein,Quartr,Quartr-30-Q2C-SF-EMEA,Closed Lost,2026-03-05,2026-02-03,New Business,No Active Project,USD,69120.0,MM,Inbound,Inbound,Lost,2026-02-04,2026-02-04,001Rn00000T4wG9
+Nathan Goldstein,Niche,Niche-45-CPQ-SF DISP-NAM,Sales Qualified,2026-06-30,2026-02-03,New Business - Competitive Displacement,,USD,48600.0,MM,Inbound,Inbound,Pipeline,2026-03-10,2026-02-04,0014P00002wMHDK
+Clifton Mhlanga,Nueva Solutions,Nueva Solutions-10-CPQ-HS-ANZ,Sales Qualified,2026-07-31,2026-05-25,New Business,To Be Lost,USD,14400.0,SMB,Inbound,Inbound,Pipeline,2026-05-27,2026-05-26,0016Q00001ifEGM
+Clifton Mhlanga,Siegel Adhesives,Siegel Adhesives-10-CPQ-HS-ANZ,Closed Lost,2026-06-09,2026-05-12,New Business,No Budget,USD,24000.0,SMB,Inbound,Inbound,Lost,2026-05-15,2026-05-13,001Rn00001A0AfS
+Clifton Mhlanga,Harrows,Harrows-10-CPQ-HS-ANZ,Selected Vendor,2026-07-31,2026-05-01,New Business,,USD,21582.73,SMB,Inbound,Inbound,Pipeline,2026-05-08,2026-05-06,001Rn000017muOQ
+Clifton Mhlanga,Engagis Pty Ltd,Engagis Pty Ltd-20-CPQ-HS-ANZ,Sales Qualified,2026-10-31,2026-04-08,New Business,,USD,39712.23,SMB,Inbound,Inbound,Pipeline,2026-04-15,2026-04-14,001Rn00000XtGHB
+Clifton Mhlanga,Ricoh South Pacific,Ricoh South Pacific-10-CPQ-SF-DISP-ANZ,Sales Qualified,2026-10-31,2026-03-19,New Business - Competitive Displacement,,USD,19856.12,SMB,Inbound,Inbound,Pipeline,2026-03-24,2026-03-24,001Rn00000QPHlJ
+Clifton Mhlanga,STG Global,STG Global-10-CPQ-HS-ANZ,Closed Lost,2026-06-09,2026-02-17,New Business,Lost Touch With Account,USD,19856.12,SMB,Inbound,Inbound,Lost,2026-02-18,2026-02-18,001Rn00000xiSQA
+Clifton Mhlanga,RedShield Security,Redshield Security-10-CPQ-HS-ANZ,Disqualified,2026-02-25,2026-02-11,New Business,No Budget,USD,30000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-12,001Rn00000BKDxs
+Chris Jankos,Lumistry,Lumistry-25-CPQ-SF-NAM,Won,2026-06-05,2026-05-26,New Business,,USD,30000.0,SMB,Inbound,Inbound,Won,2026-05-28,2026-05-28,001Rn00000EoGnZ
+Chris Jankos,Onetrak Pty,OneTrak-18-CPQ-HS-AU-CP,Won,2026-05-29,2026-05-01,New Business,,USD,23946.04,SMB,Referral + HubSpot,Partners,Won,2026-05-04,2026-04-30,001Rn000013LpG1
+Chris Jankos,TRAILD,TRAILD-50-CPQ-HS-NAM-DISP,Closed Lost,2026-06-09,2026-04-30,New Business - Competitive Displacement,Selected Competitor,USD,30000.0,MM,Sales Direct,Other,Lost,2026-05-01,2026-04-26,001Rn00000R1gkC
+Chris Jankos,Performance Property,Performance Property-13-CPQ-HS-ANZ,Closed Lost,2026-06-09,2026-04-23,New Business,No Active Project,USD,25812.95,SMB,Inbound,Inbound,Lost,2026-05-01,2026-04-29,001Rn00001422j4
+Chris Jankos,Nightfall,Nightfall-20-CPQ-SF-NAM-DISP,Won,2026-04-30,2026-04-07,New Business - Competitive Displacement,,USD,20400.0,SMB,Inbound,Inbound,Won,2026-04-09,2026-04-08,0014P00002wMOTx
+Chris Jankos,Assort Health,Assort Health-20-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-04-03,New Business,Selected Competitor,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-04-08,2026-04-08,001Rn000011awdz
+Chris Jankos,decagon.ai,Decagon-40-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-24,New Business,In-House Solution,USD,72000.0,MM,Inbound,Inbound,Lost,2026-04-09,2026-04-07,001Rn00000kfubd
+Chris Jankos,SendBird,SendBird-46-CPQ-SF-NAM,Disqualified,2026-03-27,2026-03-19,New Business,Find the right Stakeholders,USD,55200.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-20,0014P00002mryuE
+Chris Jankos,RMS The Hospitality Cloud,RMS The Hospitality Cloud-30-CPQ-HS-ANZ,Won,2026-04-30,2026-03-13,New Business,,USD,37240.69,MM,Referral + Partner Stores,Partners,Won,2026-03-23,2026-03-19,0010B000021h0fQ
+Chris Jankos,Dovetail,Dovetail-19-Q2C-SF-DISP-ANZ,Closed Lost,2026-06-09,2026-03-06,New Business - Competitive Displacement,No Active Project,USD,88800.0,SMB,Inbound,Inbound,Lost,2026-03-26,2026-03-26,001Rn00000aUtP2
+Chris Jankos,Virtual IT Group,Virtual IT Group-29-CPQ-HS-ANZ,Won,2026-04-20,2026-03-05,New Business,,USD,41380.0,MM,Inbound,Inbound,Won,2026-03-10,2026-03-10,001Rn00000bJiBb
+Chris Jankos,Tempest Security Intelligence,Tempest Security Intelligence-45-SF-DISP-BRAZIL,Closed Lost,2026-05-03,2026-02-24,New Business,No Budget,USD,72900.0,MM,Inbound,Inbound,Lost,2026-02-25,2026-02-25,001Rn00000zpvnW
+Chris Jankos,Social Pinpoint,Social Pinpoint-20-Q2C-HS-ANZ,Closed Lost,2026-03-05,2026-02-23,New Business,Selected Competitor,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-02-25,2026-02-25,0016Q00001xYZX4
+Chris Jankos,Fresho,Fresho-14-CPQ-SF-ANZ,Won,2026-04-10,2026-02-20,New Business,,USD,18620.69,SMB,Inbound,Inbound,Won,2026-02-24,2026-02-23,001Rn00000BKH5d
+Chris Jankos,PropertyGuru,PropertyGuru-175-CPQ-SF-APAC-CP,Disqualified,2026-03-22,2026-02-17,New Business,Cancelled,USD,100000.0,Enterprise,Referral + Partners,Partners,Disqualifyed,,2026-03-30,0014P00002wMwae
+Chris Jankos,AC3,AC3-30-Q2C-MS-ANZ,Sales Qualified,2026-10-01,2026-02-11,New Business,,USD,117122.3,MM,Inbound,Inbound,Pipeline,2026-02-17,2026-02-16,0016Q00001a8aIQ
+Chris Jankos,SAFEbuilt,SAFEbuilt-21-CPQ-SF-NAM-SF DISP,Closed Lost,2026-06-09,2026-02-10,New Business - Competitive Displacement,Qualification criteria not met,USD,37800.0,SMB,Outbound,Outbound,Lost,2026-03-05,2026-03-03,0010B000021hZhV
+Chris Jankos,Opsguru,OpsGuru-50-CPQ-HS-NAM,Closed Lost,2026-06-09,2026-02-04,New Business,Find the right Stakeholders,USD,79200.0,MM,Inbound,Inbound,Lost,2026-02-13,2026-02-12,0016Q00001ig3zV
+Chris Jankos,Forté,Forté-23-CPQ-HS-ANZ,Closed Lost,2026-05-03,2026-02-04,New Business,Selected Competitor,USD,45669.06,SMB,Inbound,Inbound,Lost,2026-02-04,2026-02-05,001Rn00000JH0oi
+Becky Gilor,BeyondTrust,BeyondTrust-400-SF-CPQ-DISP-NAM,Meeting Booked,2026-09-11,2026-06-17,New Business,Demo Scheduled,USD,100000.0,Enterprise,Outbound,Outbound,Future,,2026-07-08,001U000001i2Xow
+Becky Gilor,Magnet Forensics,Magnet Forensics-128-CPQ-SF-NAM,Meeting Booked,2026-09-30,2026-06-17,New Business,Demo Scheduled,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-22,0010B00001wwTDo
+Becky Gilor,Plaid,Plaid-209-CPQ-SF-NAM-SF DISP,Meeting Booked,2026-10-31,2026-06-16,New Business - Competitive Displacement,,USD,8400.0,Empty,Outbound,Outbound,Future,,2026-07-01,0016Q00001YY9eM
+Becky Gilor,VTEX,VTEX-50-CPQ-HS-UK,Sales Qualified,2026-09-30,2026-06-09,New Business,,USD,76500.0,MM,Inbound,Inbound,Pipeline,2026-06-10,2026-06-09,0016Q00001c0mLu
+Becky Gilor,PerformYard,PerformYard-40-Q2C-SF-NAM,Meeting Booked,2026-08-31,2026-06-05,New Business,,USD,25000.0,MM,Sales Direct,Other,Future,2025-08-24,2026-06-04,0014P00002wMM1F
+Becky Gilor,MasterSense,MasterSense-100-CPQ-SF-LATAM,Sales Qualified,2026-09-30,2026-06-04,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-15,2026-06-09,001Rn00001CUL9H
+Becky Gilor,Talkdesk,Talkdesk-220-CPQ-HS-NAM-CP-SFCRM/CPQ Disp,Meeting Booked,2026-07-31,2026-06-03,New Business - Competitive Displacement,Demo Scheduled,USD,100000.0,Enterprise,Outbound,Outbound,Future,,2026-04-29,0010B00001wwTHW
+Becky Gilor,Nuvei,Nuvei-750-CPQ-SF-NAM,Sales Qualified,2026-10-30,2026-06-03,New Business,,USD,250000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-10,2026-06-04,0016Q00001ouWGn
+Becky Gilor,METRO AG,METRO AG-10000-CPQ-API-DACH,Meeting Booked,2026-07-31,2026-06-02,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-22,001Rn00000JBRBo
+Becky Gilor,MasterSense,MasterSense-100-CPQ-SF-LATAM,Disqualified,2026-06-03,2026-05-29,New Business,No Show,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-06-01,001Rn00001CUL9H
+Becky Gilor,Siemens AG,Siemens Digital Industries Software-200-CPQ-SF-NAM-SF CPQ,Sales Qualified,2026-09-30,2026-05-28,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-06-03,2026-06-01,0016Q00001if9Ah
+Becky Gilor,Coloplast,Coloplast Interventional Urology-138-CPQ-SF-EMEA,Sales Qualified,2026-07-31,2026-05-27,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-03,2026-05-28,0016Q00001if0iq
+Becky Gilor,Pilot,Pilot.com-60-QTC-SF-NAM-CP,Meeting Booked,2026-07-17,2026-05-26,New Business,To Be Scheduled,USD,72000.0,MM,Referral + Partners,Partners,Future,,2026-06-12,0014P00002wMPuk
+Becky Gilor,Bellrock Group,Bellrock Group-100-CPQ-HS-UK,Disqualified,2026-06-03,2026-05-26,New Business,Cancelled,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-06-01,0016Q00001de5bg
+Becky Gilor,Frontline Education,Frontline Education-65-CPQ-SF-NAM,Disqualified,2026-06-05,2026-05-25,New Business,Qualification criteria not met,USD,76800.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-26,001Rn00000qun08
+Becky Gilor,Imagine Communications,ImagineCommunications-125-CPQ-SF-DISP-NAM,Sales Qualified,2026-09-04,2026-05-19,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-06-15,2026-06-10,0010B000021hawP
+Becky Gilor,HP Inc,HP Industrial Printing-800-Q2R-MS-EMEA,Sales Qualified,2026-08-31,2026-05-19,New Business,,USD,2000000.0,Enterprise,Executive,Other,Pipeline,2026-06-03,2026-05-24,0014P000029gyYD
+Becky Gilor,Edmentum,Edmentum-1OO-CPQ-SF-NAM-DISP,Sales Qualified,2026-07-31,2026-05-15,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Executive,Other,Pipeline,2026-05-17,2026-06-10,0010B000021hZhq
+Becky Gilor,Creditsafe Business Solutions,Creditsafe-800-CPQ-MD-EMEA,Disqualified,2026-06-15,2026-05-14,New Business,No Show,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-06-03,0014P00002wMy1g
+Becky Gilor,Remote,Remote-800-CPQ-SF-NAM,Sales Qualified,2026-08-31,2026-05-13,New Business,,USD,100000.0,Enterprise,Executive,Other,Pipeline,2026-06-03,2026-05-19,0016Q00001YX39q
+Becky Gilor,ChargePoint,ChargePoint-183-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-05-11,New Business,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Lost,2026-05-13,2026-05-12,0010B00001wwS0O
+Becky Gilor,Active Network,Active Network-80-SF-CPQ-NAM,Sales Qualified,2026-07-15,2026-05-11,New Business,,USD,96000.0,Enterprise,Outbound,Outbound,Pipeline,2026-06-03,2026-05-14,0014P00002wMAWS
+Becky Gilor,LightHouse,Lighthouse-190-CPQ-SF-NAM-DISP,Sales Qualified,2026-08-07,2026-05-11,New Business,,USD,280000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-03,2026-05-15,001Rn000008VErj
+Becky Gilor,OSG/EverView,OSG/EverView-79-CPQ-SF-NAM,Sales Qualified,2026-08-31,2026-05-06,New Business,,USD,94800.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-03,2026-05-06,0016Q00001YY5Lg
+Becky Gilor,Klaviyo,Klaviyo-623-CPQ-SF-NAM,Sales Qualified,2026-09-30,2026-05-03,New Business,,USD,585000.0,Enterprise,Inbound,Inbound,Pipeline,2026-05-04,2026-05-04,0010B000021h0cX
+Becky Gilor,MarginEdge,MarginEdge-91-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-03,New Business,To Be Lost,USD,107100.0,MM,Inbound,Inbound,Pipeline,2026-05-13,2026-05-04,0016Q00001aybu6
+Becky Gilor,Employ,Employ-83-CPQ-SF-NAM-SF CPQ,Sales Qualified,2026-07-31,2026-04-29,New Business - Competitive Displacement,,USD,99600.0,Enterprise,Outbound,Outbound,Pipeline,2026-05-20,2026-05-01,0016Q00001ifTMm
+Becky Gilor,Airtable,Airtable-150-CPQ-SF-NAM-DISP,Sales Qualified,2026-07-31,2026-04-28,New Business - Competitive Displacement,,USD,228000.0,Enterprise,Executive,Other,Pipeline,2026-05-12,2026-05-11,0014P00002zwoT1
+Becky Gilor,Acquia,Acquia-169-CPQ-SF-NAM,Selection Started,2026-07-31,2026-04-27,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-05-12,2026-04-29,0010B00001zFmPA
+Becky Gilor,Eve Legal,Eve Legal-100-CPQ-HS-NAM-DISP,Won,2026-05-29,2026-04-24,New Business - Competitive Displacement,,USD,75600.0,Enterprise,Sales Direct,Other,Won,2026-04-26,2026-04-23,001Rn000017nP2Z
+Becky Gilor,Epiq,Epiq-232-CPQ-SF-NAM,Sales Qualified,2026-09-23,2026-04-17,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-30,2026-04-20,0014P00002wMCjk
+Becky Gilor,TriMech Solutions,TriMech Solutions-100-CPQ-SF-NAM,Selection Started,2026-07-06,2026-04-14,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-05-17,2026-05-04,0014P000037OWR2
+Becky Gilor,Eli Lilly,Eli Lilly-60-CPQ-SF-NAM,Disqualified,2026-04-16,2026-04-10,New Business,No Active Project,USD,72000.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-13,001U000001feveo
+Becky Gilor,Certasite,Certasite-75-CPQ-HS-NA,Selected Vendor,2026-07-31,2026-04-06,New Business,,USD,108000.0,MM,Outbound,Outbound,Pipeline,2026-04-07,2026-04-06,0016Q00001c3tHV
+Becky Gilor,Rippling,Rippling-1000-Q2C-SF DISP-NAM,Closed Lost,2026-06-09,2026-04-06,New Business,Qualification criteria not met,USD,100000.0,Enterprise,Inbound,Inbound,Lost,2026-04-30,2026-04-09,0014P00002wMQ5j
+Becky Gilor,One Taldor,Taldor-70-CPQ-Freshworks-IL,Disqualified,2026-04-24,2026-04-06,New Business,Cancelled,USD,84000.0,MM,Outbound,Outbound,Disqualifyed,,2026-04-23,0016Q00001WreN2
+Becky Gilor,Neogen,Neogen-390-CPQ-SF-NAM,Sales Qualified,2026-10-21,2026-04-03,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-30,2026-04-09,0014P000029gyrw
+Becky Gilor,Panaya,Panaya-28-CPQ-SF-EMEA-DISP,Sales Qualified,2026-07-31,2026-03-30,New Business - Competitive Displacement,,USD,33600.0,MM,Outbound,Outbound,Pipeline,2026-04-30,2026-04-19,001U000000ur6Jc
+Becky Gilor,Gainsight,Gainsight-140-CPQ-SF DISP-NAM,Sales Qualified,2026-07-31,2026-03-28,New Business - Competitive Displacement,,USD,140400.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-08,2026-04-02,0010B00001wwP6e
+Becky Gilor,BigID,BigID-100-CPQ-SF-DISP-NAM,Sales Qualified,2026-08-31,2026-03-25,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-04-17,2026-04-16,0010B00001zhAbG
+Becky Gilor,SevenRooms,Sevenrooms-55-CPQ-SF-NAM,Sales Qualified,2026-06-30,2026-03-25,New Business,To Be Lost,USD,66000.0,MM,Outbound,Outbound,Pipeline,2026-03-29,2026-04-06,0014P00002wMQEo
+Becky Gilor,Birdeye,Birdeye-400+-CPQ-SF-NAM-SF DISP,Sales Qualified,2026-10-29,2026-03-24,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Outbound,Outbound,Pipeline,2026-04-30,2026-04-14,0010B00001zHn0t
+Becky Gilor,"Mixpanel, Inc.",Mixpanel-150-CPQ-SF DISP-NAM,Won,2026-06-18,2026-03-24,New Business - Competitive Displacement,,USD,102600.0,Enterprise,Inbound,Inbound,Won,2026-03-27,2026-03-25,0010B00001wwTNd
+Becky Gilor,Nasdaq,Nasdaq-CPQ-150-SF-NAM,Meeting Happened,2026-09-30,2026-03-24,New Business,,USD,100000.0,Enterprise,Executive,Other,TBD,,2026-03-31,0016Q00001a8dhf
+Becky Gilor,OneTrust,OneTrust-200-CPQ-SF DISP-NAM,Sales Qualified,2026-07-31,2026-03-18,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-03-31,2026-03-23,0010B00001zgojJ
+Becky Gilor,Hallo,Hallo-100-CPQ-SFDC-EU-DISP-CP,Sales Qualified,2026-07-31,2026-03-18,New Business - Competitive Displacement,,USD,128930.23,Enterprise,Referral + Partners,Partners,Pipeline,2026-03-31,2026-03-23,001Rn00000qGZS6
+Becky Gilor,Payoneer,Payoneer-150-CPQ-SF-NAM,Disqualified,2026-05-07,2026-03-15,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,2026-04-30,2026-03-22,0010B000021gySN
+Becky Gilor,HealthEquity,HealthEquity-179-CPQ-SF-NAM,Disqualified,2026-04-16,2026-03-14,New Business,No Active Project,USD,270000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-26,0010B000021hZBZ
+Becky Gilor,Masters Pharmaceutical,Masters Pharmaceutical-60-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-12,New Business,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Lost,2026-03-31,2026-03-27,0014P00002wMHeF
+Becky Gilor,Lightspeed DMS,Lightspeed DMS-125-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-10,New Business,Lost Touch With Account,USD,100000.0,Enterprise,Inbound,Inbound,Lost,2026-03-31,2026-03-11,001Rn00000BKJ9e
+Becky Gilor,Qcells North America,Qcells North America-63-CPQ-SF-NAM,Disqualified,2026-03-23,2026-03-06,New Business,Cancelled,USD,75600.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-30,001Rn000008AruS
+Becky Gilor,IDeaS Revenue Solutions,IDeaS Revenue Solutions-500-CPQ-SF-DISP-NAM,Disqualified,2026-03-31,2026-03-04,New Business - Competitive Displacement,No product fit,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-03-09,0016Q00001ieWbv
+Becky Gilor,Foundry,Foundry-100-CPQ-HS-NAM,Won,2026-04-30,2026-03-02,New Business,,USD,100000.0,Enterprise,Outbound,Outbound,Won,2026-03-31,2026-03-10,0016Q00001xaUac
+Becky Gilor,Construction Resources,Construction Resources-300-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-02-27,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-30,2026-03-03,0016Q00001zH1y3
+Becky Gilor,HeadFirst Group,HeadFirst Group-250-CPQ-HS-EMEA-CP,Sales Qualified,2026-10-22,2026-02-27,New Business,,USD,200000.0,Enterprise,Referral + Partners,Partners,Pipeline,2026-03-10,2026-03-02,0016Q00001ouaNS
+Becky Gilor,Five9,Five9-500-CPQ-SF-NAM-DISP,Sales Qualified,2026-07-31,2026-02-26,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-03-10,2026-03-09,0010B00001zFmPP
+Becky Gilor,Reliance Steel & Aluminum Co,Reliance Steel & Aluminum-125-CPQ-MD-NAM,Disqualified,2026-04-16,2026-02-24,New Business,Lost Touch With Account,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-25,0014P000029gyiD
+Becky Gilor,Thryv,Thryv-1250-CPQ-SF-NAM-DISP,Sales Qualified,2026-10-21,2026-02-22,New Business - Competitive Displacement,,USD,641700.0,Enterprise,Events,Other,Pipeline,2026-02-24,2026-02-23,0014P00002wMPu2
+Becky Gilor,JotForm,Jotform-53-CPQ-HS-NAM,Disqualified,2026-02-26,2026-02-19,New Business,Find the right Stakeholders,USD,63600.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-25,0014P00002wMIap
+Becky Gilor,ActiveCampaign,ActiveCampaign-300-CPQ-SF-NAM-RFP,Sales Qualified,2026-08-27,2026-02-17,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-04-13,2026-03-30,0010B000021hb37
+Becky Gilor,dbt Labs,dbt Labs-200-CPQ-SF-NAM-SF DISP,Closed Lost,2026-04-26,2026-02-17,New Business - Competitive Displacement,No Active Project,USD,168000.0,Enterprise,Outbound,Outbound,Lost,2026-02-25,2026-02-18,001Rn00000NhGHQ
+Becky Gilor,Mitek Systems Inc.,Mitek Systems-45-CPQ-SF-NAM,Won,2026-04-30,2026-02-17,New Business,,USD,32400.0,MM,Inbound,Inbound,Won,2026-02-25,2026-02-17,0010B000021h0Az
+Becky Gilor,Tanium,Tanium-600-CPQ-SF-NAM-DISP,Closed Lost,2026-05-03,2026-02-14,New Business - Competitive Displacement,Selected Competitor,USD,504000.0,Enterprise,Inbound,Inbound,Lost,2026-03-31,2026-02-26,0010B00001zFmW6
+Becky Gilor,Deloitte,Deloitte-12000-SF-CPQ-NAM,Disqualified,2026-04-07,2026-02-13,New Business,No Active Project,USD,1800000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-16,0010B000021gsrv
+Becky Gilor,Vasion,Vasion-86-Q2C-SF-DISP-NAM,Disqualified,2026-03-10,2026-02-12,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-02-26,0016Q00001ayc4a
+Becky Gilor,Prodege,Prodege-76-CPQ-HS-NAM,Disqualified,2026-03-10,2026-02-11,New Business,No product fit,USD,91200.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-02-23,0016Q00001c0jHV
+Becky Gilor,Bizzdesign,BiZZdesign-100-CPQ-SF-EMEA,Selected Vendor,2026-07-22,2026-02-11,New Business,To Be Lost,USD,125581.4,Enterprise,Inbound,Inbound,Pipeline,2026-02-25,2026-02-11,0014P00002wMwbj
+Becky Gilor,Unite Financial Services Global GmbH,Unite Financial Services Global GmbH-150-CPQ-API-DACH,Disqualified,2026-02-21,2026-02-06,New Business,Cancelled,USD,100000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-02-20,0016Q00001ouj7m
+Becky Gilor,Acxiom,Acxiom-250-CPQ-SF DISP-NAM,Disqualified,2026-04-16,2026-02-06,New Business - Competitive Displacement,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-09,0010B000021hYdt
+Becky Gilor,Owens & Minor,Owens & Minor-75-CPQ-SF-NAM,Disqualified,2026-02-26,2026-02-04,New Business,Stayed with existing Solution,USD,90000.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-09,0010B000021ha5i
+Becky Gilor,Pye-Barker Fire & Safety,Pye-Barker-300-CPQ-HS-NA-CP,Disqualified,2026-04-14,2026-02-02,New Business,No product fit,USD,100000.0,Enterprise,Referral + HubSpot,Partners,Disqualifyed,,2026-03-02,001Rn000007Zpja
+Ivan Brin,Comviva Technologies Limited,Comviva Technologies Limited-90-CPQ-SF-APAC,Disqualified,2026-06-18,2026-06-17,New Business,No Show,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-06-18,0016Q00001c21qL
+Ivan Brin,Rencore,Rencore-20-HS-Q2C-DACH,Selection Started,2026-07-31,2026-06-16,New Business,,USD,23000.0,SMB,Outbound,Outbound,Pipeline,2026-06-19,2026-06-19,001Rn00000BKNRC
+Ivan Brin,Uptempo,Uptempo-25-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-06-16,New Business,,USD,21000.0,SMB,Inbound,Inbound,Pipeline,2026-06-17,2026-06-17,0016Q00001vReey
+Ivan Brin,M3,M3-25-CPQ-SF-NAM,Value Proven,2026-07-31,2026-06-15,New Business,,USD,45000.0,SMB,Sales Direct,Other,Pipeline,2026-06-15,2026-06-17,0014P000037OW4l
+Ivan Brin,Tate Computer Systems,Tate Computer-10-CPQ-HS-NAM-CP,Meeting Happened,2026-07-31,2026-06-15,New Business,,USD,14400.0,SMB,Referral + HubSpot,Partners,TBD,,2026-06-16,001Rn00001DSFW4
+Ivan Brin,StoreNext,StoreNext Technologies-15-Q2R-SFDC-EU,Meeting Booked,2026-08-31,2026-06-15,New Business,Demo Scheduled,USD,21600.0,SMB,Events,Other,Future,,2026-06-24,001Rn00000HkruQ
+Ivan Brin,Antaros Medical,Anraros Medical-10-MSD-NORDICS,Selection Started,2026-07-31,2026-06-15,New Business,,USD,20930.23,SMB,Inbound,Inbound,Pipeline,2026-06-15,2026-06-15,001Rn00001BqJiw
+Ivan Brin,Legora,Legora-30-CPQ-SF-NORDCIS,Meeting Happened,2026-07-31,2026-06-15,New Business,,USD,36000.0,MM,Inbound,Inbound,TBD,,2026-06-17,001Rn00000Eo488
+Ivan Brin,IncrediBuild Software,IncrediBuild Software-30-CPQ-SF-NAM-SF DISP,Disqualified,2026-06-10,2026-06-04,New Business - Competitive Displacement,No Show,USD,36000.0,MM,Outbound,Outbound,Disqualifyed,,2026-06-08,0010B000021hZht
+Ivan Brin,Framesecurity,Frame Security-30-CPQ-HS-NAM,Selected Vendor,2026-07-31,2026-06-03,New Business,,USD,46000.0,MM,Inbound,Inbound,Pipeline,2026-06-04,2026-06-03,001Rn000012I6dS
+Ivan Brin,TrainLit,TrainLit-10-CPQ-HS-EMEA,Disqualified,2026-05-19,2026-05-19,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-26,001Rn00001B1iAR
+Ivan Brin,AUTOMATED SYSTEMS GROUP LIMITED,ASL Group-20-CPQ-SF-EMEA,Selection Started,2026-06-30,2026-05-12,New Business,,USD,30600.0,SMB,Inbound,Inbound,Pipeline,2026-05-12,2026-05-07,0016Q00001dh0W3
+Ivan Brin,Metrc,Metrc-25-CPQ-SF-NAM,Selected Vendor,2026-07-31,2026-05-12,New Business - Competitive Displacement,,USD,45000.0,SMB,Inbound,Inbound,Pipeline,2026-05-13,2026-05-13,0016Q00001ouhBJ
+Ivan Brin,Demco,Demco-75-CPQ-SF-NAM,Selected Vendor,2026-07-31,2026-05-12,New Business,,USD,69300.0,MM,Inbound,Inbound,Pipeline,2026-05-18,2026-05-12,0014P000029gwFd
+Ivan Brin,Inspiren,Inspiren-24-CPQ-SF-NAM,Selection Started,2026-07-31,2026-05-11,New Business,,USD,43200.0,SMB,Inbound,Inbound,Pipeline,2026-06-01,2026-05-11,001Rn000019tkB0
+Ivan Brin,PlusServer,PlusServer-35-Q2C-HS-DACH,Selection Started,2026-10-31,2026-05-08,New Business,,USD,109011.63,MM,Inbound,Inbound,Pipeline,2026-05-12,2026-05-12,0016Q00001dgwrJ
+Ivan Brin,Stego Industries,Stego Industries-40-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-05,New Business,To Be Lost,USD,72000.0,MM,Inbound,Inbound,Pipeline,2026-05-07,2026-05-06,0014P00002wMCgc
+Ivan Brin,Consultus,Consultus-10-MD-CPQ-EMEA,Disqualified,2026-06-01,2026-05-01,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-04,001Rn00000qPrhV
+Ivan Brin,DSMN8,DSMN8-10-Q2C-SF-EMEA,Sales Qualified,2026-07-31,2026-05-01,New Business,,USD,20270.27,SMB,Inbound,Inbound,Pipeline,2026-05-08,2026-05-06,001Rn00000aQsHm
+Ivan Brin,Kinsley Energy,Kinsley Energy-25-CPQ-HS-NAM-CP,Disqualified,2026-06-01,2026-04-30,New Business,No Active Project,USD,21000.0,SMB,Referral + Partners,Partners,Disqualifyed,,2026-04-30,001Rn000018aRuF
+Ivan Brin,Uniqode,Uniqode-10-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-04-28,New Business,,USD,18000.0,SMB,Inbound,Inbound,Pipeline,2026-05-07,2026-04-30,001Rn00000Q1SeS
+Ivan Brin,Unacast,Unacast-15-CPQ/CLM-HS-NAM-CP,Disqualified,2026-06-01,2026-04-27,New Business,No product fit,USD,34200.0,SMB,Referral + HubSpot,Partners,Disqualifyed,,2026-04-29,0016Q00001ayc3z
+Ivan Brin,BioPhorum,BioPhorum-10-CPQ-MD-EMEA,Disqualified,2026-06-01,2026-04-23,New Business,Cancelled,USD,14400.0,SMB,Outbound,Outbound,Disqualifyed,,2026-06-02,001Rn00000o7AzH
+Ivan Brin,MobileXpense,MobileXpense-17-Q2C-HS-EMEA,Closed Lost,2026-06-09,2026-04-20,New Business,Selected Competitor,USD,66976.74,SMB,Inbound,Inbound,Lost,2026-04-23,2026-04-23,0016Q00001dgzu0
+Ivan Brin,Xopero,Xopero-20-HS-Q2C-EMEA,Disqualified,2026-05-12,2026-04-20,New Business,Cancelled,USD,33882.35,SMB,Outbound,Outbound,Disqualifyed,,2026-05-11,001Rn00000BKFbs
+Ivan Brin,Jeen Ai,Jeen-5-CPQ-x-IL,Disqualified,2026-04-23,2026-04-20,New Business,Qualification criteria not met,USD,18000.0,SMB,Sales Direct,Other,Disqualifyed,,2026-04-21,001Rn00000lipPF
+Ivan Brin,ClickPost,ClickPost-10-CPQ-HS-Inida,Disqualified,2026-04-30,2026-04-20,New Business,No Active Project,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-21,001Rn00000O8XH8
+Ivan Brin,Opensend,Opensend-20-CPQ-HS-NAM,Closed Lost,2026-05-03,2026-04-17,New Business,No Active Project,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-04-23,2026-04-20,001Rn000016xhou
+Ivan Brin,LightRiver Technologies,LightRiver Technologies-35-CPQ-SF-NAM,Won,2026-04-30,2026-04-16,New Business,,USD,42000.0,MM,Inbound,Inbound,Won,2026-04-20,2026-04-20,0014P00002wMEPw
+Ivan Brin,Zenity,Zenity-20-CPQ-SF-IL,Disqualified,2026-04-20,2026-04-12,New Business,No Show,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-20,001Rn00000wB3MF
+Ivan Brin,Accutive Security,Accutive Security-12-CPQ-SF-NAM-CP,Sales Qualified,2026-07-31,2026-04-10,New Business,,USD,17280.0,SMB,Referral + Partners,Partners,Pipeline,2026-06-03,2026-04-16,001Rn00001661Wy
+Ivan Brin,Shaffer Distributing Company,Shaffer Distributing Company-10-CPQ-HS-NAM-DISP,Disqualified,2026-04-15,2026-04-08,New Business - Competitive Displacement,Qualification criteria not met,USD,17280.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-13,0016Q00001vReio
+Ivan Brin,Reflect Health,Reflect Health-15-CPQ-HS-NAM-CP,Sales Qualified,2026-07-31,2026-04-06,New Business,To Be Lost,USD,21600.0,SMB,Referral + Partners,Partners,Pipeline,2026-05-11,2026-04-28,001Rn000015Ulfd
+Ivan Brin,Skimmer,Skimmer-11-CPQ-HS-NAM,Disqualified,2026-04-30,2026-04-03,New Business,Lost Touch With Account,USD,18500.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-13,0016Q00001ouYSV
+Ivan Brin,BroadPeak Partners,BroadPeak Partners-10-Q2C-HS-NAM,Closed Lost,2026-06-09,2026-03-27,New Business,Find the right Stakeholders,USD,15000.0,SMB,Inbound,Inbound,Lost,2026-04-15,2026-04-13,001Rn000014DWId
+Ivan Brin,CoreView,Coreview-95-CPQ-SF-NA,Disqualified,2026-04-15,2026-03-25,New Business,No Active Project,USD,171000.0,Enterprise,Outbound,Outbound,Disqualifyed,,2026-03-25,0014P00003CEqZH
+Ivan Brin,HotelREZ Hotels & Resorts,HotelREZ Hotels & Resorts-10-CPQ-SF-EMEA,Won,2026-04-27,2026-03-23,New Business,,USD,23684.21,SMB,Inbound,Inbound,Won,2026-04-04,2026-03-24,0014P00002wMxnp
+Ivan Brin,Propelus,Propelus-15-CPQ-HS-NAM,Won,2026-04-30,2026-03-23,New Business,,USD,20700.0,SMB,Inbound,Inbound,Won,2026-03-23,2026-03-23,001Rn00000KiZ0B
+Ivan Brin,Harbor Lab,Harbor Lab-10-HS-CPQ-EMEA,Won,2026-04-08,2026-03-19,New Business,,USD,18000.0,SMB,Inbound,Inbound,Won,2026-03-19,2026-02-25,001Rn00000uQVWL
+Ivan Brin,Heeter,Heeter-27-CPQ-HS-NAM,Disqualified,2026-03-19,2026-03-16,New Business,Cancelled,USD,32400.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-18,0010B000021haZ7
+Ivan Brin,Effectory,Effectory-45-CPQ-HS-EMEA,Value Proven,2026-10-31,2026-03-14,New Business,,USD,37800.0,MM,Inbound,Inbound,Pipeline,2026-03-16,2026-03-16,0016Q00001a7iwz
+Ivan Brin,WOW Logistics,WOW Logistics-10-CPQ-SF-NAM,Disqualified,2026-03-18,2026-03-14,New Business,No Active Project,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-18,0010B000021ha5f
+Ivan Brin,WisdomAI,WisdomAI-20-CPQ-HS-NAM,Selected Vendor,2026-07-31,2026-03-14,New Business - Competitive Displacement,,USD,32000.0,SMB,Inbound,Inbound,Pipeline,2026-03-16,2026-03-16,001Rn00000thaOw
+Ivan Brin,M3,M3-25-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-13,New Business,Lost Touch With Account,USD,21000.0,SMB,Outbound,Outbound,Lost,2026-03-17,2026-03-17,0014P000037OW4l
+Ivan Brin,Swiftly,Swiftly-20-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-13,New Business,No Active Project,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-04-04,2026-03-16,0016Q00001YWIM4
+Ivan Brin,Kroll,Kroll-165*-CPQ-SF-APAC,Disqualified,2026-03-10,2026-03-03,New Business,Cancelled,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-09,0010B000021haSM
+Ivan Brin,Citycom,Citycom-10-CPQ-HS-EMEA,Disqualified,2026-03-24,2026-02-26,New Business,No product fit,USD,34560.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-26,001Rn00000xigGV
+Ivan Brin,Bestow,Bestow-15-CPQ-SF-NAM,Disqualified,2026-03-23,2026-02-19,New Business,No Active Project,USD,21600.0,SMB,Outbound,Outbound,Disqualifyed,,2026-03-19,001Rn00000qvbcn
+Ivan Brin,BioPhorum,BioPhorum-10-CPQ-MD-EMEA,Disqualified,2026-02-26,2026-02-12,New Business,Cancelled,USD,15840.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-03,001Rn00000o7AzH
+Ivan Brin,Tecala,Tecala-10-HS-CPQ-ANZ-CP,Value Proven,2026-10-31,2026-02-11,New Business,,USD,19856.12,SMB,Referral + HubSpot,Partners,Pipeline,2026-02-11,2026-02-18,0016Q00001ie5nc
+Ivan Brin,lev.com,Lev-12-Q2C-HS-NAM,Closed Lost,2026-03-05,2026-02-11,New Business,Selected Competitor,USD,45600.0,SMB,Executive,Other,Lost,2026-02-12,2026-02-11,001Rn00000xiIsi
+Ivan Brin,Atreides,Atreides-10-CPQ-SF-NAM,Disqualified,2026-02-21,2026-02-09,New Business,Technical Requirements Not Met,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-19,001Rn00000xcTdJ
+Ivan Brin,Addigy,Addigy-16-CPQ-SF-NAM,Won,2026-03-31,2026-02-06,New Business,,USD,20160.0,SMB,Inbound,Inbound,Won,2026-02-11,2026-02-11,0014P00002wMPBI
+Ivan Brin,People.ai,People.ai-30-CPQ-SF-NAM,Closed Lost,2026-03-19,2026-02-06,New Business,Find the right Stakeholders,USD,54000.0,MM,Inbound,Inbound,Lost,2026-02-13,2026-02-09,0014P00002wMNdX
+Ivan Brin,Groundcover,Groundcover-18-Q2C-HS-IL,Disqualified,2026-02-17,2026-02-06,New Business,No product fit,USD,14400.0,SMB,Outbound,Outbound,Disqualifyed,,2026-02-11,001Rn00000KLjJa
+Ivan Brin,Replit,Replit-15-CPQ-HS-NAM,Disqualified,2026-03-26,2026-02-05,New Business,Stayed with existing Solution,USD,21600.0,SMB,Outbound,Outbound,Disqualifyed,,2026-02-12,001Rn00000BKDTR
+Ivan Brin,EIRE Systems,EIRE Systems-15-CPQ-SF-APJ,Disqualified,2026-02-15,2026-02-05,New Business,No product fit,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-05,0016Q00001mo81T
+Ivan Brin,Prophecy,Prophecy-25-CPQ-SF-NAM,Closed Lost,2026-04-26,2026-02-03,New Business,No Active Project,USD,37500.0,SMB,Executive,Other,Lost,2026-02-04,2026-02-04,0016Q00001mmBDA
+Ivan Brin,Allyable,Allyable-10-CPQ-HS-NAM,Disqualified,2026-02-17,2026-02-03,New Business,Qualification criteria not met,USD,18000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-04,0016Q00001ifoJb
+Ivan Brin,Tyk,Tyk-20-CPQ-HS-UK,Value Proven,2026-07-31,2026-02-02,New Business,To Be Lost,USD,41351.35,SMB,Sales Direct,Other,Pipeline,2026-02-16,2026-02-16,0016Q00001igS6f
+Gilad Hemsani,JK Moving Services,JK Moving Services-82-CPQ-NAM,Disqualified,2026-05-26,2026-05-14,New Business,Cancelled,USD,98400.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-05-18,0014P000029gwGi
+Gilad Hemsani,Supio,Supio-40-CPQ-HS-NAM,Selection Started,2026-06-14,2026-05-13,New Business,,USD,59520.0,MM,Inbound,Inbound,Pipeline,,2026-05-14,001Rn00000Qz0iT
+Gilad Hemsani,mgt.us,MGT-38-CPQ-SF-NAM,Disqualified,2026-05-18,2026-05-06,New Business,No Show,USD,45600.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-08,001Rn00000RSb6n
+Gilad Hemsani,Nomentia,Nomentia-33-CPQ-SF DISP-EMEA,Selection Started,2026-07-31,2026-04-29,New Business - Competitive Displacement,,USD,62162.79,MM,Inbound,Inbound,Pipeline,2026-05-06,2026-05-06,0016Q00001ouVXF
+Gilad Hemsani,SurveySparrow,SurveySparrow-50-CPQ-HS-India,Disqualified,2026-04-21,2026-04-15,New Business,No Show,USD,60000.0,MM,Outbound,Outbound,Disqualifyed,,2026-04-21,0016Q00001azTzF
+Gilad Hemsani,cohere,Cohere-50-Q2C-SF-NAM,Disqualified,2026-05-12,2026-04-13,New Business,No Show,USD,60000.0,MM,Outbound,Outbound,Disqualifyed,,2026-05-11,0016Q00001aybl8
+Gilad Hemsani,Opensignal,Opensignal-50-CPQ-HS-NAM,Closed Lost,2026-06-09,2026-04-10,New Business,No Active Project,USD,60000.0,MM,Inbound,Inbound,Lost,2026-04-16,2026-04-14,0016Q00001ouWvN
+Gilad Hemsani,Avionte,Avionte-80-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-04-10,New Business,Lost Touch With Account,USD,100000.0,Enterprise,Inbound,Inbound,Lost,2026-04-13,2026-04-13,0010B000021h0jn
+Gilad Hemsani,Apartment List,Apartment List-73-CPQ-SF-NAM,Closed Lost,2026-04-26,2026-04-02,New Business,No Active Project,USD,87600.0,MM,Inbound,Inbound,Lost,2026-04-16,2026-04-06,0010B000021habP
+Gilad Hemsani,Lightricks,Lightricks-20-CPQ-SF-ISR,Disqualified,2026-04-15,2026-03-30,New Business,No Active Project,USD,36000.0,MM,Outbound,Outbound,Disqualifyed,,2026-04-09,0014P000037MOEl
+Gilad Hemsani,Senatormi,Senatormi-25-CPQ-SF-EMEA,Disqualified,2026-04-09,2026-03-30,New Business,No Active Project,USD,24137.93,SMB,Inbound,Inbound,Disqualifyed,,2026-03-30,001Rn000014cO3J
+Gilad Hemsani,ToolsGroup,ToolsGroup-50-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-03-28,New Business,Lost Touch With Account,USD,31680.0,SMB,Inbound,Inbound,Lost,2026-04-16,2026-04-03,0010B00001zgohc
+Gilad Hemsani,Echo360,Echo360-35-Q2C-SF-DISP-NAM,Disqualified,2026-04-09,2026-03-26,New Business - Competitive Displacement,No Show,USD,42000.0,MM,Outbound,Outbound,Disqualifyed,,2026-04-09,001U000001Q4N1f
+Gilad Hemsani,InvGate,InvGate-30-HS-CPQ-LATAM,Value Proven,2026-06-30,2026-03-26,New Business,To Be Lost,USD,51300.0,MM,Inbound,Inbound,Pipeline,2026-04-15,2026-04-15,0016Q00001oucwn
+Gilad Hemsani,BCS HR Software,BCSHR-40-CPQ-HS-EMEA,Disqualified,2026-04-16,2026-03-20,New Business,No Active Project,USD,36000.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-20,0016Q00001ssSQ7
+Gilad Hemsani,Alation,Alation-91-CPQ-SF-NAM,Disqualified,2026-03-31,2026-03-05,New Business,No Active Project,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-03-10,0010B000021h0f3
+Gilad Hemsani,CADMATIC,CADMATIC-40-CPQ-SF-NORDICS,Closed Lost,2026-04-13,2026-02-27,New Business,No Active Project,USD,45517.24,MM,Inbound,Inbound,Lost,2026-03-04,2026-03-03,0016Q00001dgzU3
+Gilad Hemsani,"Hillyard, Inc.",Hillyard-200-CPQ-MD-NAM,Disqualified,2026-04-09,2026-02-25,New Business,Technical Requirements Not Met,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-02-26,0016Q00001ouYlU
+Gilad Hemsani,Allego,Allego-28-CPQ-SF-NAM-DISP,Closed Lost,2026-04-26,2026-02-19,New Business,In-House Solution,USD,36960.0,MM,Outbound,Outbound,Lost,2026-03-30,2026-02-25,0010B00001wwTQp
+Gilad Hemsani,Glide,Glide-35-CPQ-HS-EMEA,Closed Lost,2026-03-19,2026-02-11,New Business,No product fit,USD,42000.0,MM,Inbound,Inbound,Lost,2026-02-12,2026-02-11,001Rn00000hUdxd
+Gilad Hemsani,Sharecare,Sharecare-70-CPQ-SF-NAM,Closed Lost,2026-06-09,2026-02-06,New Business,Lost Touch With Account,USD,84000.0,MM,Outbound,Outbound,Lost,2026-04-16,2026-03-12,0010B00001zFmmd
+Gilad Hemsani,Quantum Systems,Quantum Systems-30-CPQ-HS-DACH,Closed Lost,2026-04-01,2026-02-02,New Business,Lost Touch With Account,USD,33103.45,SMB,Outbound,Outbound,Lost,2026-02-05,2026-02-05,001Rn0000082MfT
+Caroline Kohn,HPU Unternehmensberatung,HPU-10-CPQ-HS-DACH,Disqualified,2026-02-19,2026-02-09,New Business,No Active Project,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-09,001Rn00000xZb1C
+Taylor Wilson,Mobiltex,Mobiltex-30-QTC-HS-CAN-CP,Meeting Booked,2026-08-14,2026-06-19,New Business,To Be Scheduled,USD,36000.0,MM,Referral + HubSpot,Partners,Future,,2026-07-03,001Rn00001FYCqT
+Taylor Wilson,SNH Capital Partners,SNH Capital Partners-10-CPQ-HS-NAM,Disqualified,2026-06-18,2026-05-15,New Business,No product fit,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-19,001Rn000012KRMB
+Daniel Buchen,DUFFAU,Duffau-30-CPQ-SF-EU-CP,Closed Lost,2026-06-02,2026-04-23,New Business,No Active Project,USD,43953.49,MM,Referral + Partners,Partners,Lost,2026-04-23,2026-04-21,001Rn00000yeHMA
+Jonathan Weksler,Guesty,Guesty-70-CPQ-SF-NAM,Meeting Booked,2026-08-31,2026-06-17,New Business,,USD,84000.0,MM,Outbound,Outbound,Future,,2026-07-01,0014P00002wMxAx
+Jonathan Weksler,KNIME,KNIME-50-CPQ-SF-DACH,Sales Qualified,2026-10-31,2026-06-17,New Business,,USD,28800.0,SMB,Inbound,Inbound,Pipeline,2026-06-22,2026-06-19,0016Q00001hQmuw
+Jonathan Weksler,Alcatraz Ai,AlactrazAi-30-CPQ-HS-NAM,Meeting Booked,2026-10-02,2026-06-16,New Business,Demo Scheduled,USD,0.0,Empty,Outbound,Outbound,Future,,2026-07-28,0016Q00001dfFI7
+Jonathan Weksler,Included Health,Included Health-30-Q2C-SF-NAM,Sales Qualified,2026-07-31,2026-06-16,New Business,,USD,36000.0,MM,Inbound,Inbound,Pipeline,2026-06-19,2026-06-17,0016Q00001ifwaa
+Jonathan Weksler,Stride EMR,Stride EMR-8-Q2C-SF-NAM-DISP,Sales Qualified,2026-10-31,2026-06-16,New Business - Competitive Displacement,,USD,11520.0,SMB,Inbound,Inbound,Pipeline,2026-06-22,2026-06-19,001Rn00000QizYr
+Jonathan Weksler,Second Front,Second Front-21-CPQ-SF-NAM,Disqualified,2026-06-16,2026-06-11,New Business,No Show,USD,30240.0,SMB,Outbound,Outbound,Disqualifyed,,2026-06-12,0016Q00001oudUk
+Jonathan Weksler,Chronus,Chronus-13-CPQ-SF-NAM,Sales Qualified,2026-06-30,2026-06-09,New Business,,USD,18096.0,SMB,Inbound,Inbound,Pipeline,2026-06-09,2026-02-01,0010B000021hbWw
+Jonathan Weksler,Vicon,Vicon Motion Systems-25-CPQ-UK-CP,Selected Vendor,2026-07-31,2026-06-03,New Business,,USD,43200.0,SMB,Referral + Partners,Partners,Pipeline,2026-06-10,2026-06-09,0010B000021hcJt
+Jonathan Weksler,JetStream Security,JetStream Security-15-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-06-02,New Business,,USD,21600.0,SMB,Inbound,Inbound,Pipeline,2026-06-19,2026-06-04,001Rn00001D68pK
+Jonathan Weksler,Utila,Utilia NewBiz,Meeting Booked,2026-07-31,2026-05-31,New Business,,USD,28800.0,SMB,Events,Other,Future,,2026-06-22,001Rn00000eItQW
+Jonathan Weksler,Embed,Embed-13-CPQ-HS-AU-CP,Sales Qualified,2026-06-26,2026-05-26,New Business,To Be Lost,USD,23400.0,SMB,Referral + HubSpot,Partners,Pipeline,2026-05-27,2026-05-26,0016Q00001ouj5X
+Jonathan Weksler,Exasol,Exasol-35-SF-Q2C-DACH-DISP,Sales Qualified,2026-06-30,2026-05-25,New Business,,USD,128520.0,MM,Inbound,Inbound,Pipeline,2026-05-27,2026-05-22,0010B00001wwTBk
+Jonathan Weksler,Xref,Xref-20-CPQ-SF-ANZ,Value Proven,2026-06-12,2026-05-25,New Business,,USD,86589.93,SMB,Inbound,Inbound,Pipeline,2026-05-25,2026-05-25,0014P00002wMw5t
+Jonathan Weksler,Intradiem,Intradiem-30-CPQ-SF-NAM,Selection Started,2026-06-30,2026-05-14,New Business,,USD,40500.0,MM,Inbound,Inbound,Pipeline,2026-05-19,2026-05-18,0010B00001wwT8R
+Jonathan Weksler,Circula,Circula-15-CPQ-HS-DACH,Disqualified,2026-05-28,2026-05-12,New Business,Cancelled,USD,21600.0,SMB,Outbound,Outbound,Disqualifyed,,2026-05-28,0016Q00001YYdKH
+Jonathan Weksler,Quorso,Quorso-10-CPQ-HS-EMEA,Sales Qualified,2026-07-31,2026-05-12,New Business,,USD,14400.0,SMB,Inbound,Inbound,Pipeline,2026-06-03,2026-05-13,001Rn00000BKNU9
+Jonathan Weksler,Zest AI,Zest AI-19-CPQ-SF-NAM,Disqualified,2026-06-03,2026-05-08,New Business,No Active Project,USD,27360.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-08,0014P00002wML8m
+Jonathan Weksler,Trusted Tech Team,Trusted Tech Team-98-CPQ-SF-NAM,Disqualified,2026-05-25,2026-05-05,New Business,No Show,USD,100000.0,Enterprise,Inbound,Inbound,Disqualifyed,,2026-05-06,0016Q00001ouigQ
+Jonathan Weksler,Enso,Enso Groupe-20-QTR-SFDC-EU-DISP-CP,Selection Started,2026-07-31,2026-05-04,New Business - Competitive Displacement,,USD,101581.4,SMB,Referral + Partners,Partners,Pipeline,2026-05-05,2026-05-05,001Rn00000bKeHB
+Jonathan Weksler,Akkadian Labs,Akkadian Labs-10-CPQ-HS-NAM,Won,2026-06-10,2026-04-30,New Business - Competitive Displacement,,USD,18000.0,SMB,Inbound,Inbound,Won,2026-05-07,2026-05-06,0014P00002wMN2K
+Jonathan Weksler,Joveo,Joveo-20-CPQ-HS-NAM,Meeting Booked,2026-07-14,2026-04-30,New Business,Demo Scheduled,USD,28800.0,SMB,Inbound,Inbound,Future,,2026-07-14,0016Q00001aybsO
+Jonathan Weksler,Qblox,Qblox-27-HS-CPQ-EMEA,Closed Lost,2026-06-09,2026-04-23,New Business - Competitive Displacement,No Active Project,USD,45209.3,MM,Inbound,Inbound,Lost,2026-04-30,2026-04-24,001Rn00000cwEBj
+Jonathan Weksler,LocalStack,LocalStack-15-CPQ-HS-DACH,Selection Started,2026-06-30,2026-04-20,New Business,,USD,50200.0,SMB,Inbound,Inbound,Pipeline,2026-04-23,2026-04-21,001Rn000016N7Q4
+Jonathan Weksler,Anecdotes,Anecdotes-20-CPQ-HS,Disqualified,2026-04-30,2026-04-16,New Business,No Active Project,USD,28800.0,SMB,Executive,Other,Disqualifyed,,2026-04-29,0014P00003CEz85
+Jonathan Weksler,BPI ON DEMAND LIMITED,BPI ON DEMAND LIMITED-TBD-CPQ-SF-EMEA,Disqualified,2026-04-23,2026-04-16,New Business,Qualification criteria not met,USD,18947.37,SMB,Inbound,Inbound,Disqualifyed,,2026-04-17,0016Q00001dhTFA
+Jonathan Weksler,Matrix Networks,Matrix Networks-11-RFI-SF-NAM,Meeting Happened,2026-07-31,2026-04-15,New Business,,USD,15840.0,SMB,Inbound,Inbound,TBD,,2026-05-11,001Rn000016fTmv
+Jonathan Weksler,Impiricus,Impiricus-25-CPQ-HS-NAM,Won,2026-05-09,2026-04-12,New Business,,USD,37500.0,SMB,Inbound,Inbound,Won,2026-04-14,2026-04-13,001Rn0000162lNT
+Jonathan Weksler,Bectran,Bectran-16-CPQ-SF-NAM,Sales Qualified,2026-06-30,2026-04-09,New Business,To Be Lost,USD,23040.0,SMB,Inbound,Inbound,Pipeline,2026-04-19,2026-04-17,0014P00002wMJuZ
+Jonathan Weksler,ePayPolicy,ePayPolicy-32-CPQ-SF-NAM,Disqualified,2026-06-01,2026-04-09,New Business,Cancelled,USD,38400.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-11,0016Q00001aybnh
+Jonathan Weksler,Ridgeline,Ridgeline-25-CPQ-SF-NAM,Value Proven,2026-06-19,2026-04-09,New Business,,USD,45000.0,SMB,Inbound,Inbound,Pipeline,2026-04-16,2026-04-15,0016Q00001ifxoF
+Jonathan Weksler,Appcues,Appcues-15-Q2C-SF-NAM-CP,Closed Lost,2026-06-09,2026-04-07,New Business,Selected Competitor,USD,45600.0,SMB,Referral + Partners,Partners,Lost,2026-04-09,2026-04-08,0014P000037OVYK
+Jonathan Weksler,GreenRoad,GreenRoad-20-CPQ-SF-NAM,Disqualified,2026-04-16,2026-04-07,New Business,Find the right Stakeholders,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-15,0010B00001zJMfQ
+Jonathan Weksler,pc/nametag,pc/nametag-20-CPQ-MD-NAM,Disqualified,2026-04-15,2026-04-07,New Business,No product fit,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-10,001Rn00000Eo13S
+Jonathan Weksler,Hellocare.ai,Hellocare.ai-20-Q2C-HS-NAM,Closed Lost,2026-06-09,2026-04-06,New Business,Lost Touch With Account,USD,28000.0,SMB,Inbound,Inbound,Lost,2026-04-15,2026-04-06,001Rn00000Eo4zB
+Jonathan Weksler,Greenboard,Greenboard-9-Q2C-HS-NAM,Closed Lost,2026-06-09,2026-04-03,New Business,No product fit,USD,12960.0,SMB,Inbound,Inbound,Lost,2026-04-14,2026-04-06,001Rn000015BBb7
+Jonathan Weksler,Arkatechture,Arkatechture-12-CPQ-HS-NAM,Closed Lost,2026-06-09,2026-03-31,New Business,No Active Project,USD,20160.0,SMB,Inbound,Inbound,Lost,2026-04-06,2026-04-03,001Rn00000BKLl5
+Jonathan Weksler,Cape,Cape-27-CPQ-SF-NAM,Disqualified,2026-04-07,2026-03-31,New Business,No Show,USD,32400.0,MM,Inbound,Inbound,Disqualifyed,,2026-04-09,001Rn000014jJ6w
+Jonathan Weksler,Rocket Alumni Solutions,Rocket Alumni Solutions-12-Q2C-HS-NAM,Disqualified,2026-03-26,2026-03-24,New Business,Qualification criteria not met,USD,17280.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-25,001Rn000013x73F
+Jonathan Weksler,T&N Telekom & Netzwerk,T&N-50-CPQ-SF-DACH,Sales Qualified,2026-11-30,2026-03-23,New Business,,USD,230232.56,MM,Outbound,Outbound,Pipeline,2026-04-06,2026-03-25,001Rn00000Enq6d
+Jonathan Weksler,Specialistdoorsolutions,Specialistdoorsolutions-10-CPQ-HS-EMEA,Disqualified,2026-04-08,2026-03-19,New Business,Technical Requirements Not Met,USD,18947.37,SMB,Inbound,Inbound,Disqualifyed,,2026-03-23,001Rn000013EV3K
+Jonathan Weksler,Pro2col,Pro2col-13-CPQ-UK-HS-CP,Closed Lost,2026-04-13,2026-03-18,New Business,Selected Competitor,USD,23400.0,SMB,Referral + HubSpot,Partners,Lost,2026-03-18,2026-03-17,001Rn000012JKjE
+Jonathan Weksler,Tavily,Tavily-20-HS-CPQ-IL,Closed Lost,2026-06-09,2026-03-16,New Business,Selected Competitor,USD,28800.0,SMB,Sales Direct,Other,Lost,2026-03-20,2026-03-19,001Rn00000q0NjW
+Jonathan Weksler,Pluxee Colombia,Pluxee Colombia-17-CPQ-SF-SAM,Disqualified,2026-03-30,2026-03-14,New Business,Lost Touch With Account,USD,24480.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-18,001Rn00000frrLQ
+Jonathan Weksler,DataVox,DataVox-25-CPQ-MD-NAM,Disqualified,2026-03-25,2026-03-12,New Business,No product fit,USD,21000.0,SMB,Outbound,Outbound,Disqualifyed,,2026-03-25,0014P000029gwbc
+Jonathan Weksler,Sobha Furniture,Sobha Furniture-10-CPQ-MD-UAE,Disqualified,2026-03-12,2026-03-12,New Business,Technical Requirements Not Met,USD,15840.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-12,001Rn0000127wKK
+Jonathan Weksler,DataInvent Systems,DataInvent Systems-9-CPQ-MD-NAM,Disqualified,2026-03-23,2026-03-11,New Business,Qualification criteria not met,USD,12960.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-13,001Rn000010A9za
+Jonathan Weksler,Systal Technology Solutions,Systal Technology Solutions-30-CPQ-MD-EMEA,Closed Lost,2026-06-09,2026-03-11,New Business,No Active Project,USD,48648.65,MM,Inbound,Inbound,Lost,2026-04-14,2026-03-17,0016Q000021rZm1
+Jonathan Weksler,Chronus,Chronus-10-CPQ-SF-NAM,Closed Lost,2026-04-26,2026-03-05,New Business,Selected Competitor,USD,18000.0,SMB,Inbound,Inbound,Lost,2026-03-09,2026-03-06,0010B000021hbWw
+Jonathan Weksler,Storj,Storj-20-CPQ-HS-NAM,Disqualified,2026-04-01,2026-03-03,New Business,No Active Project,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-12,0016Q00001oufit
+Jonathan Weksler,ongoody,Goody-9-CPQ-SF-NAM,Disqualified,2026-03-05,2026-03-03,New Business,Technical Requirements Not Met,USD,12960.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-04,0016Q00001c2lch
+Jonathan Weksler,Numeral,Numeral-20-Q2C-SF-NAM-CP,Disqualified,2026-03-09,2026-03-02,New Business,Cancelled,USD,28800.0,SMB,Referral + Partners,Partners,Disqualifyed,,2026-03-18,0016Q000021tIbS
+Jonathan Weksler,Claritas Rx,Claritas Rx-20-CPQ-HS-NAM,Won,2026-03-31,2026-02-26,New Business,,USD,28800.0,SMB,Inbound,Inbound,Won,2026-03-01,2026-02-27,001Rn00000Enxx3
+Jonathan Weksler,Infinity Group,InfinityGroup- 18-CPQ-MD-EMEA,Disqualified,2026-03-09,2026-02-24,New Business,Technical Requirements Not Met,USD,34560.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-27,0016Q00001WppU8
+Jonathan Weksler,Freightos Limited,Freightos-20-CPQ-SF-EMEA,Disqualified,2026-02-25,2026-02-24,New Business,Cancelled,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-25,0010B000021hbkq
+Jonathan Weksler,Allure Security,Allure Security-10-Q2C-SF-NAM,Closed Lost,2026-06-09,2026-02-24,New Business,In-House Solution,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-03-01,2026-02-27,0016Q00001ouY5w
+Jonathan Weksler,RYNO Strategic Solutions,RYNO Strategic Solutions-CPQ-SF-50-NAM-DISP,Closed Lost,2026-04-01,2026-02-22,New Business,No Active Project,USD,60000.0,MM,Inbound,Inbound,Lost,2026-02-23,2026-02-23,001Rn000006QffQ
+Jonathan Weksler,ISPN,ISPN-15-CPQ-HS-NAM,Disqualified,2026-03-04,2026-02-18,New Business,No Active Project,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-17,001Rn00000823Bm
+Jonathan Weksler,Nsecure,Nsecure-20-CPQ-MD-EMEA,Disqualified,2026-03-12,2026-02-16,New Business,No product fit,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-20,001Rn00000Eo1Y0
+Jonathan Weksler,OpKey,Opkey-30-CPQ-HS-NAM,Won,2026-03-20,2026-02-11,New Business,,USD,40320.0,MM,Inbound,Inbound,Won,2026-02-15,2026-02-13,0014P00002wMNrm
+Jonathan Weksler,Alta Vista Technology,Alta Vista Technology-15-CPQ-HS-NAM,Disqualified,2026-03-18,2026-02-11,New Business,No product fit,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-11,0014P000029gy5y
+Jonathan Weksler,WidasConcepts,Widas-10-CPQ-HS-DACH,Disqualified,2026-02-26,2026-02-10,New Business,No Show,USD,16363.64,SMB,Inbound,Inbound,Disqualifyed,,2026-02-26,001Rn00000EnxXt
+Jonathan Weksler,Top Brand,Top Brand-8-CPQ-HS-NAM,Disqualified,2026-02-10,2026-02-07,New Business,No Show,USD,11520.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-10,001Rn00000EoEKM
+Jonathan Weksler,GreenRoad,GreenRoad-20-CPQ-SF-NAM,Disqualified,2026-02-10,2026-02-04,New Business,No Show,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-02-10,0010B00001zJMfQ
+Jonathan Weksler,BRZ Deutschland GmbH,BRZ Deutschland GmbH-17-CPQ-HS-DACH,Disqualified,2026-03-23,2026-02-04,New Business,Lost Touch With Account,USD,27818.18,SMB,Inbound,Inbound,Disqualifyed,,2026-02-10,0016Q00001dgy5c
+Jonathan Weksler,Torii,Torii-16-CPQ-HS-NAM,Disqualified,2026-02-04,2026-02-02,New Business,No Active Project,USD,23040.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-03,0016Q00001YVbpX
+Jonathan Weksler,Renew Digital,Renew Digital-15-CPQ-HS-NAM,Disqualified,2026-02-19,2026-02-02,New Business,Technical Requirements Not Met,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-17,001Rn00000t6vXI
+Dov Dewar,Ocient,Ocient-14-CPQ-SF-NAM,Meeting Booked,2026-09-30,2026-06-19,New Business,Demo Scheduled,USD,20160.0,SMB,Inbound,Inbound,Future,,2026-06-23,0016Q00001c1dtq
+Dov Dewar,Hadrius,Hadrius-25-Q2R-HS-NAM,Selection Started,2026-07-31,2026-06-16,New Business,,USD,60750.0,MM,Inbound,Inbound,Pipeline,2026-06-18,2026-06-17,001Rn00000PX3wv
+Dov Dewar,Armor Defense,ArmorDefense-20-CPQ-HS-NAM,Meeting Booked,2026-09-04,2026-06-10,New Business,Demo Scheduled,USD,28800.0,SMB,Outbound,Outbound,Future,,2026-06-25,0010B000021gYDQ
+Dov Dewar,IPRally Technologies Oy,IPRally-10-CPQ-HS-NORD,Disqualified,2026-06-15,2026-06-01,New Business,No Active Project,USD,17280.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-02,0016Q00001ayRiu
+Dov Dewar,Oizom,Oizom-10-CPQ-SF-INDIA,Sales Qualified,2026-08-31,2026-05-28,New Business,To Be Lost,USD,18000.0,SMB,Inbound,Inbound,Pipeline,2026-05-28,2026-05-28,0016Q00001ifvM3
+Dov Dewar,Loxo,Loxo-40-CPQ-SF-EMEA,Selection Started,2026-07-31,2026-05-27,New Business,,USD,75348.84,MM,Inbound,Inbound,Pipeline,2026-05-27,2026-05-24,0016Q00001mlzMo
+Dov Dewar,Taktile,Taktile-20-CPQ-HS-NAM,Sales Qualified,2026-09-18,2026-05-26,New Business,,USD,45900.0,MM,Outbound,Outbound,Pipeline,2026-06-18,2026-06-18,0016Q00001xaH9m
+Dov Dewar,Ardoq,Ardoq-45-CPQ-EMEA,Selection Started,2026-07-31,2026-05-26,New Business,,USD,113400.0,MM,Outbound,Outbound,Pipeline,2026-06-02,2026-05-27,0014P00002wMyDR
+Dov Dewar,Filigran,Filigran-25-CPQ-HS-NAM,Sales Qualified,2026-08-31,2026-05-26,New Business,,USD,52325.58,SMB,Inbound,Inbound,Pipeline,2026-06-03,2026-05-28,001Rn00000sy3Ar
+Dov Dewar,Build Concierge,Build Concierge-10-Q2C-HS-UK,Disqualified,2026-05-26,2026-05-21,New Business,Cancelled,USD,36000.0,SMB,Sales Direct,Other,Disqualifyed,,2026-05-27,001Rn00000bTpDR
+Dov Dewar,ExaCare,ExaCare-10-CPQ-HS-NAM,Sales Qualified,2026-09-30,2026-05-20,New Business,To Be Lost,USD,18000.0,SMB,Inbound,Inbound,Pipeline,2026-05-21,2026-05-20,0016Q000021uckC
+Dov Dewar,iVerify,iVerify-10-HS-CPQ-NAM,Disqualified,2026-06-03,2026-05-19,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-03,001Rn00001B37Fq
+Dov Dewar,Sedna,Sedna-20-CPQ-Jura+Docu-EMEA,Disqualified,2026-06-01,2026-05-13,New Business,Cancelled,USD,21000.0,SMB,Outbound,Outbound,Disqualifyed,,2026-06-02,0016Q00001WquPZ
+Dov Dewar,The National College,The National College-30-CPQ-HS-EMEA,Sales Qualified,2026-07-31,2026-05-12,New Business,,USD,27027.03,MM,Inbound,Inbound,Pipeline,2026-05-14,2026-05-14,001Rn00000IfFVN
+Dov Dewar,Wind River Systems,Wind River Systems-20-CPQ-SF-EMEA-SFCPQ DISP,Sales Qualified,2026-08-31,2026-05-07,New Business,To Be Lost,USD,28800.0,SMB,Inbound,Inbound,Pipeline,2026-05-13,2026-05-13,0010B000021hbUR
+Dov Dewar,Ocean Media,Ocean Media-10-CPQ-SF-NAM,Disqualified,2026-06-01,2026-04-30,New Business,Cancelled,USD,14400.0,SMB,Outbound,Outbound,Disqualifyed,,2026-05-14,0010B000021hbcf
+Dov Dewar,Passage Health,Passage Health-20-CPQ-HS-NAM,Sales Qualified,2026-08-31,2026-04-27,New Business,To Be Lost,USD,20250.0,SMB,Inbound,Inbound,Pipeline,2026-04-29,2026-04-28,001Rn00000K3Jtz
+Dov Dewar,Blinq,Blinq-10-Q2C-HS-ANZ,Sales Qualified,2026-09-30,2026-04-23,New Business,,USD,32805.76,SMB,Inbound,Inbound,Pipeline,2026-04-24,2026-04-23,001Rn00000BKIDs
+Dov Dewar,nClouds,nClouds-35-CPQ-SF-NAM,Value Proven,2026-06-30,2026-04-22,New Business,,USD,37800.0,MM,Inbound,Inbound,Pipeline,2026-04-24,2026-04-23,0016Q00001az7r7
+Dov Dewar,Empyra,Empyra-9-Q2C-HS-NAM,Sales Qualified,2026-08-31,2026-04-20,New Business,To Be Lost,USD,54000.0,SMB,Inbound,Inbound,Pipeline,2026-04-22,2026-04-21,0016Q00001qmKRC
+Dov Dewar,ITC Systems,ITC Systems-7-Q2C-SF DISP-NAM,Selection Started,2026-07-31,2026-04-17,New Business - Competitive Displacement,,USD,36000.0,SMB,Inbound,Inbound,Pipeline,2026-04-22,2026-04-21,0016Q00001oud9y
+Dov Dewar,iVenture Solutions,iVenture Solutions-15-CPQ-HS-NAM-DISP,Sales Qualified,2026-09-30,2026-04-15,New Business - Competitive Displacement,To Be Lost,USD,21600.0,SMB,Inbound,Inbound,Pipeline,2026-04-30,2026-04-20,0016Q00001axG8P
+Dov Dewar,EVORA Global,EvoraGlobal-20-CPQ-SF-EMEA,Disqualified,2026-06-05,2026-04-15,New Business,No Show,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-06-02,001Rn00000Eo5rH
+Dov Dewar,Numa,Numa-40-CPQ-HS-NAM,Value Proven,2026-07-31,2026-04-14,New Business,To Be Lost,USD,40000.0,MM,Referral + Partners,Partners,Pipeline,2026-05-06,2026-05-05,001Rn00000cdpoG
+Dov Dewar,Linux Foundation,Linux Foundation-12-CPQ/CLM-SF-DISP-NAM,Disqualified,2026-05-12,2026-04-14,New Business - Competitive Displacement,No Show,USD,17280.0,SMB,Outbound,Outbound,Disqualifyed,,2026-05-12,0014P00002lB25O
+Dov Dewar,Abra-IT,Abra-IT-50-CPQ-SF-IL,Disqualified,2026-04-15,2026-04-12,New Business,No Active Project,USD,60000.0,MM,Outbound,Outbound,Disqualifyed,,2026-04-15,0014P00003CGIQm
+Dov Dewar,HIPRA,HIPRA Biotech Services-10-CPQ-HS-EMEA,Closed Lost,2026-05-03,2026-04-10,New Business,Selected Competitor,USD,21600.0,SMB,Inbound,Inbound,Lost,2026-04-14,2026-04-14,0016Q00001ouayO
+Dov Dewar,LanguageWire,LanguageWire-35-CPQ-HS-EMEA,Meeting Booked,2026-11-13,2026-04-09,New Business,Demo Scheduled,USD,42000.0,MM,Outbound,Outbound,Future,,2026-08-20,0016Q00001c21qQ
+Dov Dewar,AppOmni,AppOmni-21-CPQ-SF-NAM-SF CPQ,Meeting Booked,2026-09-30,2026-04-09,New Business - Competitive Displacement,Demo Scheduled,USD,30240.0,SMB,Outbound,Outbound,Future,,2026-06-23,0016Q00001aybiL
+Dov Dewar,Tunnldata,Tunnldata-15-CPQ-HS-NAM,Selected Vendor,2026-07-31,2026-04-07,New Business,,USD,24000.0,SMB,Inbound,Inbound,Pipeline,2026-04-15,2026-04-13,0016Q00001dMyuF
+Dov Dewar,Hivelocity,Hivelocity-20-CPQ-HS-NAM-DISP,Closed Lost,2026-04-26,2026-04-07,New Business - Competitive Displacement,No Active Project,USD,24000.0,SMB,Inbound,Inbound,Lost,2026-04-09,2026-04-09,0016Q00001igpvP
+Dov Dewar,Modern Campus,ModernCampus-CPQ-75-SF-NAM-CP,Closed Lost,2026-05-03,2026-04-02,New Business,Selected Competitor,USD,112500.0,MM,Referral + Partners,Partners,Lost,2026-04-13,2026-04-09,0016Q00001YWqtC
+Dov Dewar,Curve Dental,Curve Dental-20-CPQ-SF DISP-NAM,Closed Lost,2026-04-26,2026-04-02,New Business - Competitive Displacement,No Active Project,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-04-13,2026-04-13,0016Q00001xZZBA
+Dov Dewar,3E,3E-18-CPQ-HS-EMEA,Disqualified,2026-04-23,2026-04-01,New Business,No product fit,USD,25920.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-22,0016Q00001iePqA
+Dov Dewar,Multifonds,Multifonds-20-CPQ-SF-EMEA-CP,Disqualified,2026-03-28,2026-03-24,New Business,Qualification criteria not met,USD,28800.0,SMB,Referral + Partners,Partners,Disqualifyed,,2026-03-25,001Rn00000BKE2y
+Dov Dewar,Appdome,Appdome-20-CPQ-HS-NAM,Meeting Booked,2026-09-30,2026-03-19,New Business,Demo Scheduled,USD,28800.0,SMB,Inbound,Inbound,Future,,2026-07-08,0016Q00001axtOD
+Dov Dewar,"Concepts Eti, Inc.",Concepts NREC-25-Q2C-HS-NAM,Closed Lost,2026-04-13,2026-03-16,New Business,No product fit,USD,60000.0,SMB,Inbound,Inbound,Lost,2026-03-19,2026-03-17,0016Q00001oubCx
+Dov Dewar,Coalition,Coalition-14-SF-NAM,Disqualified,2026-04-04,2026-03-11,New Business,Cancelled,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-01,0016Q00001oufNY
+Dov Dewar,Findem,Findem-24-CPQ-SF-NAM,Disqualified,2026-03-12,2026-03-11,New Business,No Active Project,USD,34560.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-12,0016Q00001bfFdt
+Dov Dewar,ClassLink,ClassLink-20-CPQ-SF-NA-CP,Disqualified,2026-04-15,2026-03-10,New Business,Selected Competitor,USD,28800.0,SMB,Referral + Partners,Partners,Disqualifyed,,2026-03-31,0014P00002wMBra
+Dov Dewar,Dyad,Dyad-15-Q2C-SF-NAM,Won,2026-03-19,2026-03-10,New Business,,USD,50000.0,SMB,Inbound,Inbound,Won,2026-03-16,2026-03-11,001Rn00000BKJqA
+Dov Dewar,Euronext,iBabs-30-CPQ-HS-EMEA-CP,Disqualified,2026-03-12,2026-03-10,New Business,,USD,45000.0,MM,Referral + Partners,Partners,Disqualifyed,,2026-03-11,0016Q00001idyni
+Dov Dewar,The Learning Network,The Learning Network-10-Q2C-HS-NAM,Won,2026-04-30,2026-03-10,New Business,,USD,30000.0,SMB,Inbound,Inbound,Won,2026-03-30,2026-03-11,001Rn00000vfvps
+Dov Dewar,AgileBlue,AgileBlue-10-Q2C-HS-NAM,Closed Lost,2026-06-09,2026-03-05,New Business,Selected Competitor,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-04-10,2026-03-10,001Rn00000BKJUE
+Dov Dewar,CameraMatics,CameraMatics-40-CPQ-SF-EMEA-DISP,Won,2026-05-19,2026-03-05,New Business,,USD,115552.94,MM,Inbound,Inbound,Won,2026-03-06,2026-03-06,001Rn00000BKHKV
+Dov Dewar,Business Better Built,Business Better Built-30-Q2C-HS-NAM,Disqualified,2026-03-12,2026-03-05,New Business,No product fit,USD,36000.0,MM,Inbound,Inbound,Disqualifyed,,2026-03-09,001Rn0000118ebu
+Dov Dewar,knk Business Software,knk Business Software-10-CPQ-MD-DACH,Disqualified,2026-04-15,2026-02-27,New Business,Lost Touch With Account,USD,20689.66,SMB,Inbound,Inbound,Disqualifyed,,2026-03-04,0016Q00001WpChD
+Dov Dewar,Shoplogix,Shoplogix-18-Q2C-SF-NAM,Disqualified,2026-04-09,2026-02-27,New Business,No product fit,USD,25920.0,SMB,Inbound,Inbound,Disqualifyed,,2026-03-03,0016Q00001ihMLa
+Dov Dewar,Risk ident,Risk ident-10-CPQ-HS-DACH-CP,Won,2026-03-27,2026-02-26,New Business,,USD,20454.55,SMB,Referral + Partners,Partners,Won,2026-03-12,2026-03-12,0016Q00001oucEY
+Dov Dewar,OneSignal,OneSignal-60-SF-NAM,Sales Qualified,2026-08-31,2026-02-25,New Business,To Be Lost,USD,42000.0,MM,Outbound,Outbound,Pipeline,2026-03-30,2026-03-24,0014P00002wMQ3u
+Dov Dewar,AKKO,AKKO-10-CPQ-HS-NAM,Disqualified,2026-03-18,2026-02-24,New Business,Lost Touch With Account,USD,18000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-25,0016Q00001ouYAN
+Dov Dewar,Callers,Callers-10-Q2C-SF-IL,Closed Lost,2026-03-05,2026-02-20,New Business,No Active Project,USD,36000.0,SMB,Inbound,Inbound,Lost,2026-02-22,2026-02-22,001Rn00000zJy0p
+Dov Dewar,Verinext,Verinext-31-CPQ-SF-NAM,Disqualified,2026-02-24,2026-02-20,New Business,No Active Project,USD,37200.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-23,0016Q000021udl3
+Dov Dewar,CloudRock Partners,Cloudrockpartners-21-CPQ-HS-EMEA,Disqualified,2026-02-26,2026-02-19,New Business,No Show,USD,40320.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-26,0016Q00001dgwYv
+Dov Dewar,CompassMSP,CompassMSP-30-CPQ-SF-NAM,Closed Lost,2026-04-26,2026-02-18,New Business,No Active Project,USD,81000.0,MM,Inbound,Inbound,Lost,2026-04-15,2026-02-19,0014P00002wMOqG
+Dov Dewar,NatureMetrics,NatureMetrics-30-CPQ-HS-EMEA,Disqualified,2026-03-02,2026-02-17,New Business,No Active Project,USD,72000.0,MM,Inbound,Inbound,Disqualifyed,,2026-02-18,0016Q00001dgwYA
+Dov Dewar,WIANCO OTT Robotics,Wianco-10-Q2C-HS-DACH,Closed Lost,2026-03-19,2026-02-16,New Business,Selected Competitor,USD,40909.09,SMB,Inbound,Inbound,Lost,2026-03-05,2026-02-26,001Rn00000jPx7v
+Dov Dewar,Softgarden,Softgarden-40-Q2C-SF-DACH-CP,Selection Started,2026-09-30,2026-02-16,New Business,To Be Lost,USD,58139.53,MM,Referral + Partners,Partners,Pipeline,2026-03-16,2026-02-26,0014P00002wMyG5
+Dov Dewar,Kneat Solutions,Kneat Solutions-25-CPQ-HS,Closed Lost,2026-03-19,2026-02-11,New Business,Lost Touch With Account,USD,21000.0,SMB,Outbound,Outbound,Lost,2026-02-16,2026-02-13,0016Q00001dgwGT
+Dov Dewar,Build Concierge,Build Concierge-10-CPQ-HS-UK,Disqualified,2026-02-25,2026-02-09,New Business,No Active Project,USD,24000.0,SMB,Sales Direct,Other,Disqualifyed,,2026-02-17,001Rn00000bTpDR
+Dov Dewar,Risiq GmbH,Risiq-10-CPQ-HS-DACH-CP,Closed Lost,2026-04-01,2026-02-04,New Business,No Active Project,USD,16551.72,SMB,Referral + Partners,Partners,Lost,2026-02-05,2026-02-05,001Rn00000wogNd
+Dov Dewar,Coconut Software,Coconut Software-21-CPQ-SF-NAM,Won,2026-04-30,2026-02-03,New Business,,USD,30000.0,SMB,Inbound,Inbound,Won,2026-02-11,2026-02-11,0014P00002wMT9k
+Dov Dewar,Oasis Security,Oasis Security-20-CPQ-SF-NAM,Disqualified,2026-03-19,2026-02-03,New Business,No Active Project,USD,48000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-04,0016Q000021u8c3
+Dov Dewar,Loxo,Loxo-40-CPQ-SF-EMEA,Disqualified,2026-03-09,2026-02-03,New Business,Lost Touch With Account,USD,81818.18,MM,Inbound,Inbound,Disqualifyed,,2026-02-11,0016Q00001mlzMo
+Dov Dewar,CheckProof,Checkproof-20-CPQ+CLM-HS-NORDICS,Closed Lost,2026-06-09,2026-02-03,New Business,No Active Project,USD,31395.35,SMB,Inbound,Inbound,Lost,2026-02-06,2026-02-06,001Rn00000weQIX
+Dov Dewar,vHive,vHive-13-CPQ-SF-DISP-IL,Disqualified,2026-04-23,2026-02-02,New Business - Competitive Displacement,No Active Project,USD,24480.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-09,001Rn00000YmCGG
+Dov Dewar,Netris,Netris-10-CPQ-HS-NAM,Disqualified,2026-02-03,2026-02-01,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-02-02,001Rn00000wJ60L
+Ari Davidowitz,Medisolv,Medisolv-15-CPQ-HS-NAM,Disqualified,2026-06-17,2026-06-16,New Business,Cancelled,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-17,0016Q00001dgsO5
+Ari Davidowitz,rater8,rater8-12-CPQ-HS-NAM-DISP,Meeting Happened,2026-07-31,2026-06-15,New Business,,USD,17280.0,SMB,Inbound,Inbound,TBD,,2026-06-16,001Rn00000oahV9
+Ari Davidowitz,Pulumi,Pulumi-20-CPQ-SF-NAM,Meeting Happened,2026-07-31,2026-06-11,New Business,,USD,28800.0,SMB,Inbound,Inbound,TBD,,2026-06-15,0016Q00001aybyT
+Ari Davidowitz,Bookingexperts,Bookingexperts-30-Q2R-HS-EMEA,Meeting Booked,2026-07-31,2026-06-10,New Business,Demo Scheduled,USD,48648.65,MM,Inbound,Inbound,Future,,2026-06-22,001Rn00000b1TAk
+Ari Davidowitz,CYBERHAWK Innovations Ltd.,CYBERHAWK Innovations Ltd.-9-CPQ-SF-EMEA,Meeting Happened,2026-07-31,2026-06-10,New Business,,USD,48648.65,SMB,Inbound,Inbound,TBD,,2026-06-11,0016Q00001ouhLd
+Ari Davidowitz,"Flowco, Inc.","Flowco, Inc.-26-CPQ-HS-NAM",Meeting Happened,2026-07-31,2026-06-04,New Business,,USD,31200.0,SMB,Inbound,Inbound,TBD,,2026-06-09,001Rn00000l5IXh
+Ari Davidowitz,PhotoShelter,PhotoShelter-15-Q2C-SF-NAM,Meeting Booked,2026-09-30,2026-06-04,New Business,Demo Scheduled,USD,21600.0,SMB,Inbound,Inbound,Future,,2026-06-29,0010B000021hc4C
+Ari Davidowitz,unstructured.io,Unstructured-10-Q2C-HS-NAM-DISP,Meeting Booked,2026-07-31,2026-05-27,New Business - Competitive Displacement,,USD,14400.0,SMB,Inbound,Inbound,Future,,2026-07-09,001Rn00000P81be
+Ari Davidowitz,INNOVACRM,INNOVACRM-15-CPQ-SF-NAM,Disqualified,2026-06-15,2026-05-21,New Business,No product fit,USD,54000.0,MM,Inbound,Inbound,Disqualifyed,,2026-05-21,001Rn00001BIueQ
+Ari Davidowitz,Maintouch,Maintouch-3-CPQ-HS-NAM,Disqualified,2026-06-11,2026-05-07,New Business,Cancelled,USD,4320.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-11,001Rn000019XKv9
+Ari Davidowitz,Together AI,Together AI-11-CPQ-SF-NAM,Selection Started,2026-06-30,2026-05-01,New Business,,USD,19800.0,SMB,Inbound,Inbound,Pipeline,2026-05-05,2026-05-05,001Rn00000X6fvB
+Ari Davidowitz,Moneycorp,Moneycorp-10-CPQ-MD-EMEA,Meeting Happened,2026-07-31,2026-05-01,New Business,,USD,60000.0,MM,Inbound,Inbound,TBD,,2026-08-13,0014P000029gzjJ
+Ari Davidowitz,Komodo,Komodo-5-Q2C-HS-EMEA-AE Training,Disqualified,2026-06-01,2026-05-01,New Business,Qualification criteria not met,USD,24324.32,SMB,Inbound,Inbound,Disqualifyed,,2026-05-08,001Rn000016xKaN
+Ari Davidowitz,Retell AI,Retell AI-8-CPQ-HS-NAM-AE Training,Disqualified,2026-06-01,2026-05-01,New Business,Qualification criteria not met,USD,11520.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-06,001Rn000017hbw6
+Ari Davidowitz,SentiLink,SentiLink-25-CPQ-SF-NAM,Selection Started,2026-06-30,2026-04-30,New Business,,USD,45000.0,SMB,Outbound,Outbound,Pipeline,2026-05-05,2026-05-05,0016Q00001Wpxh5
+Ari Davidowitz,Amprius Technologies,Amprius Technologies-10-CPQ-SF-NAM-AE Training,Disqualified,2026-06-01,2026-04-29,New Business,Qualification criteria not met,USD,18000.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-30,001Rn000018JtvC
+Ari Davidowitz,Hydeblades,Hydeblades-CPQ-HS-NAM-AE Training,Disqualified,2026-04-30,2026-04-28,New Business,Technical Requirements Not Met,USD,12960.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-28,001Rn000018F1wM
+Rebecca Gerger,Avidex,Avidex-9-CPQ-SF-NAM,Meeting Booked,2026-07-31,2026-06-19,New Business,Demo Scheduled,USD,12960.0,SMB,Inbound,Inbound,Future,,2026-06-22,0010B000021h0iD
+Rebecca Gerger,Sysdig,Sysdig-127-CPQ-SF-DISP-NAM,Meeting Booked,2026-07-31,2026-06-18,New Business,Demo Scheduled,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-23,0014P00002wMPsA
+Rebecca Gerger,Scale Computing,Scale Computing-85-CPQ-SF DISP-NAM,Selection Started,2026-07-31,2026-06-09,New Business - Competitive Displacement,,USD,110000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-10,2026-06-10,0010B00001wwP83
+Rebecca Gerger,Electude,Electude-40-CPQ-HS-EMEA,Meeting Booked,2026-07-31,2026-06-09,New Business,Demo Scheduled,USD,48000.0,MM,Inbound,Inbound,Future,,2026-06-22,001Rn000008ZMX9
+Rebecca Gerger,Catalent,Catalent-240-CPQ DISP-TBD-NAM-RFP,Meeting Booked,2026-08-31,2026-06-08,New Business - Competitive Displacement,,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-08,0010B000021hbOQ
+Rebecca Gerger,Elevate,Elevate-35-CPQ-SF-EMEA,Sales Qualified,2026-07-31,2026-06-08,New Business,,USD,85135.14,MM,Inbound,Inbound,Pipeline,2026-06-15,2026-06-12,001Rn00000JnTFj
+Rebecca Gerger,Omnidian,Omnidian-35-SF-CPQ-EST-DISP,Sales Qualified,2026-07-14,2026-06-04,New Business - Competitive Displacement,,USD,63000.0,MM,Outbound,Outbound,Pipeline,2026-06-08,2026-06-08,0014P00002wN229
+Rebecca Gerger,Finastra,Finastra-796-CPQ-TBD-EMEA,Meeting Booked,2026-07-31,2026-06-04,New Business,Demo Scheduled,USD,100000.0,Enterprise,Inbound,Inbound,Future,,2026-06-16,0010B000021hayH
+Rebecca Gerger,Isotrol,Isotrol-25-CPQ-SF-EMEA,Meeting Happened,2026-07-31,2026-06-04,New Business,,USD,21000.0,SMB,Inbound,Inbound,TBD,,2026-06-05,001Rn00001DJkYj
+Rebecca Gerger,Transcend,Transcend-45-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-06-03,New Business,,USD,81000.0,MM,Inbound,Inbound,Pipeline,2026-06-03,2026-06-03,0014P00002wMNph
+Rebecca Gerger,Shine.fr,Shine.fr-150-CPQ-HS-FR,Sales Qualified,2026-07-31,2026-06-01,New Business,,USD,46046.51,MM,Inbound,Inbound,Pipeline,2026-06-05,2026-06-02,001Rn00000Eo7cR
+Rebecca Gerger,SISU Health,SISU Health-20-CPQ-HS-EMEA,Sales Qualified,2026-07-31,2026-05-29,New Business,,USD,28800.0,SMB,Inbound,Inbound,Pipeline,2026-06-20,2026-06-02,001Rn00001CUQ93
+Rebecca Gerger,Nexus,Nexus-2-CPQ-SF-NAM,Disqualified,2026-05-27,2026-05-25,New Business,Cancelled,USD,2880.0,SMB,Inbound,Inbound,Disqualifyed,,2026-06-04,001Rn00001BowTP
+Rebecca Gerger,The Galley,The Galley-15-CPQ-HS-NAM,Disqualified,2026-06-05,2026-05-22,New Business,No product fit,USD,21600.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-22,001Rn00001BVqoJ
+Rebecca Gerger,Sofico,Sofico-20-CPQ-SF-DISP-EMEA,Disqualified,2026-06-09,2026-05-18,New Business - Competitive Displacement,Cancelled,USD,28800.0,SMB,Outbound,Outbound,Disqualifyed,,2026-06-08,0016Q00001igEPC
+Rebecca Gerger,Barnes Group,Barnes Group-25-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-05-14,New Business,,USD,45000.0,SMB,Inbound,Inbound,Pipeline,2026-06-03,2026-05-15,0014P00002wMB3r
+Rebecca Gerger,Chester's International,Chester's International-15-CPQ-MD-NAM,Disqualified,2026-06-05,2026-05-14,New Business,No Active Project,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-14,001Rn00000yEa3D
+Rebecca Gerger,Turtl,Turtl-20-Q2C-HS-EMEA,Sales Qualified,2026-09-15,2026-05-12,New Business,,USD,50000.0,SMB,Inbound,Inbound,Pipeline,2026-06-01,2026-05-13,0016Q00001WpZbB
+Rebecca Gerger,Maneva AI,ManevaAi-25-CPQ-SF-NAM,Sales Qualified,2026-11-18,2026-05-05,New Business,,USD,1800.0,Empty,Outbound,Outbound,Pipeline,2026-06-03,2026-05-14,001Rn000014fc4w
+Rebecca Gerger,CloudClevr,CloudClevr-34-CPQ-HS-EMEA,Sales Qualified,2026-11-03,2026-05-01,New Business,,USD,40800.0,MM,Inbound,Inbound,Pipeline,2026-06-03,2026-05-15,001Rn000018lrmy
+Rebecca Gerger,PermitFlow,PermitFlow-20-CPQ-SF-NAM,Sales Qualified,2026-08-18,2026-04-30,New Business,,USD,28800.0,SMB,Inbound,Inbound,Pipeline,2026-05-01,2026-05-01,001Rn00000BKM57
+Rebecca Gerger,SEKOIA.io,SEKOIA.io-25-HS-CPQ-EMEA,Meeting Happened,2026-07-31,2026-04-30,New Business,,USD,41860.47,MM,Inbound,Inbound,TBD,,2026-05-05,0016Q00001oudVx
+Rebecca Gerger,ID Partners,ID Partners-10-CPQ-HS-SAM,Disqualified,2026-05-02,2026-04-23,New Business,Cancelled,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-29,001Rn000017XZtp
+Rebecca Gerger,Watchmaker Genomics,Watchmaker Genomics-40-CPQ-SF-NAM,Value Proven,2026-06-26,2026-04-19,New Business,,USD,48000.0,MM,Inbound,Inbound,Pipeline,2026-04-30,2026-04-21,001Rn00000m6aV5
+Rebecca Gerger,Metaview,Metaview-40-CPQ-SF-NAMER,Selection Started,2026-07-22,2026-04-18,New Business,,USD,48000.0,MM,Inbound,Inbound,Pipeline,2026-04-22,2026-04-22,0016Q00001aybue
+Rebecca Gerger,Antavo,Antavo-10-Q2C-HS-EMEA,Sales Qualified,2026-09-16,2026-04-17,New Business,,USD,60810.81,SMB,Inbound,Inbound,Pipeline,2026-05-27,2026-05-04,0016Q00001ayGDg
+Rebecca Gerger,OnSecurity,OnSecurity-15-Q2C-HS-EMEA,Closed Lost,2026-04-26,2026-04-12,New Business,In-House Solution,USD,69000.0,SMB,Inbound,Inbound,Lost,2026-04-16,2026-04-13,0016Q00001WrElV
+Rebecca Gerger,Dayla Drinks,Dayla Drinks-20-CPQ-SF-EMEA-DISP,Disqualified,2026-04-16,2026-04-10,New Business - Competitive Displacement,Technical Requirements Not Met,USD,37894.74,SMB,Inbound,Inbound,Disqualifyed,,2026-04-13,001Rn000015ap7Q
+Rebecca Gerger,Thirdfort Limited,Thirdfort-15-CPQ-SF-EMEA,Won,2026-06-10,2026-04-09,New Business,,USD,29189.19,SMB,Inbound,Inbound,Won,2026-04-16,2026-04-13,0016Q00001ouhdx
+Rebecca Gerger,Hubject,Hubject-12-CPQ-SF-DACH,Disqualified,2026-04-16,2026-04-03,New Business,No product fit,USD,17280.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-10,0010B000021hadS
+Rebecca Gerger,Traction Rec,Traction Rec-10-CPQ-SF-NAM,Value Proven,2026-06-05,2026-03-31,New Business,To Be Lost,USD,18000.0,SMB,Inbound,Inbound,Pipeline,2026-04-16,2026-04-09,001Rn000014qwEo
+Rebecca Gerger,RahrBSG,RahrBSG-20-CPQ-SF DISP-NAM,Disqualified,2026-04-11,2026-03-31,New Business - Competitive Displacement,Cancelled,USD,28800.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-06,001Rn00000rf8ft
+Rebecca Gerger,Maneva AI,ManevaAi-15-CPQ-SF-NAM,Disqualified,2026-04-13,2026-03-30,New Business,No Show,USD,21600.0,SMB,Outbound,Outbound,Disqualifyed,,2026-04-23,001Rn000014fc4w
+Rebecca Gerger,Cubbie,Cubbie-6-CPQ-SF-EMEA,Disqualified,2026-04-13,2026-03-27,New Business,No Show,USD,8640.0,SMB,Inbound,Inbound,Disqualifyed,,2026-04-15,001Rn000014NRpX
+Rebecca Gerger,Middesk,Middesk-25-Q2C-SF-DISP-NAM,Sales Qualified,2026-08-04,2026-03-27,New Business,,USD,83400.0,MM,Outbound,Outbound,Pipeline,2026-04-07,2026-03-30,0016Q00001axmGB
+Rebecca Gerger,tecRacer Group,tecRacer Group-5-CPQ-HS-DACH (AE Training),Disqualified,2026-04-09,2026-03-27,New Business,Qualification criteria not met,USD,8275.86,SMB,Inbound,Inbound,Disqualifyed,,2026-03-27,001Rn00000BKNjF
+Rebecca Gerger,Soldo,Soldo-45-CPQ-SF-EMEA,Meeting Booked,2026-09-30,2026-03-12,New Business,,USD,54000.0,MM,Outbound,Outbound,Future,,2026-07-13,0016Q00001c2tMf
+Benjamin Friedman,Cart.com,Cart.com-36-CPQ-SF-NAM,Meeting Booked,2026-08-19,2026-06-16,New Business,Demo Scheduled,USD,43200.0,MM,Outbound,Outbound,Future,,2026-06-22,0016Q00001aybkL
+Benjamin Friedman,eSmart Systems,eSmart Systems-11-Q2C-HS-NORD,Meeting Booked,2026-07-31,2026-06-16,New Business,,USD,20000.0,SMB,Inbound,Inbound,Future,,2026-06-25,0016Q00001ihI5X
+Benjamin Friedman,decagon.ai,Decagon-85-CPQ-SF-NAM,Selection Started,2026-07-31,2026-06-09,New Business,,USD,48000.0,MM,Inbound,Inbound,Pipeline,2026-06-12,2026-06-10,001Rn00000kfubd
+Benjamin Friedman,Placon,Placon-50-CPQ-SF-NAM,Sales Qualified,2026-07-31,2026-06-05,New Business,,USD,43200.0,MM,Inbound,Inbound,Pipeline,2026-06-12,2026-06-11,0010B000021hZBQ
+Benjamin Friedman,Abacus,Abacus-40-CPQ-SF-NAM-DISP-RFPg,Sales Qualified,2026-07-31,2026-06-04,New Business - Competitive Displacement,,USD,32400.0,MM,Inbound,Inbound,Pipeline,2026-06-08,2026-06-08,0014P000029gy97
+Benjamin Friedman,Maritimo,Maritimo-15-CPQ-HS-APAC-DISP,Sales Qualified,2026-07-31,2026-06-03,New Business - Competitive Displacement,To Be Lost,USD,21600.0,SMB,Inbound,Inbound,Pipeline,2026-06-04,2026-06-04,001Rn00001DHoGY
+Benjamin Friedman,The Shade Store,The Shade Store-69-CPQ-SF-NAM,Disqualified,2026-06-04,2026-06-03,New Business,No Show,USD,82800.0,MM,Inbound,Inbound,Disqualifyed,,2026-06-04,0014P00002wMIrS
+Benjamin Friedman,Texas Airsystems,Texas Airsystems-227-CPQ-MD-NAM,Sales Qualified,2026-07-31,2026-05-29,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-03,2026-06-03,0014P000029gx4E
+Benjamin Friedman,GetVWire,GetVWire-8-CPQ-HS-NAM,Sales Qualified,2026-07-31,2026-05-29,New Business,,USD,11520.0,SMB,Inbound,Inbound,Pipeline,2026-06-02,2026-06-02,001Rn00001CWq2U
+Benjamin Friedman,Observepoint,Observepoint-20-CPQ-SF-NAM,Selection Started,2026-07-31,2026-05-29,New Business,,USD,36000.0,SMB,Inbound,Inbound,Pipeline,2026-06-04,2026-06-03,0010B00001wwT9e
+Benjamin Friedman,Formetco,Formetco-15-CPQ-MD-NAM,Sales Qualified,2026-07-31,2026-05-27,New Business,,USD,21600.0,SMB,Inbound,Inbound,Pipeline,2026-06-17,2026-05-29,0016Q00001ih4wJ
+Benjamin Friedman,Wealthbox,Wealthbox-50-QTC-SF-NAM,Sales Qualified,2026-07-31,2026-05-27,New Business,,USD,76500.0,MM,Inbound,Inbound,Pipeline,2026-05-28,2026-05-28,0016Q00001igqhr
+Benjamin Friedman,NYMBUS,NYMBUS-10-CPQ-SF-NAM,Disqualified,2026-06-03,2026-05-25,New Business,No Show,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-25,0014P000037P6dV
+Benjamin Friedman,Xtract One,Xtract One-32-CPQ-SF-NAM,Disqualified,2026-06-15,2026-05-21,New Business,No Show,USD,38400.0,MM,Inbound,Inbound,Disqualifyed,,2026-06-10,001Rn00000Z4T0t
+Benjamin Friedman,Bipsync,Bipsync-11-Q2C-MD-NAM,Value Proven,2026-07-31,2026-05-19,New Business,,USD,35040.0,SMB,Inbound,Inbound,Pipeline,2026-05-26,2026-05-26,001Rn00000mTVuY
+Benjamin Friedman,Pylon,Pylon-30-CPQ-SF-NAM-DISP,Selection Started,2026-06-19,2026-05-12,New Business,To Be Lost,USD,63000.0,MM,Outbound,Outbound,Pipeline,2026-05-13,2026-05-13,001Rn00000kVOLJ
+Benjamin Friedman,Flexi Software,Flexi Software-10-CPQ-SF-NAM-AE Training,Selection Started,2026-07-31,2026-05-02,New Business,To Be Lost,USD,18000.0,SMB,Inbound,Inbound,Pipeline,2026-05-04,2026-05-04,0014P000029gxEB
+Benjamin Friedman,Liftingedge,Liftingedge-2-CPQ-SA-AE Training,Disqualified,2026-05-04,2026-04-28,New Business,No Show,USD,14400.0,SMB,Inbound,Inbound,Disqualifyed,,2026-05-04,001Rn000018Dt4o
+Benjamin Friedman,BW Converting,BW Converting-12-CPQ-MD-NAM-AE Training,Sales Qualified,2026-12-31,2026-04-22,New Business,,USD,100000.0,Enterprise,Inbound,Inbound,Pipeline,2026-06-17,2026-05-04,001Rn00000gauLK
+Benjamin Friedman,Sanas,Sanas-33-CPQ-SF-NAM,Sales Qualified,2026-08-31,2026-04-03,New Business,,USD,39600.0,MM,Inbound,Inbound,Pipeline,2026-04-06,2026-04-06,001Rn00000oziIx
+Benjamin Friedman,Compass Education,Compass Education-30-CPQ-HS-ANZ-CP,Value Proven,2026-06-30,2026-03-25,New Business,,USD,31856.12,MM,Referral + Partners,Partners,Pipeline,2026-03-25,2026-03-25,001Rn000007pWMU
