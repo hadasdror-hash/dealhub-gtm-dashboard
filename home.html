@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealHub GTM Highway</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F7F6F3; --surface: #FFFFFF; --border: #E4E3DF;
+    --text: #1A1917; --muted: #888580; --tiny: #B0ADA8;
+    --blue: #2563EB; --green: #15803D; --amber: #D97706;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* HERO */
+  .hero { background: var(--text); color: #fff; padding: 48px 32px 40px; }
+  .hero-inner { max-width: 960px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+  .hero-title { font-size: 36px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
+  .hero-title span { color: #4B88F7; }
+  .hero-sub { font-size: 14px; color: #aaa; max-width: 480px; line-height: 1.6; margin-bottom: 24px; }
+  .hero-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+  .hero-meta-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #888; }
+  .hero-meta-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* CANVAS */
+  .canvas { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+
+  /* SECTION */
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* CARDS GRID */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 36px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; color: inherit; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: #C8C6C0; }
+
+  .card-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; }
+  .card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); margin-top: 4px; }
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500; }
+  .tag-blue { background: #DBEAFE; color: #1D4ED8; }
+  .tag-green { background: #DCFCE7; color: #166534; }
+  .tag-amber { background: #FEF3C7; color: #92400E; }
+  .tag-gray { background: #F3F4F6; color: #374151; }
+  .tag-purple { background: #EDE9FE; color: #5B21B6; }
+
+  .view-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; text-decoration: none; transition: background 0.1s; }
+  .view-btn:hover { background: var(--border); }
+  .view-btn svg { width: 10px; height: 10px; }
+
+  /* STATUS BADGE */
+  .status { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 500; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-live .status-dot { background: #15803D; }
+  .status-live { color: #15803D; }
+  .status-pending .status-dot { background: #D97706; }
+  .status-pending { color: #D97706; }
+
+  /* PENDING CARD */
+  .card-pending { opacity: 0.6; pointer-events: none; }
+  .card-pending .card-title { color: var(--muted); }
+
+  .footnote { font-size: 11px; color: var(--tiny); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">DealHub · GTM Operations</div>
+    <div class="hero-title">GTM <span>Highway</span></div>
+    <div class="hero-sub">One place for pipeline health, funnel performance, and customer lifecycle — FY25 full year and FY26 year to date.</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#4B88F7"></div>FY25 — Feb 2025 – Jan 2026</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#34D399"></div>FY26 YTD — Feb – Jun 18 2026</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#888"></div>Salesforce data · Updated Jun 18 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="canvas">
+
+  <!-- LIFECYCLE FLOWCHARTS -->
+  <div class="section-title">GTM Lifecycle — Pipeline Funnel</div>
+  <div class="cards">
+
+    <a class="card" href="fy25.html">
+      <div>
+        <div class="card-eyebrow" style="color:#1A1917;">FY25 — Full Year</div>
+        <div class="card-title">Pipeline Funnel — FY25</div>
+      </div>
+      <div class="card-desc">Full year view: account segments, source-based SQL/SQO/Won, lost & disqualified reason breakdown with follow-up signals, CS snapshot and churn.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-blue">SQL · SQO · Won</span>
+          <span class="tag tag-gray">Lost reasons</span>
+          <span class="tag tag-green">CS · Churn</span>
+        </div>
+        <a class="view-btn" href="fy25.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
+      </div>
+    </a>
+
+    <a class="card" href="fy26.html">
+      <div>
+        <div class="card-eyebrow" style="color:#2563EB;">FY26 — Year to Date</div>
+        <div class="card-title">Pipeline Funnel — FY26 YTD</div>
+      </div>
+      <div class="card-desc">YTD view (Feb–Jun 18): source breakdown, segment overlay, pipeline still active, early lost/disq patterns and CS snapshot.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-blue">SQL · SQO · Won</span>
+          <span class="tag tag-amber">YTD · 58% through Q2</span>
+        </div>
+        <a class="view-btn" href="fy26.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- DASHBOARDS -->
+  <div class="section-title">Operational Dashboards</div>
+  <div class="cards">
+
+    <a class="card" href="demos.html">
+      <div>
+        <div class="card-eyebrow" style="color:#059669;">SQL & SQO Dashboard</div>
+        <div class="card-title">Demos Created — Q2 FY26</div>
+      </div>
+      <div class="card-desc">Weekly and QoQ trends for demos created, SQO conversion, source and sales team size breakdown. Live Q2 vs Q1 comparison.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-green">Q2 FY26</span>
+          <span class="tag tag-blue">WoW · QoQ</span>
+          <span class="tag tag-gray">By source · By segment</span>
+        </div>
+        <a class="view-btn" href="demos.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
+      </div>
+    </a>
+
+    <a class="card" href="pipe.html">
+      <div>
+        <div class="card-eyebrow" style="color:#7C3AED;">Pipeline Dashboard</div>
+        <div class="card-title">Pipeline by Quarter — Q2 · Q3 · Q4</div>
+      </div>
+      <div class="card-desc">Open pipeline by stage, CRO weighted ARR, owner breakdown and won deals for Q2. Forward-looking Q3 and Q4 outlook.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-purple">Q2 · Q3 · Q4</span>
+          <span class="tag tag-amber">Weighted ARR</span>
+          <span class="tag tag-gray">By owner · By segment</span>
+        </div>
+        <a class="view-btn" href="pipe.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
+      </div>
+    </a>
+
+  </div>
+
+
+
+
+  <!-- CALENDAR -->
+  <div class="section-title">Calendar Intelligence</div>
+  <div class="cards">
+    <a class="card" href="meetings.html">
+      <div>
+        <div class="card-eyebrow" style="color:#7C3AED;">Calendar Intelligence</div>
+        <div class="card-title">Upcoming Meetings — 100K+ Accounts</div>
+      </div>
+      <div class="card-desc">Future meetings on rep calendars matched to open opportunities above $100K ARR — by rep, stage and date.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-purple">39 meetings</span>
+          <span class="tag tag-blue">Becky · Boaz · Jonathan</span>
+          <span class="tag tag-green">100K+ ARR</span>
+        </div>
+        <a class="view-btn" href="meetings.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
+      </div>
+    </a>
+  </div>
+
+  <!-- COMING SOON -->
+  <div class="section-title">Coming Soon</div>
+  <div class="cards">
+
+    <div class="card card-pending">
+      <div>
+        <div class="card-eyebrow" style="color:var(--muted);">Customer Success</div>
+        <div class="card-title">CS Lifecycle — Onboarding · Live · Churn</div>
+      </div>
+      <div class="card-desc">Full CS snapshot with health breakdown, renewal pipeline, churn reason buckets and win-back tracking.</div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag tag-gray">Pending churn reason export</span></div>
+        <span class="status status-pending"><span class="status-dot"></span>In progress</span>
+      </div>
+    </div>
+
+    <div class="card card-pending">
+      <div>
+        <div class="card-eyebrow" style="color:var(--muted);">GTM Health</div>
+        <div class="card-title">GTM Health Master Dashboard</div>
+      </div>
+      <div class="card-desc">Unified health view across all pipeline stages, CS accounts and key conversion metrics — single page executive summary.</div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag tag-gray">Pending SF data</span></div>
+        <span class="status status-pending"><span class="status-dot"></span>Planned</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footnote">DealHub GTM Ops · hadasdror-hash.github.io/dealhub-gtm-dashboard · Data from Salesforce · Jun 18 2026</div>
+
+</div>
+</body>
+</html>
