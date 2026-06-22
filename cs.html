@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Lifecycle Highway — Customer Success</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F7F6F3; --surface: #FFFFFF; --border: #E4E3DF;
+    --text: #1A1917; --muted: #888580; --tiny: #B0ADA8;
+    --arrow: #C8C6C0;
+    --good: #15803D; --good-l: #DCFCE7; --good-b: #BBF7D0;
+    --avg: #D97706; --avg-l: #FEF3C7; --avg-b: #FDE68A;
+    --poor: #DC2626; --poor-l: #FEE2E2; --poor-b: #FECACA;
+    --onb: #7C3AED; --onb-l: #EDE9FE; --onb-b: #DDD6FE;
+    --live: #0369A1; --live-l: #E0F2FE; --live-b: #BAE6FD;
+    --churn: #78716C; --churn-l: #F5F5F4; --churn-b: #D6D3D1;
+    --warn: #EA580C; --warn-l: #FFF7ED; --warn-b: #FED7AA;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.5; }
+
+  .header { padding: 20px 32px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--surface); position: sticky; top: 0; z-index: 10; }
+  .header h1 { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; }
+  .header p { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .canvas { padding: 28px 32px; max-width: 1080px; margin: 0 auto; }
+
+  .sep { display: flex; align-items: center; gap: 12px; margin: 20px 0 14px; }
+  .sep .sl { flex: 1; height: 1px; background: var(--border); }
+  .sep .st { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); white-space: nowrap; }
+
+  .node-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .node-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 10px; }
+
+  .pp-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pp { display: flex; align-items: center; gap: 6px; background: var(--bg); border-radius: 6px; padding: 5px 10px; }
+  .pp .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .pp .lbl { font-size: 10px; color: var(--muted); }
+  .pp .val { font-size: 13px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  .pp .sub { font-size: 10px; color: var(--muted); margin-left: 2px; }
+
+  .arrow { display: flex; flex-direction: column; align-items: center; padding: 4px 0; }
+  .arrow .line { width: 1px; height: 18px; background: var(--arrow); }
+  .arrow .head { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid var(--arrow); }
+  .arrow .rate { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; margin: 3px 0; }
+
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  .sn { border-radius: 10px; padding: 14px 15px; border: 1px solid; }
+  .sn .sl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+  .sn .sv { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; line-height: 1; margin-bottom: 2px; }
+  .sn .sa { font-size: 11px; margin-bottom: 8px; }
+  .sn .sc { font-size: 10px; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(0,0,0,0.07); color: var(--muted); }
+  .sn .sc strong { color: var(--text); }
+
+  .sn-onb { background: var(--onb-l); border-color: var(--onb-b); }
+  .sn-onb .sl { color: #5B21B6; }
+  .sn-onb .sv { color: #4C1D95; }
+  .sn-onb .sa { color: #7C3AED; }
+
+  .sn-live { background: var(--live-l); border-color: var(--live-b); }
+  .sn-live .sl { color: #075985; }
+  .sn-live .sv { color: #0C4A6E; }
+  .sn-live .sa { color: #0369A1; }
+
+  .sn-churn { background: var(--churn-l); border-color: var(--churn-b); }
+  .sn-churn .sl { color: #57534E; }
+  .sn-churn .sv { color: #292524; }
+  .sn-churn .sa { color: #A8A29E; }
+
+  .sn-warn { background: var(--warn-l); border-color: var(--warn-b); }
+  .sn-warn .sl { color: #9A3412; }
+  .sn-warn .sv { color: #7C2D12; }
+  .sn-warn .sa { color: #EA580C; }
+
+  /* Health bar */
+  .health-bar { display: flex; height: 6px; border-radius: 4px; overflow: hidden; gap: 1px; margin: 8px 0; }
+  .hb-good { background: var(--good); }
+  .hb-avg { background: var(--avg); }
+  .hb-poor { background: var(--poor); }
+
+  .health-legend { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hl-item { display: flex; align-items: center; gap: 4px; font-size: 10px; }
+  .hl-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+  /* Stat rows */
+  .stat-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 3px; }
+  .stat-row .sr-lbl { color: var(--muted); }
+  .stat-row .sr-val { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+  /* Alert */
+  .alert { border-radius: 6px; padding: 8px 10px; font-size: 10px; margin-top: 8px; }
+  .alert-warn { background: var(--warn-l); color: #9A3412; border: 1px solid var(--warn-b); }
+  .alert-info { background: var(--live-l); color: #075985; border: 1px solid var(--live-b); }
+  .alert-good { background: var(--good-l); color: #166534; border: 1px solid var(--good-b); }
+
+  /* Chips */
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .chip { display: flex; align-items: center; gap: 5px; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px; font-size: 10px; }
+  .chip .cl { color: var(--muted); }
+  .chip .cv { font-weight: 600; }
+
+  .reason-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 2px; }
+  .reason-row .rn { font-weight: 600; }
+
+  .footnote { font-size: 10px; color: var(--tiny); text-align: center; margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>GTM Lifecycle Highway — Customer Success</h1>
+    <p>Current snapshot · Jun 18 2026 · Churn by period: FY25 (Feb 2025–Jan 2026) · FY26 YTD (Feb–Jun 18 2026)</p>
+  </div>
+</div>
+
+<div class="canvas">
+
+  <!-- ══ TOTAL CUSTOMER BASE ══ -->
+  <div class="sep"><div class="sl"></div><div class="st">Customer base — current snapshot</div><div class="sl"></div></div>
+
+  <div class="node-card" style="margin-bottom:14px;">
+    <div class="node-label">Total customer base</div>
+    <div class="pp-row">
+      <div class="pp"><div class="dot" style="background:#7C3AED"></div><span class="lbl">Onboarding</span><span class="val">147</span><span class="sub">$9.2M ARR</span></div>
+      <div class="pp"><div class="dot" style="background:#0369A1"></div><span class="lbl">Live</span><span class="val">652</span><span class="sub">$33.1M ARR</span></div>
+      <div class="pp"><div class="dot" style="background:#78716C"></div><span class="lbl">Churned (all time)</span><span class="val">341</span><span class="sub">$7.4M ARR</span></div>
+    </div>
+    <div class="pp-row">
+      <div class="pp"><div class="dot" style="background:#DC2626"></div><span class="lbl">At risk (Poor health)</span><span class="val">120</span><span class="sub">across Onboarding + Live · $6.2M ARR</span></div>
+      <div class="pp"><div class="dot" style="background:#EA580C"></div><span class="lbl">Renewals next 90 days</span><span class="val">141</span><span class="sub">$5.9M ARR · 33 at risk</span></div>
+      <div class="pp"><div class="dot" style="background:#991B1B"></div><span class="lbl">Overdue renewals</span><span class="val">39</span><span class="sub">$1.9M ARR</span></div>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="line"></div><div class="head"></div></div>
+
+  <!-- ══ ONBOARDING + LIVE ══ -->
+  <div class="sep"><div class="sl"></div><div class="st">Active customers</div><div class="sl"></div></div>
+
+  <div class="g2" style="margin-bottom:14px;">
+
+    <!-- ONBOARDING -->
+    <div class="sn sn-onb">
+      <div class="sl">Onboarding</div>
+      <div class="sv">147</div>
+      <div class="sa">$9.2M ARR · avg $62.9K</div>
+
+      <div style="font-size:9px;color:#5B21B6;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Health breakdown</div>
+      <div class="health-bar">
+        <div class="hb-good" style="width:65%"></div>
+        <div class="hb-avg" style="width:12%"></div>
+        <div class="hb-poor" style="width:23%"></div>
+      </div>
+      <div class="health-legend" style="margin-bottom:8px;">
+        <div class="hl-item"><div class="hl-dot" style="background:var(--good)"></div>Good: 95 (65%)</div>
+        <div class="hl-item"><div class="hl-dot" style="background:var(--avg)"></div>Average: 18 (12%)</div>
+        <div class="hl-item"><div class="hl-dot" style="background:var(--poor)"></div>Poor: 33 (22%)</div>
+      </div>
+
+      <div class="alert alert-warn">
+        ⚠ 33 at-risk accounts in Onboarding · $1.6M ARR at risk
+      </div>
+
+      <div class="sc">
+        Renewals next 90 days tracking separately — see renewal section below
+      </div>
+    </div>
+
+    <!-- LIVE -->
+    <div class="sn sn-live">
+      <div class="sl">Live</div>
+      <div class="sv">652</div>
+      <div class="sa">$33.1M ARR · avg $50.8K</div>
+
+      <div style="font-size:9px;color:#075985;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Health breakdown</div>
+      <div class="health-bar">
+        <div class="hb-good" style="width:65%"></div>
+        <div class="hb-avg" style="width:22%"></div>
+        <div class="hb-poor" style="width:13%"></div>
+      </div>
+      <div class="health-legend" style="margin-bottom:8px;">
+        <div class="hl-item"><div class="hl-dot" style="background:var(--good)"></div>Good: 423 (65%)</div>
+        <div class="hl-item"><div class="hl-dot" style="background:var(--avg)"></div>Average: 142 (22%)</div>
+        <div class="hl-item"><div class="hl-dot" style="background:var(--poor)"></div>Poor: 87 (13%)</div>
+      </div>
+
+      <div class="alert alert-warn">
+        ⚠ 87 at-risk accounts in Live · $4.7M ARR at risk
+      </div>
+
+      <div class="sc">
+        65% of Live accounts in Good health · strong base
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ RENEWALS ══ -->
+  <div class="sep"><div class="sl"></div><div class="st">Renewals</div><div class="sl"></div></div>
+
+  <div class="g2" style="margin-bottom:14px;">
+
+    <div class="sn sn-warn">
+      <div class="sl">Renewals — next 90 days</div>
+      <div class="sv">141</div>
+      <div class="sa">$5.9M ARR due by Sep 18</div>
+      <div style="margin-top:8px;">
+        <div class="stat-row"><span class="sr-lbl">At risk (Poor health)</span><span class="sr-val">33 · $1.5M</span></div>
+        <div class="stat-row"><span class="sr-lbl">Good / Average health</span><span class="sr-val">108 · $4.4M</span></div>
+      </div>
+      <div class="alert alert-warn" style="margin-top:8px;">
+        ⚠ 23% of upcoming renewals are at-risk accounts
+      </div>
+    </div>
+
+    <div class="sn sn-churn" style="border-color:#FECACA;background:#FEF2F2;">
+      <div class="sl" style="color:#991B1B;">Overdue renewals</div>
+      <div class="sv" style="color:#7F1D1D;">39</div>
+      <div class="sa" style="color:#DC2626;">$1.9M ARR past renewal date</div>
+      <div class="sc" style="border-top-color:#FECACA;">
+        These accounts have passed their renewal date — needs immediate CS attention
+      </div>
+    </div>
+
+  </div>
+
+  <div class="arrow"><div class="line"></div><div class="head"></div></div>
+
+  <!-- ══ CHURN ══ -->
+  <div class="sep"><div class="sl"></div><div class="st">Churn</div><div class="sl"></div></div>
+
+  <div class="g3" style="margin-bottom:14px;">
+
+    <!-- CHURN FY25 -->
+    <div class="sn sn-churn">
+      <div class="sl">Churned FY25</div>
+      <div class="sv">88</div>
+      <div class="sa">$2.7M ARR</div>
+      <div style="margin-top:8px;">
+        <div class="stat-row"><span class="sr-lbl">Win-back opp in FY26</span><span class="sr-val">0 (0%)</span></div>
+        <div class="stat-row"><span class="sr-lbl">No follow-up recorded</span><span class="sr-val">—</span></div>
+      </div>
+      <div class="alert alert-warn" style="margin-top:8px;">
+        0 win-back attempts recorded for FY25 churned accounts
+      </div>
+    </div>
+
+    <!-- CHURN FY26 -->
+    <div class="sn sn-churn">
+      <div class="sl">Churned FY26 YTD</div>
+      <div class="sv">39</div>
+      <div class="sa">$934K ARR</div>
+      <div class="sc">
+        Churn reason buckets — coming once reason field added to report
+      </div>
+    </div>
+
+    <!-- CHURN NO DATE -->
+    <div class="sn sn-churn" style="border-color:#FDE68A;background:#FFFBEB;">
+      <div class="sl" style="color:#92400E;">Churned — no date</div>
+      <div class="sv" style="color:#78350F;">41</div>
+      <div class="sa" style="color:#D97706;">$1.8M ARR</div>
+      <div class="sc" style="border-top-color:#FDE68A;">
+        Churn timestamp missing — period unknown · recommend data cleanup
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ TOTAL CHURN FOLLOW-UP ══ -->
+  <div class="node-card">
+    <div class="node-label">Churn follow-up signals</div>
+    <div class="chips">
+      <div class="chip"><span class="cl">FY25 win-back opp created</span><span class="cv">0 of 88 (0%)</span></div>
+      <div class="chip"><span class="cl">Churn reason data</span><span class="cv">Pending — field not yet in report</span></div>
+      <div class="chip"><span class="cl">Activity after churn</span><span class="cv">Pending — activity report needed</span></div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px;">
+      ℹ No win-back opps found for any FY25 churned accounts — either no win-back attempts were made, or they were tracked under different accounts. Worth investigating with CS team.
+    </div>
+  </div>
+
+  <div class="footnote">
+    DealHub GTM Ops · Salesforce data · Jun 18 2026 · Snapshot-based (not period-created) · Churn reason buckets pending additional field in export
+  </div>
+
+</div>
+</body>
+</html>

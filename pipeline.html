@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Dashboard — Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#F7F6F3;--surface:#fff;--border:#E4E3DF;--text:#1A1917;--muted:#888580;--tiny:#B0ADA8}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+  .header{padding:18px 28px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
+  .header h1{font-size:15px;font-weight:600}
+  .header p{font-size:11px;color:var(--muted);margin-top:2px}
+  .back{font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+  .canvas{max-width:1100px;margin:0 auto;padding:24px 28px}
+  .sep{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+  .sep .sl{flex:1;height:1px;background:var(--border)}
+  .sep .st{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);white-space:nowrap}
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .kpi .kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+  .kpi .kv{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:500;line-height:1;margin-bottom:5px}
+  .kpi .kd{font-size:11px;color:var(--muted)}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .card-title{font-size:13px;font-weight:600;margin-bottom:3px}
+  .card-sub{font-size:11px;color:var(--muted);margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{text-align:left;padding:5px 8px 8px 0;font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;border-bottom:1px solid var(--border)}
+  th:not(:first-child){text-align:right}
+  td{padding:7px 8px 7px 0;border-bottom:0.5px solid #f3f2ef}
+  td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px}
+  tr:last-child td{border-bottom:none}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .q-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+  .q-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:6px}
+  .q-arr{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:500;margin-bottom:3px}
+  .q-sub{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .q-weighted{font-size:11px;color:#15803D;font-weight:600}
+  .cro-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+  .update-note{font-size:10px;color:var(--muted);background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;padding:6px 12px;margin-bottom:16px}
+  .footnote{font-size:10px;color:var(--tiny);text-align:center;margin-top:24px;padding-top:14px;border-top:1px solid var(--border)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><h1>Pipeline Dashboard</h1><p id="header-sub">Loading...</p></div>
+  <a class="back" href="home.html">← Home</a>
+</div>
+<div class="canvas">
+  <div class="update-note">📊 Dashboard loads from <strong>pipeline_data.csv</strong> — update that file in GitHub to refresh all numbers automatically.</div>
+  <div id="dashboard"><div class="loading">Loading data from CSV...</div></div>
+</div>
+
+<script>
+function fmt(n){ return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+(n/1000).toFixed(0)+'K'; }
+function fmtN(n){ return n.toLocaleString(); }
+
+const CRO_WEIGHTS = {'1-Commit':0.9,'2-Strong Upside':0.75,'3-Upside':0.5,'4-Longshot':0.25,'5 - Not Projected':0};
+const STAGE_COLORS = {'Sales Qualified':'#2563EB','Selection Started':'#7C3AED','Value Proven':'#059669','Selected Vendor':'#D97706','Won':'#15803D'};
+
+Papa.parse('pipeline_data.csv',{
+  download:true, header:true,
+  complete: function(results){
+    const rows = results.data.filter(r=>r['Stage']);
+    rows.forEach(r=>{
+      r._arr = parseFloat(r['ARR (converted)'])||0;
+      r._close = new Date(r['Close Date']);
+      r._weight = CRO_WEIGHTS[r['CRO Forecast Status']]||0;
+      r._weighted = r._arr * r._weight;
+      // close quarter
+      const d = r._close;
+      if(!isNaN(d)){
+        const m = d.getMonth();
+        r._closeQ = `${d.getFullYear()} Q${Math.floor(m/3)+1}`;
+      } else { r._closeQ = 'Unknown'; }
+    });
+
+    const active = rows.filter(r=>r['Stage']!=='Won');
+    const won = rows.filter(r=>r['Stage']==='Won');
+
+    const sumArr = arr => arr.reduce((s,r)=>s+r._arr,0);
+    const sumW = arr => arr.reduce((s,r)=>s+r._weighted,0);
+
+    const totalArr = sumArr(active);
+    const totalWeighted = sumW(active);
+    const wonArr = sumArr(won);
+    const winRate = rows.length ? (won.length/rows.length*100).toFixed(0) : 0;
+
+    // By stage
+    const stageMap = {};
+    active.forEach(r=>{
+      const s=r['Stage'];
+      if(!stageMap[s])stageMap[s]={deals:0,arr:0};
+      stageMap[s].deals++;stageMap[s].arr+=r._arr;
+    });
+
+    // By close quarter
+    const qMap = {};
+    active.forEach(r=>{
+      const q=r._closeQ;
+      if(!qMap[q])qMap[q]={deals:0,arr:0,weighted:0};
+      qMap[q].deals++;qMap[q].arr+=r._arr;qMap[q].weighted+=r._weighted;
+    });
+
+    // By CRO forecast
+    const croMap = {};
+    active.forEach(r=>{
+      const c=r['CRO Forecast Status']||'Unknown';
+      if(!croMap[c])croMap[c]={deals:0,arr:0,weighted:0};
+      croMap[c].deals++;croMap[c].arr+=r._arr;croMap[c].weighted+=r._weighted;
+    });
+
+    // By owner
+    const ownerMap = {};
+    rows.forEach(r=>{
+      const o=r['Opportunity Owner']||'Unknown';
+      if(!ownerMap[o])ownerMap[o]={deals:0,arr:0,won:0,wonArr:0};
+      ownerMap[o].deals++;ownerMap[o].arr+=r._arr;
+      if(r['Stage']==='Won'){ownerMap[o].won++;ownerMap[o].wonArr+=r._arr;}
+    });
+    const topOwners = Object.entries(ownerMap).sort((a,b)=>b[1].arr-a[1].arr).slice(0,8);
+
+    // By segment
+    const segMap = {};
+    active.forEach(r=>{
+      const s=r['Sales Team Size']||'Unknown';
+      if(!segMap[s])segMap[s]={deals:0,arr:0,weighted:0};
+      segMap[s].deals++;segMap[s].arr+=r._arr;segMap[s].weighted+=r._weighted;
+    });
+
+    document.getElementById('header-sub').textContent = 'FY26 · Active pipeline & Won · Updated from CSV';
+
+    const quarters = Object.keys(qMap).filter(q=>q!=='Unknown').sort();
+
+    document.getElementById('dashboard').innerHTML = `
+      <div class="sep"><div class="sl"></div><div class="st">Pipeline summary</div><div class="sl"></div></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kl">Active pipeline</div><div class="kv">${fmt(totalArr)}</div><div class="kd">${fmtN(active.length)} open opps</div></div>
+        <div class="kpi"><div class="kl">CRO weighted ARR</div><div class="kv">${fmt(totalWeighted)}</div><div class="kd">${(totalWeighted/totalArr*100).toFixed(0)}% of pipeline</div></div>
+        <div class="kpi"><div class="kl">Won FY26</div><div class="kv">${fmt(wonArr)}</div><div class="kd">${fmtN(won.length)} deals · ${winRate}% win rate</div></div>
+        <div class="kpi"><div class="kl">Avg deal size</div><div class="kv">${fmt(totalArr/Math.max(active.length,1))}</div><div class="kd">active opps</div></div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">By close quarter</div><div class="sl"></div></div>
+      <div class="g3">
+        ${quarters.slice(0,3).map(q=>{
+          const d=qMap[q];
+          return `<div class="q-card">
+            <div class="q-label">${q}</div>
+            <div class="q-arr">${fmt(d.arr)}</div>
+            <div class="q-sub">${fmtN(d.deals)} opps</div>
+            <div class="q-weighted">⚡ Weighted: ${fmt(d.weighted)}</div>
+            <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border)">
+              ${Object.entries(CRO_WEIGHTS).map(([k,w])=>{
+                const sub=active.filter(r=>r._closeQ===q&&r['CRO Forecast Status']===k);
+                if(!sub.length) return '';
+                return `<div class="cro-row"><span>${k}</span><span>${fmtN(sub.length)} · ${fmt(sub.reduce((s,r)=>s+r._arr,0))}</span></div>`;
+              }).join('')}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">By stage</div>
+          <div class="card-sub">Active pipeline only</div>
+          <table>
+            <thead><tr><th>Stage</th><th>Opps</th><th>ARR</th></tr></thead>
+            <tbody>
+              ${Object.entries(stageMap).sort((a,b)=>b[1].arr-a[1].arr).map(([s,d])=>`
+                <tr><td><span class="dot" style="background:${STAGE_COLORS[s]||'#888'}"></span>${s}</td>
+                <td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">By sales team size</div>
+          <div class="card-sub">Active pipeline</div>
+          <table>
+            <thead><tr><th>Segment</th><th>Opps</th><th>ARR</th><th>Weighted</th></tr></thead>
+            <tbody>
+              ${['Enterprise','MM','SMB'].map(s=>{
+                const d=segMap[s]||{deals:0,arr:0,weighted:0};
+                return `<tr><td>${s}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmt(d.weighted)}</td></tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">By owner — pipeline & won</div><div class="sl"></div></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Owner</th><th>Open opps</th><th>Pipeline ARR</th><th>Won opps</th><th>Won ARR</th></tr></thead>
+          <tbody>
+            ${topOwners.map(([o,d])=>`
+              <tr><td>${o}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmtN(d.won)}</td><td>${fmt(d.wonArr)}</td></tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footnote">DealHub GTM Ops · CSV-driven dashboard · Upload new pipeline_data.csv to GitHub to update</div>
+    `;
+  },
+  error: function(){ document.getElementById('dashboard').innerHTML='<div class="loading">Error loading pipeline_data.csv</div>'; }
+});
+</script>
+</body>
+</html>
