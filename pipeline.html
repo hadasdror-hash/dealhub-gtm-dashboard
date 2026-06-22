@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Dashboard — Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#F7F6F3;--surface:#fff;--border:#E4E3DF;--text:#1A1917;--muted:#888580;--tiny:#B0ADA8}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+  .header{padding:18px 28px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
+  .header h1{font-size:15px;font-weight:600}.header p{font-size:11px;color:var(--muted);margin-top:2px}
+  .back{font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+  .canvas{max-width:1100px;margin:0 auto;padding:24px 28px}
+  .sep{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+  .sep .sl{flex:1;height:1px;background:var(--border)}
+  .sep .st{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);white-space:nowrap}
+  .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .kpi .kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+  .kpi .kv{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:500;line-height:1;margin-bottom:4px}
+  .kpi .kd{font-size:11px;color:var(--muted)}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .card-title{font-size:13px;font-weight:600;margin-bottom:3px}
+  .card-sub{font-size:11px;color:var(--muted);margin-bottom:14px}
+  .q-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .q-block.current{border-color:#2563EB;border-width:1.5px}
+  .q-header{padding:11px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .q-label{font-size:12px;font-weight:700}
+  .q-body{padding:13px 15px}
+  .q-section{margin-bottom:11px}
+  .q-section:last-child{margin-bottom:0}
+  .q-section-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:5px;padding-bottom:4px;border-bottom:0.5px solid var(--border)}
+  .q-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;line-height:1}
+  .q-sub{font-size:10px;color:var(--muted);margin-top:2px;margin-bottom:6px}
+  .q-weighted{font-size:11px;font-weight:600;color:#15803D}
+  .q-won-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#15803D;line-height:1}
+  .cro-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px}
+  .cro-row span:first-child{color:var(--muted)}
+  .cro-row strong{color:var(--text)}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{text-align:left;padding:5px 8px 7px 0;font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;border-bottom:1px solid var(--border)}
+  th:not(:first-child){text-align:right}
+  td{padding:6px 8px 6px 0;border-bottom:0.5px solid #f3f2ef}
+  td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px}
+  tr:last-child td{border-bottom:none}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .won-badge{display:inline-flex;align-items:center;gap:4px;background:#DCFCE7;color:#14532D;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px}
+  .pipe-badge{display:inline-flex;align-items:center;gap:4px;background:#EDE9FE;color:#4C1D95;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px}
+  .current-tag{font-size:9px;background:#DBEAFE;color:#1E40AF;padding:2px 7px;border-radius:4px;font-weight:600}
+  .update-note{font-size:10px;color:var(--muted);background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;padding:6px 12px;margin-bottom:16px}
+  .footnote{font-size:10px;color:var(--tiny);text-align:center;margin-top:24px;padding-top:14px;border-top:1px solid var(--border)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .cro-color-1{color:#15803D}.cro-color-2{color:#059669}.cro-color-3{color:#D97706}.cro-color-4{color:#EA580C}.cro-color-5{color:#888580}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><h1>Pipeline Dashboard — FY26</h1><p id="header-sub">Loading...</p></div>
+  <a class="back" href="home.html">← Home</a>
+</div>
+<div class="canvas">
+  <div class="update-note">📊 Loads from <strong>pipeline_data.csv</strong> — replace that file in GitHub to refresh. Fiscal quarters: Q1=Feb–Apr · Q2=May–Jul · Q3=Aug–Oct · Q4=Nov–Jan</div>
+  <div id="dashboard"><div class="loading">Loading pipeline data...</div></div>
+</div>
+
+<script>
+function fmt(n){ if(!n||isNaN(n))return '$0'; return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+Math.round(n/1000)+'K'; }
+function fmtN(n){ return (n||0).toLocaleString(); }
+
+const CRO_WEIGHTS = {'1-Commit':0.9,'2-Strong Upside':0.75,'3-Upside':0.5,'4-Longshot':0.25,'5 - Not Projected':0,'Lost':0};
+const CRO_ORDER = ['1-Commit','2-Strong Upside','3-Upside','4-Longshot','5 - Not Projected'];
+const CRO_COLORS = {'1-Commit':'cro-color-1','2-Strong Upside':'cro-color-2','3-Upside':'cro-color-3','4-Longshot':'cro-color-4','5 - Not Projected':'cro-color-5'};
+const STAGE_COLORS = {'Sales Qualified':'#2563EB','Selection Started':'#7C3AED','Value Proven':'#059669','Selected Vendor':'#D97706'};
+
+// DealHub fiscal quarter: Feb-Apr=Q1, May-Jul=Q2, Aug-Oct=Q3, Nov-Jan=Q4
+function fyQuarter(dateStr) {
+  if(!dateStr) return 'Unknown';
+  let d = new Date(dateStr);
+  if(isNaN(d)){
+    const p = dateStr.split('/');
+    if(p.length===3) d = new Date(`${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}`);
+  }
+  if(isNaN(d)) return 'Unknown';
+  const mo = d.getMonth()+1;
+  const y = d.getFullYear();
+  let q, fy;
+  if(mo===1){q=4;fy=y-1;}
+  else if(mo<=4){q=1;fy=y;}
+  else if(mo<=7){q=2;fy=y;}
+  else if(mo<=10){q=3;fy=y;}
+  else{q=4;fy=y;}
+  return `Q${q} FY${String(fy).slice(2)}`;
+}
+
+const CURRENT_Q = 'Q2 FY26';
+
+Papa.parse('pipeline_data.csv',{
+  download:true, header:true,
+  complete: function(results){
+    const rows = results.data.filter(r=>r['Stage']&&r['Opportunity Name']);
+    rows.forEach(r=>{
+      r._arr = parseFloat((r['ARR (converted)']||'').toString().replace(/[$,]/g,''))||0;
+      r._weight = CRO_WEIGHTS[r['CRO Forecast Status']]||0;
+      r._weighted = r._arr * r._weight;
+      r._closeQ = fyQuarter(r['Close Date']);
+    });
+
+    const won = rows.filter(r=>r['Stage']==='Won');
+    const active = rows.filter(r=>r['Stage']!=='Won');
+    const sumArr = a=>a.reduce((s,r)=>s+r._arr,0);
+    const sumW = a=>a.reduce((s,r)=>s+r._weighted,0);
+
+    // Current quarter focus
+    const cqWon = won.filter(r=>r._closeQ===CURRENT_Q);
+    const cqActive = active.filter(r=>r._closeQ===CURRENT_Q);
+
+    document.getElementById('header-sub').textContent = `FY26 · Current quarter: ${CURRENT_Q} · ${rows.length} total opps`;
+
+    // Quarters to show
+    const quarters = ['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'];
+
+    // By stage (current Q active)
+    const stageMap={};
+    cqActive.forEach(r=>{const s=r['Stage'];if(!stageMap[s])stageMap[s]={deals:0,arr:0};stageMap[s].deals++;stageMap[s].arr+=r._arr;});
+
+    // By CRO (current Q active)
+    const croMap={};
+    cqActive.forEach(r=>{const c=r['CRO Forecast Status']||'Unknown';if(!croMap[c])croMap[c]={deals:0,arr:0,weighted:0};croMap[c].deals++;croMap[c].arr+=r._arr;croMap[c].weighted+=r._weighted;});
+
+    // By segment (current Q active)
+    const segMap={};
+    cqActive.forEach(r=>{const s=r['Sales Team Size']||'Unknown';if(!segMap[s])segMap[s]={deals:0,arr:0,weighted:0};segMap[s].deals++;segMap[s].arr+=r._arr;segMap[s].weighted+=r._weighted;});
+
+    // By owner won
+    const ownerMap={};
+    rows.forEach(r=>{
+      const o=r['Opportunity Owner']||'Unknown';
+      if(!ownerMap[o])ownerMap[o]={deals:0,arr:0,won:0,wonArr:0,pipe:0,pipeArr:0};
+      ownerMap[o].deals++;ownerMap[o].arr+=r._arr;
+      if(r['Stage']==='Won'){ownerMap[o].won++;ownerMap[o].wonArr+=r._arr;}
+      else{ownerMap[o].pipe++;ownerMap[o].pipeArr+=r._arr;}
+    });
+    const topOwners=Object.entries(ownerMap).sort((a,b)=>b[1].wonArr-a[1].wonArr).slice(0,10);
+
+    document.getElementById('dashboard').innerHTML = `
+      <div class="sep"><div class="sl"></div><div class="st">FY26 summary</div><div class="sl"></div></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kl">Total active pipeline</div><div class="kv">${fmt(sumArr(active))}</div><div class="kd">${fmtN(active.length)} open opps</div></div>
+        <div class="kpi"><div class="kl">CRO weighted (all)</div><div class="kv">${fmt(sumW(active))}</div><div class="kd">${Math.round(sumW(active)/sumArr(active)*100)||0}% of pipeline</div></div>
+        <div class="kpi"><div class="kl">Won FY26</div><div class="kv" style="color:#15803D">${fmt(sumArr(won))}</div><div class="kd">${fmtN(won.length)} deals closed</div></div>
+        <div class="kpi"><div class="kl">${CURRENT_Q} active</div><div class="kv">${fmt(sumArr(cqActive))}</div><div class="kd">${fmtN(cqActive.length)} opps · weighted ${fmt(sumW(cqActive))}</div></div>
+        <div class="kpi" style="border-color:#2563EB;background:#EFF6FF;"><div class="kl" style="color:#1D4ED8;">${CURRENT_Q} forecast (won + weighted)</div><div class="kv" style="color:#1E40AF;">${fmt(sumArr(cqWon)+sumW(cqActive))}</div><div class="kd" style="color:#3B82F6;">Won ${fmt(sumArr(cqWon))} + weighted ${fmt(sumW(cqActive))}</div></div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">Won & pipeline by close quarter</div><div class="sl"></div></div>
+      <div class="g4">
+        ${quarters.map(q=>{
+          const w=won.filter(r=>r._closeQ===q);
+          const a=active.filter(r=>r._closeQ===q);
+          const isCurrent = q===CURRENT_Q;
+          if(w.length===0&&a.length===0) return '';
+          return `<div class="q-block ${isCurrent?'current':''}">
+            <div class="q-header">
+              <span class="q-label">${q}</span>
+              <span style="display:flex;align-items:center;gap:6px;">
+                ${isCurrent?'<span class="current-tag">current</span>':''}
+                <span style="font-size:10px;color:var(--muted)">${fmtN(w.length+a.length)} opps</span>
+              </span>
+            </div>
+            <div class="q-body">
+              ${w.length>0?`<div class="q-section">
+                <div class="q-section-label" style="color:#15803D;">✓ Won</div>
+                <div class="q-won-num">${fmt(sumArr(w))}</div>
+                <div class="q-sub">${fmtN(w.length)} deals closed</div>
+              </div>`:''}
+              ${a.length>0?`<div class="q-section">
+                <div class="q-section-label" style="color:#5B21B6;">◦ Active pipeline</div>
+                <div class="q-num">${fmt(sumArr(a))}</div>
+                <div class="q-sub">${fmtN(a.length)} open opps</div>
+                <div class="q-weighted">⚡ Weighted: ${fmt(sumW(a))}</div>
+                <div style="margin-top:7px;padding-top:6px;border-top:0.5px solid var(--border)">
+                  ${CRO_ORDER.map(k=>{
+                    const sub=a.filter(r=>r['CRO Forecast Status']===k);
+                    if(!sub.length)return '';
+                    return `<div class="cro-row"><span class="${CRO_COLORS[k]||'cro-color-5'}">${k}</span><span><strong>${fmtN(sub.length)}</strong> · ${fmt(sub.reduce((s,r)=>s+r._arr,0))}</span></div>`;
+                  }).join('')}
+                </div>
+              </div>`:''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">${CURRENT_Q} — current quarter breakdown</div><div class="sl"></div></div>
+      <div class="g3">
+        <div class="card">
+          <div class="card-title">By stage</div>
+          <div class="card-sub">Active pipeline · ${CURRENT_Q}</div>
+          <table>
+            <thead><tr><th>Stage</th><th>Opps</th><th>ARR</th></tr></thead>
+            <tbody>
+              ${Object.entries(stageMap).sort((a,b)=>b[1].arr-a[1].arr).map(([s,d])=>`
+                <tr><td><span class="dot" style="background:${STAGE_COLORS[s]||'#888'}"></span>${s}</td>
+                <td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">By CRO forecast</div>
+          <div class="card-sub">Active pipeline · ${CURRENT_Q}</div>
+          <table>
+            <thead><tr><th>Forecast</th><th>Opps</th><th>ARR</th><th>Weighted</th></tr></thead>
+            <tbody>
+              ${CRO_ORDER.map(k=>{
+                const d=croMap[k]||{deals:0,arr:0,weighted:0};
+                if(!d.deals) return '';
+                return `<tr><td class="${CRO_COLORS[k]||''}">${k}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmt(d.weighted)}</td></tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">By segment</div>
+          <div class="card-sub">Active pipeline · ${CURRENT_Q}</div>
+          <table>
+            <thead><tr><th>Segment</th><th>Opps</th><th>ARR</th><th>Weighted</th></tr></thead>
+            <tbody>
+              ${['Enterprise','MM','SMB'].map(s=>{
+                const d=segMap[s]||{deals:0,arr:0,weighted:0};
+                return `<tr><td>${s}</td><td>${fmtN(d.deals)}</td><td>${fmt(d.arr)}</td><td>${fmt(d.weighted)}</td></tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sep"><div class="sl"></div><div class="st">Won by owner — full FY26</div><div class="sl"></div></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Owner</th><th>Won deals</th><th>Won ARR</th><th>Open pipeline</th><th>Pipeline ARR</th></tr></thead>
+          <tbody>
+            ${topOwners.map(([o,d])=>`
+              <tr>
+                <td>${o}</td>
+                <td>${d.won>0?`<span class="won-badge">${fmtN(d.won)}</span>`:'—'}</td>
+                <td>${d.won>0?fmt(d.wonArr):'—'}</td>
+                <td>${d.pipe>0?`<span class="pipe-badge">${fmtN(d.pipe)}</span>`:'—'}</td>
+                <td>${d.pipe>0?fmt(d.pipeArr):'—'}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footnote">DealHub GTM Ops · FY quarters: Q1=Feb–Apr · Q2=May–Jul · Q3=Aug–Oct · Q4=Nov–Jan · Replace pipeline_data.csv in GitHub to update</div>
+    `;
+  },
+  error:function(){ document.getElementById('dashboard').innerHTML='<div class="loading">Error loading pipeline_data.csv — make sure the file is in the same GitHub folder</div>'; }
+});
+</script>
+</body>
+</html>
