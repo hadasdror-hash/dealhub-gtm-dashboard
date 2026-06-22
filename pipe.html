@@ -158,7 +158,7 @@ Papa.parse('pipeline_data.csv?v=' + Date.now(),{
       <div class="sep"><div class="sl"></div><div class="st">FY26 summary</div><div class="sl"></div></div>
       <div class="kpi-grid">
         <div class="kpi"><div class="kl">Total active pipeline</div><div class="kv">${fmt(sumArr(active))}</div><div class="kd">${fmtN(active.length)} open opps</div></div>
-        <div class="kpi"><div class="kl">CRO weighted (all)</div><div class="kv">${fmt(sumW(active))}</div><div class="kd">${Math.round(sumW(active)/sumArr(active)*100)||0}% of pipeline</div></div>
+        <div class="kpi"><div class="kl">CRO weighted ${CURRENT_Q}</div><div class="kv">${fmt(sumW(cqActive))}</div><div class="kd">${Math.round(sumW(cqActive)/sumArr(cqActive)*100)||0}% of Q2 pipeline</div></div>
         <div class="kpi"><div class="kl">Won FY26</div><div class="kv" style="color:#15803D">${fmt(sumArr(won))}</div><div class="kd">${fmtN(won.length)} deals closed</div></div>
         <div class="kpi"><div class="kl">${CURRENT_Q} active</div><div class="kv">${fmt(sumArr(cqActive))}</div><div class="kd">${fmtN(cqActive.length)} opps · weighted ${fmt(sumW(cqActive))}</div></div>
         <div class="kpi" style="border-color:#2563EB;background:#EFF6FF;"><div class="kl" style="color:#1D4ED8;">${CURRENT_Q} forecast (won + weighted)</div><div class="kv" style="color:#1E40AF;">${fmt(sumArr(cqWon)+sumW(cqActive))}</div><div class="kd" style="color:#3B82F6;">Won ${fmt(sumArr(cqWon))} + weighted ${fmt(sumW(cqActive))}</div></div>
