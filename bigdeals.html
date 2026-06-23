@@ -31,7 +31,7 @@
   .deal-card.amber{border-left:3px solid #D97706}
   .deal-card.green{border-left:3px solid #15803D}
 
-  .deal-header{display:grid;grid-template-columns:28px 1fr auto auto auto auto auto;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none}
+  .deal-header{display:grid;grid-template-columns:28px 1fr auto auto auto auto auto auto;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none}
   .deal-header:hover{background:#FAFAF8}
   .rag-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
   .rag-dot.red{background:#DC2626}
@@ -159,6 +159,17 @@ function renderDeals(){
   list.innerHTML = filtered.map((d,i)=>{
     const stageClass = STAGE_CLASS[d.stage]||'stage-mb';
     const closeColor = d.close_days !== null && d.close_days < 30 ? '#DC2626' : d.close_days !== null && d.close_days < 60 ? '#D97706' : 'var(--muted)';
+    // Calculate FQ from close date
+    let close_fq = '';
+    if(d.close_date) {
+      const parts = d.close_date.split(' ');
+      const months = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+      const mo = months[parts[1]]; const yr = parseInt(parts[2]);
+      let q, fy;
+      if(mo===1){q=4;fy=yr-1;} else if(mo<=4){q=1;fy=yr;} else if(mo<=7){q=2;fy=yr;} else if(mo<=10){q=3;fy=yr;} else{q=4;fy=yr;}
+      close_fq = 'Q'+q+' FY'+String(fy).slice(2);
+    }
+    d.close_fq = close_fq;
     const croColor = CRO_COLORS[d.cro]||'var(--muted)';
     const actColor = d.rag==='red'?'#DC2626':d.rag==='amber'?'#D97706':'#15803D';
 
@@ -175,6 +186,7 @@ function renderDeals(){
         <span class="deal-arr">${fmt(d.arr)}</span>
         <span class="deal-close" style="color:${closeColor}">${d.close_date ? 'Close '+d.close_date : ''}</span>
         <span class="deal-activity" style="color:${actColor}">${d.days_since<999?d.days_since+'d ago':'No activity'}</span>
+        <span style="font-size:11px;color:#5B21B6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">${d.next_meeting ? '📅 '+d.next_meeting.split('—')[0].trim() : ''}</span>
         <span class="chevron" id="chev-${i}">▾</span>
       </div>
       <div class="deal-body" id="body-${i}">
