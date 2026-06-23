@@ -187,7 +187,7 @@ function renderDeals(){
       <div class="deal-header" onclick="toggleCard(${i})">
         <div class="rag-dot ${d.rag}"></div>
         <div>
-          <div class="deal-account">${d.account}</div>
+          <div class="deal-account">${d.account}${d.substage==='To Be Lost'?` <span style="color:#DC2626;font-size:10px;font-weight:600;">⚠ To Be Lost</span>`:''}</div>
           <div style="font-size:10px;color:var(--muted);margin-top:1px;">${d.owner}</div>
         </div>
         <span style="font-size:11px;color:#5B21B6;white-space:nowrap;">${d.next_meeting ? '📅 '+d.next_meeting.split('—')[0].trim() : ''}</span>
@@ -202,7 +202,7 @@ function renderDeals(){
           <div class="deal-section">
             <div class="deal-section-title">Deal details</div>
             <div class="field"><span class="fl">ARR</span><span class="fv">${fmt(d.arr)}</span></div>
-            <div class="field"><span class="fl">Stage</span><span class="fv">${d.stage}</span></div>
+            <div class="field"><span class="fl">Stage</span><span class="fv">${d.stage}${d.substage==='To Be Lost'?` <span style="color:#DC2626;font-weight:600;">⚠ To Be Lost</span>`:''}</span></div>
             <div class="field"><span class="fl">Close date</span><span class="fv" style="color:${closeColor}">${d.close_date||'—'}</span></div>
             <div class="field"><span class="fl">CRO forecast</span><span class="fv" style="color:${croColor}">${d.cro||'—'}</span></div>
             <div class="field"><span class="fl">Last activity</span><span class="fv">${d.last_activity||'—'}</span></div>
