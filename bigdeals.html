@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealHub — Large Deal Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#F7F6F3;--surface:#fff;--border:#E4E3DF;--text:#1A1917;--muted:#888580;--tiny:#B0ADA8}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+  .header{padding:18px 28px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between}
+  .header h1{font-size:15px;font-weight:600}.header p{font-size:11px;color:var(--muted);margin-top:2px}
+  .back{font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+  .canvas{max-width:1200px;margin:0 auto;padding:20px 28px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px}
+  .kpi .kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px}
+  .kpi .kv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;line-height:1}
+  .kpi .ks{font-size:10px;color:var(--muted);margin-top:3px}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .filters select{font-size:11px;font-family:inherit;border:1px solid var(--border);border-radius:6px;padding:4px 8px;background:var(--bg);cursor:pointer}
+  .reset-btn{font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;color:var(--muted)}
+  .filter-summary{font-size:11px;color:var(--muted)}
+
+  .deal-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .deal-card.red{border-left:3px solid #DC2626}
+  .deal-card.amber{border-left:3px solid #D97706}
+  .deal-card.green{border-left:3px solid #15803D}
+
+  .deal-header{display:grid;grid-template-columns:28px 1fr auto auto auto auto auto;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none}
+  .deal-header:hover{background:#FAFAF8}
+  .rag-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .rag-dot.red{background:#DC2626}
+  .rag-dot.amber{background:#D97706}
+  .rag-dot.green{background:#15803D}
+  .deal-account{font-size:13px;font-weight:600}
+  .deal-stage{font-size:11px;padding:2px 8px;border-radius:4px;white-space:nowrap}
+  .deal-arr{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;white-space:nowrap}
+  .deal-close{font-size:11px;color:var(--muted);white-space:nowrap}
+  .deal-activity{font-size:11px;white-space:nowrap}
+  .deal-owner{font-size:11px;color:var(--muted);white-space:nowrap}
+  .chevron{font-size:12px;color:var(--muted);transition:transform 0.2s}
+  .chevron.open{transform:rotate(180deg)}
+
+  .deal-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border)}
+  .deal-body.open{display:block}
+  .deal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px}
+  .deal-section{background:var(--bg);border-radius:8px;padding:12px 14px}
+  .deal-section-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:8px}
+  .deal-section p{font-size:12px;line-height:1.5;color:var(--text)}
+  .deal-section .field{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px}
+  .deal-section .field .fl{color:var(--muted)}
+  .deal-section .field .fv{font-weight:500;text-align:right;max-width:60%}
+  .kp-list{list-style:none;padding:0}
+  .kp-list li{font-size:11px;line-height:1.5;padding:3px 0;border-bottom:0.5px solid var(--border);color:var(--text)}
+  .kp-list li:last-child{border-bottom:none}
+  .kp-list li::before{content:"→ ";color:var(--muted)}
+  .no-call{font-size:11px;color:var(--muted);font-style:italic}
+  .next-meeting-badge{display:inline-flex;align-items:center;gap:4px;background:#EDE9FE;color:#4C1D95;font-size:11px;font-weight:500;padding:3px 10px;border-radius:5px;margin-top:6px}
+
+  .stage-mb{background:#F3F4F6;color:#374151}
+  .stage-sq{background:#DBEAFE;color:#1D4ED8}
+  .stage-ss{background:#EDE9FE;color:#5B21B6}
+  .stage-vp{background:#DCFCE7;color:#166534}
+  .stage-sv{background:#FEF3C7;color:#92400E}
+  .stage-won{background:#DCFCE7;color:#166534}
+
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .footnote{font-size:10px;color:var(--tiny);text-align:center;margin-top:24px;padding-top:14px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><h1>Large Deal Tracker</h1><p id="hdr-sub">Loading...</p></div>
+  <a class="back" href="home.html">← Home</a>
+</div>
+<div class="canvas">
+  <div class="kpi-grid" id="kpis"></div>
+  <div class="filters">
+    <select id="f-rag" onchange="renderDeals()">
+      <option value="">All status</option>
+      <option value="red">🔴 Red — 15+ days</option>
+      <option value="amber">🟡 Amber — 8–14 days</option>
+      <option value="green">🟢 Green — active</option>
+    </select>
+    <select id="f-owner" onchange="renderDeals()">
+      <option value="">All reps</option>
+    </select>
+    <select id="f-stage" onchange="renderDeals()">
+      <option value="">All stages</option>
+      <option>Meeting Booked</option>
+      <option>Sales Qualified</option>
+      <option>Selection Started</option>
+      <option>Value Proven</option>
+      <option>Selected Vendor</option>
+    </select>
+    <button class="reset-btn" onclick="resetFilters()">Reset</button>
+    <span class="filter-summary" id="f-summary"></span>
+  </div>
+  <div id="deal-list"><div class="loading">Loading deals...</div></div>
+  <div class="footnote">DealHub GTM Ops · Large Deal Tracker · Gong call data last 30 days · Jun 23 2026</div>
+</div>
+
+<script>
+var DEALS = [];
+
+const STAGE_CLASS = {
+  'Meeting Booked':'stage-mb','Sales Qualified':'stage-sq','Selection Started':'stage-ss',
+  'Value Proven':'stage-vp','Selected Vendor':'stage-sv','Won':'stage-won'
+};
+const CRO_COLORS = {
+  '1-Commit':'#15803D','2-Strong Upside':'#059669','3-Upside':'#D97706',
+  '4-Longshot':'#EA580C','5 - Not Projected':'#888580'
+};
+
+function fmt(n){ return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+Math.round(n/1000)+'K'; }
+function ragIcon(r){ return r==='red'?'🔴':r==='amber'?'🟡':'🟢'; }
+
+function resetFilters(){
+  ['f-rag','f-owner','f-stage'].forEach(id=>document.getElementById(id).value='');
+  renderDeals();
+}
+
+function renderDeals(){
+  const rag = document.getElementById('f-rag').value;
+  const owner = document.getElementById('f-owner').value;
+  const stage = document.getElementById('f-stage').value;
+
+  const filtered = DEALS.filter(d=>
+    (!rag   || d.rag===rag) &&
+    (!owner || d.owner===owner) &&
+    (!stage || d.stage===stage)
+  );
+
+  document.getElementById('f-summary').textContent =
+    filtered.length !== DEALS.length ? filtered.length+' of '+DEALS.length+' deals' : '';
+
+  // KPIs
+  const totalArr = filtered.reduce((s,d)=>s+d.arr,0);
+  const red = filtered.filter(d=>d.rag==='red').length;
+  const amber = filtered.filter(d=>d.rag==='amber').length;
+  const green = filtered.filter(d=>d.rag==='green').length;
+  const withCall = filtered.filter(d=>d.call_title).length;
+
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="kl">Total deals</div><div class="kv">${filtered.length}</div><div class="ks">${fmt(totalArr)} ARR</div></div>
+    <div class="kpi" style="border-left:3px solid #DC2626"><div class="kl">🔴 No traction</div><div class="kv" style="color:#DC2626">${red}</div><div class="ks">15+ days no activity</div></div>
+    <div class="kpi" style="border-left:3px solid #D97706"><div class="kl">🟡 At risk</div><div class="kv" style="color:#D97706">${amber}</div><div class="ks">8–14 days no activity</div></div>
+    <div class="kpi" style="border-left:3px solid #15803D"><div class="kl">🟢 Active</div><div class="kv" style="color:#15803D">${green}</div><div class="ks">Activity in last 7 days</div></div>
+    <div class="kpi"><div class="kl">With Gong call</div><div class="kv">${withCall}</div><div class="ks">last 30 days</div></div>`;
+
+  const list = document.getElementById('deal-list');
+  if(filtered.length===0){ list.innerHTML='<div class="loading">No deals match filters.</div>'; return; }
+
+  list.innerHTML = filtered.map((d,i)=>{
+    const stageClass = STAGE_CLASS[d.stage]||'stage-mb';
+    const closeColor = d.close_days !== null && d.close_days < 30 ? '#DC2626' : d.close_days !== null && d.close_days < 60 ? '#D97706' : 'var(--muted)';
+    const croColor = CRO_COLORS[d.cro]||'var(--muted)';
+    const actColor = d.rag==='red'?'#DC2626':d.rag==='amber'?'#D97706':'#15803D';
+
+    const kpHtml = d.call_points && d.call_points.length>0
+      ? '<ul class="kp-list">'+d.call_points.map(p=>`<li>${p}</li>`).join('')+'</ul>'
+      : '<p class="no-call">No key points recorded</p>';
+
+    return `<div class="deal-card ${d.rag}" id="card-${i}">
+      <div class="deal-header" onclick="toggleCard(${i})">
+        <div class="rag-dot ${d.rag}"></div>
+        <div>
+          <div class="deal-account">${d.account}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:1px;">${d.owner}</div>
+        </div>
+        <span class="deal-stage ${stageClass}">${d.stage}</span>
+        <span class="deal-arr">${fmt(d.arr)}</span>
+        <span class="deal-close" style="color:${closeColor}">${d.close_date ? 'Close '+d.close_date : ''}</span>
+        <span class="deal-activity" style="color:${actColor}">${d.days_since<999?d.days_since+'d ago':'No activity'}</span>
+        <span class="chevron" id="chev-${i}">▾</span>
+      </div>
+      <div class="deal-body" id="body-${i}">
+        <div class="deal-grid">
+          <div class="deal-section">
+            <div class="deal-section-title">Deal details</div>
+            <div class="field"><span class="fl">ARR</span><span class="fv">${fmt(d.arr)}</span></div>
+            <div class="field"><span class="fl">Stage</span><span class="fv">${d.stage}</span></div>
+            <div class="field"><span class="fl">Close date</span><span class="fv" style="color:${closeColor}">${d.close_date||'—'}</span></div>
+            <div class="field"><span class="fl">CRO forecast</span><span class="fv" style="color:${croColor}">${d.cro||'—'}</span></div>
+            <div class="field"><span class="fl">Last activity</span><span class="fv">${d.last_activity||'—'}</span></div>
+            ${d.next_step?`<div class="field"><span class="fl">Next step</span><span class="fv">${d.next_step}</span></div>`:''}
+            ${d.next_step_date?`<div class="field"><span class="fl">Next step date</span><span class="fv">${d.next_step_date}</span></div>`:''}
+            ${d.next_meeting?`<div class="next-meeting-badge">📅 ${d.next_meeting}</div>`:''}
+          </div>
+          <div class="deal-section">
+            <div class="deal-section-title">Last Gong call ${d.call_date?'· '+d.call_date:''}</div>
+            ${d.call_title?`<p style="font-size:12px;font-weight:500;margin-bottom:6px;">${d.call_title}</p>`:''}
+            ${d.call_brief?`<p style="font-size:11px;line-height:1.6;color:var(--muted)">${d.call_brief}</p>`:'<p class="no-call">No Gong call in last 30 days</p>'}
+          </div>
+          <div class="deal-section">
+            <div class="deal-section-title">Key points from call</div>
+            ${kpHtml}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCard(i){
+  const body = document.getElementById('body-'+i);
+  const chev = document.getElementById('chev-'+i);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+fetch('bigdeals_data.json?v='+Date.now())
+  .then(r=>r.json())
+  .then(data=>{
+    DEALS = data;
+    document.getElementById('hdr-sub').textContent =
+      data.length+' large deals · 100K+ ARR · Gong calls last 30 days · Jun 23 2026';
+    const owners = [...new Set(data.map(d=>d.owner))].sort();
+    const sel = document.getElementById('f-owner');
+    owners.forEach(o=>{ const op=document.createElement('option'); op.value=o; op.textContent=o; sel.appendChild(op); });
+    renderDeals();
+  })
+  .catch(()=>{ document.getElementById('deal-list').innerHTML='<div class="loading">Error loading bigdeals_data.json</div>'; });
+</script>
+</body>
+</html>
