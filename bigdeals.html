@@ -90,13 +90,13 @@
     <select id="f-owner" onchange="renderDeals()">
       <option value="">All reps</option>
     </select>
-    <select id="f-stage" onchange="renderDeals()">
-      <option value="">All stages</option>
-      <option>Meeting Booked</option>
-      <option>Sales Qualified</option>
-      <option>Selection Started</option>
-      <option>Value Proven</option>
-      <option>Selected Vendor</option>
+    <select id="f-cro" onchange="renderDeals()">
+      <option value="">All CRO forecast</option>
+      <option>1-Commit</option>
+      <option>2-Strong Upside</option>
+      <option>3-Upside</option>
+      <option>4-Longshot</option>
+      <option>5 - Not Projected</option>
     </select>
     <select id="f-fq" onchange="renderDeals()">
       <option value="">All quarters</option>
@@ -127,20 +127,20 @@ function fmt(n){ return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+Math.round(n/1000)
 function ragIcon(r){ return r==='red'?'🔴':r==='amber'?'🟡':'🟢'; }
 
 function resetFilters(){
-  ['f-rag','f-owner','f-stage','f-fq'].forEach(id=>document.getElementById(id).value='');
+  ['f-rag','f-owner','f-cro','f-fq'].forEach(id=>document.getElementById(id).value='');
   renderDeals();
 }
 
 function renderDeals(){
   const rag = document.getElementById('f-rag').value;
   const owner = document.getElementById('f-owner').value;
-  const stage = document.getElementById('f-stage').value;
+  const cro = document.getElementById('f-cro').value;
   const fq = document.getElementById('f-fq').value;
 
   const filtered = DEALS.filter(d=>
     (!rag   || d.rag===rag) &&
     (!owner || d.owner===owner) &&
-    (!stage || d.stage===stage) &&
+    (!cro   || d.cro===cro) &&
     (!fq    || d.close_fq===fq)
   );
 
