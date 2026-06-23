@@ -162,9 +162,7 @@ function renderDeals(){
     const croColor = CRO_COLORS[d.cro]||'var(--muted)';
     const actColor = d.rag==='red'?'#DC2626':d.rag==='amber'?'#D97706':'#15803D';
 
-    const kpHtml = d.call_points && d.call_points.length>0
-      ? '<ul class="kp-list">'+d.call_points.map(p=>`<li>${p}</li>`).join('')+'</ul>'
-      : '<p class="no-call">No key points recorded</p>';
+
 
     return `<div class="deal-card ${d.rag}" id="card-${i}">
       <div class="deal-header" onclick="toggleCard(${i})">
@@ -198,8 +196,12 @@ function renderDeals(){
             ${d.call_brief?`<p style="font-size:11px;line-height:1.6;color:var(--muted)">${d.call_brief}</p>`:'<p class="no-call">No Gong call in last 30 days</p>'}
           </div>
           <div class="deal-section">
-            <div class="deal-section-title">Key points from call</div>
-            ${kpHtml}
+            <div class="deal-section-title">Next steps ${d.gong_url ? `· <a href="${d.gong_url}" target="_blank" style="font-size:10px;color:#2563EB;text-decoration:none;font-weight:500;">Open in Gong ↗</a>` : ''}</div>
+            ${d.next_steps && d.next_steps.length > 0
+              ? '<ul class="kp-list">'+d.next_steps.map(s=>`<li>${s}</li>`).join('')+'</ul>'
+              : d.call_summary && d.call_summary.length > 0
+                ? '<ul class="kp-list">'+d.call_summary.map(s=>`<li>${s}</li>`).join('')+'</ul>'
+                : '<p class="no-call">No next steps recorded</p>'}
           </div>
         </div>
       </div>
