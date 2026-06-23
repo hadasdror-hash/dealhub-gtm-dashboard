@@ -98,6 +98,12 @@
       <option>Value Proven</option>
       <option>Selected Vendor</option>
     </select>
+    <select id="f-fq" onchange="renderDeals()">
+      <option value="">All quarters</option>
+      <option>Q2 FY26</option>
+      <option>Q3 FY26</option>
+      <option>Q4 FY26</option>
+    </select>
     <button class="reset-btn" onclick="resetFilters()">Reset</button>
     <span class="filter-summary" id="f-summary"></span>
   </div>
@@ -121,7 +127,7 @@ function fmt(n){ return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+Math.round(n/1000)
 function ragIcon(r){ return r==='red'?'🔴':r==='amber'?'🟡':'🟢'; }
 
 function resetFilters(){
-  ['f-rag','f-owner','f-stage'].forEach(id=>document.getElementById(id).value='');
+  ['f-rag','f-owner','f-stage','f-fq'].forEach(id=>document.getElementById(id).value='');
   renderDeals();
 }
 
@@ -129,11 +135,13 @@ function renderDeals(){
   const rag = document.getElementById('f-rag').value;
   const owner = document.getElementById('f-owner').value;
   const stage = document.getElementById('f-stage').value;
+  const fq = document.getElementById('f-fq').value;
 
   const filtered = DEALS.filter(d=>
     (!rag   || d.rag===rag) &&
     (!owner || d.owner===owner) &&
-    (!stage || d.stage===stage)
+    (!stage || d.stage===stage) &&
+    (!fq    || d.close_fq===fq)
   );
 
   document.getElementById('f-summary').textContent =
