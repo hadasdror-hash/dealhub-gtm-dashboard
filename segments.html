@@ -2,279 +2,768 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DealHub — Segment Explorer</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>DealHub GTM — Market Coverage & Pipeline · FY25</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F7F6F3; --surface: #FFFFFF; --border: #E4E3DF;
-    --text: #1A1917; --muted: #888580; --tiny: #B0ADA8;
-  }
-  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; }
+:root {
+  --bg: #F7F6F2;
+  --surface: #FFFFFF;
+  --surface2: #F0EEE9;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --text: #1A1A18;
+  --text2: #6B6963;
+  --text3: #9C9890;
+  --blue: #185FA5; --blue-l: #E6F1FB; --blue-d: #0C447C;
+  --teal: #0F6E56; --teal-l: #E1F5EE; --teal-d: #085041;
+  --red: #A32D2D; --red-l: #FCEBEB; --red-d: #791F1F;
+  --amber: #854F0B; --amber-l: #FAEEDA; --amber-d: #633806;
+  --coral: #993C1D; --coral-l: #FAECE7; --coral-d: #712B13;
+  --purple: #534AB7; --purple-l: #EEEDFE; --purple-d: #3C3489;
+  --gray: #5F5E5A; --gray-l: #F1EFE8;
+  --green: #3B6D11; --green-l: #EAF3DE;
+  --radius: 10px; --radius-sm: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; color: var(--text); font-size: 14px; line-height: 1.5; }
+.page { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-  .header { padding: 18px 28px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; }
-  .header h1 { font-size: 14px; font-weight: 600; }
-  .header p { font-size: 11px; color: var(--muted); }
-  .back-btn { font-size: 11px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-  .back-btn:hover { color: var(--text); }
+/* header */
+.page-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border-strong); padding-bottom: 1rem; }
+.page-header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.page-header .sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
 
-  .canvas { padding: 24px 28px; max-width: 1100px; margin: 0 auto; }
+/* section labels */
+.section { margin-bottom: 2rem; }
+.section-label { font-size: 10px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--text3); margin-bottom: .6rem; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* FILTERS */
-  .filters { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
-  .filters-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted); margin-bottom: 12px; }
-  .filter-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 140px; }
-  .filter-group label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-  .filter-group select { font-size: 11px; font-family: inherit; border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; background: var(--bg); color: var(--text); cursor: pointer; }
-  .filter-group select:focus { outline: none; border-color: #888; }
-  .reset-btn { margin-top: 14px; font-size: 11px; font-weight: 500; padding: 5px 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); cursor: pointer; color: var(--muted); }
-  .reset-btn:hover { background: var(--border); color: var(--text); }
-  .filter-summary { font-size: 11px; color: var(--muted); margin-top: 10px; }
-  .filter-summary strong { color: var(--text); }
+/* connector */
+.conn { display: flex; justify-content: center; align-items: center; height: 28px; color: var(--text3); font-size: 16px; }
 
-  /* SEGMENT CARDS */
-  .seg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-  .seg-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .seg-card .sc-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
-  .seg-card .sc-count { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; line-height: 1; margin-bottom: 2px; }
-  .seg-card .sc-total { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
-  .seg-card .sc-bar { height: 7px; border-radius: 4px; overflow: hidden; display: flex; gap: 1px; margin-bottom: 4px; }
-  .seg-card .sc-pcts { display: flex; justify-content: space-between; font-size: 9px; }
+/* cards */
+.card { background: var(--surface); border: 0.5px solid var(--border-strong); border-radius: var(--radius); padding: 1.1rem 1.3rem; box-shadow: var(--shadow); }
 
-  /* OVERLAP TABLE */
-  .overlap-table { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
-  .overlap-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted); margin-bottom: 12px; }
-  table { width: 100%; border-collapse: collapse; font-size: 11px; }
-  th { text-align: left; padding: 6px 10px; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); border-bottom: 1px solid var(--border); }
-  td { padding: 7px 10px; border-bottom: 0.5px solid #F3F2EF; font-family: 'JetBrains Mono', monospace; }
-  tr:last-child td { border-bottom: none; }
-  td:first-child { font-family: 'Inter', sans-serif; font-weight: 500; }
-  .pct-cell { color: var(--muted); font-size: 10px; }
+/* metric grids */
+.krow4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1rem; }
+.krow3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.krow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.km { background: var(--surface2); border-radius: var(--radius-sm); padding: .7rem .9rem; }
+.kl { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.kv { font-size: 20px; font-weight: 500; color: var(--text); }
+.ks { font-size: 11px; color: var(--text2); margin-top: 2px; }
 
-  .loading { text-align: center; padding: 40px; color: var(--muted); }
+/* coverage bar */
+.cov-bar { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; margin: .5rem 0; }
+.cov-seg { height: 100%; }
+.cov-legend { display: flex; gap: 14px; font-size: 10px; color: var(--text2); flex-wrap: wrap; }
+.cov-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+/* segment grids */
+.sg3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 10px; }
+.sg4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+.sc { background: var(--surface); border: 0.5px solid var(--border-strong); border-radius: var(--radius); padding: .9rem 1rem; box-shadow: var(--shadow); }
+.sn { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.sv { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+.sbw { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-bottom: 5px; display: flex; }
+.sbd { height: 100%; border-radius: 3px; }
+.sbl { height: 100%; border-radius: 3px; opacity: .28; }
+.str { display: flex; justify-content: space-between; font-size: 10px; color: var(--text2); margin-bottom: 8px; }
+.sdv { border: none; border-top: 0.5px solid var(--border); margin: 6px 0; }
+.sov { font-size: 10px; color: var(--text2); display: flex; justify-content: space-between; padding: 2px 0; }
+.sov span:last-child { color: var(--text); font-weight: 500; }
+
+/* quality bars */
+.brow { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.blabel { font-size: 10px; color: var(--text2); width: 160px; flex-shrink: 0; }
+.bbar { flex: 1; height: 7px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.bf { height: 100%; border-radius: 3px; }
+.bv { font-size: 10px; font-weight: 500; color: var(--text); min-width: 40px; text-align: right; }
+.bp { font-size: 10px; color: var(--text2); min-width: 30px; text-align: right; }
+.tag { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px; display: inline-block; }
+
+/* alert / warn */
+.alert { border: 0.5px solid #F09595; background: var(--red-l); border-radius: var(--radius-sm); padding: .65rem .9rem; margin-bottom: 10px; }
+.alert-t { font-size: 10px; font-weight: 500; color: var(--red-d); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.alert-b { font-size: 11px; color: var(--red); line-height: 1.5; }
+.warn { border: 0.5px solid #EF9F27; background: var(--amber-l); border-radius: var(--radius-sm); padding: .65rem .9rem; margin-bottom: 10px; }
+.warn-t { font-size: 10px; font-weight: 500; color: var(--amber-d); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.warn-b { font-size: 11px; color: var(--amber); line-height: 1.5; }
+.info { border: 0.5px solid #85B7EB; background: var(--blue-l); border-radius: var(--radius-sm); padding: .65rem .9rem; margin-bottom: 10px; }
+.info-t { font-size: 10px; font-weight: 500; color: var(--blue-d); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.info-b { font-size: 11px; color: var(--blue); line-height: 1.5; }
+
+/* pipeline table */
+.pipe-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.pipe-table th { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--text2); text-align: left; padding: 6px 10px; border-bottom: 0.5px solid var(--border-strong); }
+.pipe-table td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); vertical-align: top; }
+.pipe-table tr:last-child td { border-bottom: none; font-weight: 500; background: var(--surface2); }
+.pipe-table tr:hover:not(:last-child) td { background: var(--surface2); }
+.num { font-variant-numeric: tabular-nums; }
+.right { text-align: right; }
+.pill { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 10px; display: inline-block; }
+
+/* outcomes row */
+.outcomes { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1rem; }
+.outcome-card { border-radius: var(--radius-sm); padding: .8rem 1rem; border: 0.5px solid var(--border); }
+
+/* lost/disq table */
+.ld-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.ld-table th { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--text2); padding: 5px 8px; border-bottom: 0.5px solid var(--border-strong); text-align: left; }
+.ld-table td { padding: 5px 8px; border-bottom: 0.5px solid var(--border); vertical-align: top; }
+.ld-table tr:last-child td { border-bottom: none; }
+.ld-table tr:hover td { background: var(--surface2); }
+.follow-badge { font-size: 10px; padding: 1px 5px; border-radius: 3px; }
+.high { background: var(--green-l); color: var(--green); }
+.mid { background: var(--amber-l); color: var(--amber-d); }
+.low { background: var(--red-l); color: var(--red-d); }
+
+/* cs snapshot */
+.cs-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 1rem; }
+.cs-card { background: var(--surface2); border-radius: var(--radius-sm); padding: .8rem 1rem; }
+.cs-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--text2); margin-bottom: 4px; }
+.cs-num { font-size: 22px; font-weight: 500; margin-bottom: 2px; }
+.cs-sub { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+.cs-bar { display: flex; gap: 4px; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+.cs-seg { height: 100%; border-radius: 2px; }
+.cs-breakdown { display: flex; gap: 10px; font-size: 10px; color: var(--text2); flex-wrap: wrap; }
+
+/* churn */
+.churn-reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .5rem; }
+.churn-tag { font-size: 10px; padding: 3px 8px; border-radius: 4px; background: var(--surface2); color: var(--text2); }
+.churn-tag span { font-weight: 500; color: var(--text); }
+
+/* chart wrappers */
+.ch-wrap { position: relative; }
+
+/* footer */
+.footer { margin-top: 3rem; padding-top: 1rem; border-top: 0.5px solid var(--border); font-size: 10px; color: var(--text3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+
+/* segment overlay table */
+.seg-ov { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: .5rem; }
+.seg-ov th { font-size: 9px; text-transform: uppercase; letter-spacing: .05em; color: var(--text2); padding: 4px 8px; border-bottom: 0.5px solid var(--border-strong); text-align: right; }
+.seg-ov th:first-child { text-align: left; }
+.seg-ov td { padding: 4px 8px; border-bottom: 0.5px solid var(--border); text-align: right; }
+.seg-ov td:first-child { text-align: left; font-weight: 500; }
+.seg-ov tr:last-child td { border: none; }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="header">
-  <div>
-    <h1>DealHub — Segment Explorer</h1>
-    <p>Filter segments by region, CRM, industry, size and ICP fit</p>
-  </div>
-  <a class="back-btn" href="fy25.html">← Back to FY25</a>
+<div class="page-header">
+  <h1>DealHub GTM — Market Coverage &amp; Pipeline</h1>
+  <div class="sub">FY25 · Feb 1 2025 – Jan 31 2026 · Salesforce data · CS snapshot Jun 18 2026</div>
 </div>
 
-<div class="canvas">
-
-  <!-- FILTERS -->
-  <div class="filters">
-    <div class="filters-title">Filters</div>
-    <div class="filter-row">
-      <div class="filter-group">
-        <label>Region</label>
-        <select id="f-region" onchange="applyFilters()">
-          <option value="">All regions</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Current CRM</label>
-        <select id="f-crm" onchange="applyFilters()">
-          <option value="">All CRMs</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Verified SaaS</label>
-        <select id="f-saas" onchange="applyFilters()">
-          <option value="">All</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Company size</label>
-        <select id="f-size" onchange="applyFilters()">
-          <option value="">All sizes</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>ICP Fit</label>
-        <select id="f-icp" onchange="applyFilters()">
-          <option value="">All</option>
-          <option value="Strong">Strong</option>
-          <option value="Moderate">Moderate</option>
-          <option value="Weak">Weak</option>
-        </select>
-      </div>
-      <button class="reset-btn" onclick="resetFilters()">Reset all</button>
+<!-- ═══════════════════════════════════════════
+     TIER 1 — SF UNIVERSE
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Tier 1 — SF universe</div>
+  <div class="card">
+    <div class="krow4">
+      <div class="km"><div class="kl">Total SF accounts</div><div class="kv">387,725</div><div class="ks">Excl. customers</div></div>
+      <div class="km"><div class="kl">Added in FY25</div><div class="kv">+53,385</div><div class="ks">10% ICP-fit (tech+150+)</div></div>
+      <div class="km"><div class="kl">In any segment</div><div class="kv">27,162</div><div class="ks">7% of SF</div></div>
+      <div class="km"><div class="kl">Not segmented</div><div class="kv">360,563</div><div class="ks">93% — unknown status</div></div>
     </div>
-    <div class="filter-summary" id="filter-summary">Loading data...</div>
+    <div class="cov-bar">
+      <div class="cov-seg" style="width:3.3%;background:var(--blue)"></div>
+      <div class="cov-seg" style="width:3.7%;background:var(--gray)"></div>
+      <div class="cov-seg" style="flex:1;background:#D3D1C7"></div>
+    </div>
+    <div class="cov-legend">
+      <span><span class="cov-dot" style="background:var(--blue)"></span>TAM / addressed 3.3%</span>
+      <span><span class="cov-dot" style="background:var(--gray)"></span>Other segments 3.7%</span>
+      <span><span class="cov-dot" style="background:#D3D1C7"></span>Not segmented 93%</span>
+    </div>
+  </div>
+</div>
+
+<div class="conn">↓</div>
+
+<!-- ═══════════════════════════════════════════
+     TIER 2 — SEGMENTS
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Tier 2 — core GTM segments · 27,162 unique accounts</div>
+
+  <!-- Row 1: TAM / SDR / Intent -->
+  <div class="sg3">
+    <div class="sc" style="border-color:var(--blue)">
+      <div class="sn" style="color:var(--blue-d)">Marketing — TAM</div>
+      <div class="sv">12,903</div>
+      <div class="sbw"><div class="sbd" style="width:45%;background:var(--blue)"></div><div class="sbl" style="width:55%;background:var(--blue)"></div></div>
+      <div class="str"><span>45% unique only</span><span>55% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ SDR</span><span>2,706</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>1,511</span></div>
+      <div class="sov"><span>∩ Series B+</span><span>1,298</span></div>
+      <div class="sov"><span>∩ Sales roles</span><span>3,609</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>1,572</span></div>
+    </div>
+    <div class="sc" style="border-color:var(--teal)">
+      <div class="sn" style="color:var(--teal-d)">SDR</div>
+      <div class="sv">4,694</div>
+      <div class="sbw"><div class="sbd" style="width:18%;background:var(--teal)"></div><div class="sbl" style="width:82%;background:var(--teal)"></div></div>
+      <div class="str"><span>18% unique only</span><span>82% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>2,706 (58%)</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>1,250 (27%)</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>1,914 (41%)</span></div>
+      <div class="sov"><span>∩ Sales roles</span><span>714 (15%)</span></div>
+      <div class="sov"><span>∩ Intent signal</span><span>1,646 (35%)</span></div>
+    </div>
+    <div class="sc" style="border-color:var(--red)">
+      <div class="sn" style="color:var(--red-d)">Intent signal</div>
+      <div class="sv">2,921</div>
+      <div class="sbw"><div class="sbd" style="width:14%;background:var(--red)"></div><div class="sbl" style="width:86%;background:var(--red)"></div></div>
+      <div class="str"><span>14% unique only</span><span>86% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>1,277 (43%)</span></div>
+      <div class="sov"><span>∩ SDR</span><span>1,646 (56%)</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>280 (9%)</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>947 (32%)</span></div>
+      <div class="sov"><span>∩ Series B+</span><span>209 (7%)</span></div>
+    </div>
   </div>
 
-  <!-- SEGMENT CARDS -->
-  <div class="seg-grid" id="seg-grid">
-    <div class="loading">Loading segment data...</div>
+  <!-- Row 2: other segments -->
+  <div class="sg4">
+    <div class="sc">
+      <div class="sn" style="color:var(--coral-d)">SF CPQ</div>
+      <div class="sv">3,699</div>
+      <div class="sbw"><div class="sbd" style="width:42%;background:var(--coral)"></div><div class="sbl" style="width:58%;background:var(--coral)"></div></div>
+      <div class="str"><span>42% unique</span><span>58% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>1,511 (41%)</span></div>
+      <div class="sov"><span>∩ SDR</span><span>1,250 (34%)</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>1,009 (27%)</span></div>
+      <div class="sov"><span>∩ Sales roles</span><span>608 (16%)</span></div>
+    </div>
+    <div class="sc">
+      <div class="sn" style="color:var(--purple-d)">Sales opp roles</div>
+      <div class="sv">9,329</div>
+      <div class="sbw"><div class="sbd" style="width:59%;background:var(--purple)"></div><div class="sbl" style="width:41%;background:var(--purple)"></div></div>
+      <div class="str"><span>59% unique</span><span>41% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>3,609 (38%)</span></div>
+      <div class="sov"><span>∩ SDR</span><span>714 (7%)</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>608 (6%)</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>435 (4%)</span></div>
+    </div>
+    <div class="sc">
+      <div class="sn" style="color:var(--amber-d)">Old opps (excl. won)</div>
+      <div class="sv">6,680</div>
+      <div class="sbw"><div class="sbd" style="width:58%;background:var(--amber)"></div><div class="sbl" style="width:42%;background:var(--amber)"></div></div>
+      <div class="str"><span>58% unique</span><span>42% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>1,572 (24%)</span></div>
+      <div class="sov"><span>∩ SDR</span><span>1,914 (29%)</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>1,009 (15%)</span></div>
+      <div class="sov"><span>∩ Sales roles</span><span>435 (6%)</span></div>
+    </div>
+    <div class="sc">
+      <div class="sn" style="color:var(--teal-d)">Series B+ · 200+ emp</div>
+      <div class="sv">1,902</div>
+      <div class="sbw"><div class="sbd" style="width:23%;background:var(--teal)"></div><div class="sbl" style="width:77%;background:var(--teal)"></div></div>
+      <div class="str"><span>23% unique</span><span>77% overlap</span></div>
+      <hr class="sdv">
+      <div class="sov"><span>∩ TAM</span><span>1,298 (68%)</span></div>
+      <div class="sov"><span>∩ SDR</span><span>594 (31%)</span></div>
+      <div class="sov"><span>∩ SF CPQ</span><span>279 (15%)</span></div>
+      <div class="sov"><span>∩ Old opps</span><span>440 (23%)</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="conn">↓</div>
+
+<!-- ═══════════════════════════════════════════
+     TIER 3 — NEW ACCOUNT QUALITY
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Tier 3 — new account quality · 2025 vs 2026</div>
+
+  <div class="alert">
+    <div class="alert-t">ICP hit rate halved year over year</div>
+    <div class="alert-b">5.1% of accounts added in 2025 matched ICP (tech + 150+ emp). In 2026 YTD that dropped to 2.6%. Wrong-industry accounts jumped from 32% to 51% of all new additions. The source of new accounts is getting noisier and enrichment is not being applied consistently on import.</div>
   </div>
 
-  <!-- OVERLAP TABLE -->
-  <div class="overlap-table">
-    <div class="overlap-title">Segment overlap — filtered view</div>
-    <table id="overlap-table">
+  <div class="krow4" style="margin-bottom:10px">
+    <div class="km"><div class="kl">Added in 2025</div><div class="kv">52,408</div><div class="ks">Full calendar year</div></div>
+    <div class="km"><div class="kl">ICP fit 2025</div><div class="kv" style="color:var(--blue)">2,699</div><div class="ks">5.1% — tech + 150+ emp</div></div>
+    <div class="km"><div class="kl">Added in 2026</div><div class="kv">38,245</div><div class="ks">YTD Jun 2026</div></div>
+    <div class="km"><div class="kl">ICP fit 2026</div><div class="kv" style="color:var(--red)">990</div><div class="ks">2.6% — declining</div></div>
+  </div>
+
+  <div class="krow2" style="margin-bottom:10px">
+    <!-- 2025 -->
+    <div class="card" style="padding:.9rem 1rem">
+      <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">2025 — why not TAM (52,408 accounts)</div>
+      <div style="height:9px;background:var(--surface2);border-radius:4px;overflow:hidden;display:flex;margin-bottom:10px">
+        <div style="width:5.1%;background:var(--blue)"></div>
+        <div style="width:31.6%;background:var(--coral)"></div>
+        <div style="width:25.2%;background:var(--gray)"></div>
+        <div style="width:13%;background:var(--amber)"></div>
+        <div style="width:11.4%;background:var(--purple)"></div>
+        <div style="flex:1;background:#B4B2A9"></div>
+      </div>
+      <div class="brow"><div class="blabel">ICP fit</div><div class="bbar"><div class="bf" style="width:5.1%;background:var(--blue)"></div></div><div class="bv">2,699</div><div class="bp" style="color:var(--blue)">5.1%</div></div>
+      <div class="brow"><div class="blabel">Wrong industry</div><div class="bbar"><div class="bf" style="width:31.6%;background:var(--coral)"></div></div><div class="bv">16,578</div><div class="bp">32%</div></div>
+      <div class="brow"><div class="blabel">Missing both fields</div><div class="bbar"><div class="bf" style="width:25.2%;background:var(--gray)"></div></div><div class="bv">13,232</div><div class="bp">25%</div></div>
+      <div class="brow"><div class="blabel">No industry — large enough</div><div class="bbar"><div class="bf" style="width:13%;background:var(--amber)"></div></div><div class="bv">6,805</div><div class="bp">13%</div></div>
+      <div class="brow"><div class="blabel">Tech but too small</div><div class="bbar"><div class="bf" style="width:11.4%;background:var(--purple)"></div></div><div class="bv">5,987</div><div class="bp">11%</div></div>
+      <div class="brow"><div class="blabel">No industry — small</div><div class="bbar"><div class="bf" style="width:11%;background:#B4B2A9"></div></div><div class="bv">5,756</div><div class="bp">11%</div></div>
+      <hr class="sdv" style="margin:8px 0">
+      <div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:500">Top wrong industries</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Construction 851</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Higher Ed 829</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Consumer Svcs 797</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Entertainment 725</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Prof. Training 647</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Financial Svcs 594</span>
+      </div>
+    </div>
+
+    <!-- 2026 -->
+    <div class="card" style="padding:.9rem 1rem;border-color:#F09595">
+      <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">2026 YTD — why not TAM (38,245 accounts)</div>
+      <div style="height:9px;background:var(--surface2);border-radius:4px;overflow:hidden;display:flex;margin-bottom:10px">
+        <div style="width:2.6%;background:var(--blue)"></div>
+        <div style="width:50.7%;background:var(--coral)"></div>
+        <div style="width:25%;background:var(--gray)"></div>
+        <div style="width:14.8%;background:var(--purple)"></div>
+        <div style="flex:1;background:#B4B2A9"></div>
+      </div>
+      <div class="brow"><div class="blabel">ICP fit</div><div class="bbar"><div class="bf" style="width:2.6%;background:var(--blue)"></div></div><div class="bv">990</div><div class="bp" style="color:var(--blue)">2.6%</div></div>
+      <div class="brow"><div class="blabel" style="color:var(--red);font-weight:500">Wrong industry ↑</div><div class="bbar"><div class="bf" style="width:50.7%;background:var(--coral)"></div></div><div class="bv" style="color:var(--red)">19,407</div><div class="bp" style="color:var(--red)">51%</div></div>
+      <div class="brow"><div class="blabel">Missing both fields</div><div class="bbar"><div class="bf" style="width:25%;background:var(--gray)"></div></div><div class="bv">9,564</div><div class="bp">25%</div></div>
+      <div class="brow"><div class="blabel" style="color:var(--red);font-weight:500">Tech but too small ↑</div><div class="bbar"><div class="bf" style="width:14.8%;background:var(--purple)"></div></div><div class="bv">5,645</div><div class="bp">15%</div></div>
+      <div class="brow"><div class="blabel">No industry — small</div><div class="bbar"><div class="bf" style="width:5.2%;background:#B4B2A9"></div></div><div class="bv">2,007</div><div class="bp">5%</div></div>
+      <div class="brow"><div class="blabel">No industry — large enough ↓</div><div class="bbar"><div class="bf" style="width:.4%;background:var(--amber)"></div></div><div class="bv">155</div><div class="bp">&lt;1%</div></div>
+      <hr class="sdv" style="margin:8px 0">
+      <div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:500">Top wrong industries — shifted vs 2025</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Education Svcs 2,050</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Prof. Services 1,265</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Div. Finance 1,074</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Gov. Admin 839</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Consumer Svcs 786</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Construction 752</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-t">Something changed in March — and it didn't stick</div>
+    <div class="warn-b">Jan–Feb 2026 had ~50% missing-both rate. March dropped to 5.5% — likely a one-off enrichment run. June spiked back to 46%. ICP rate is declining month over month (3.1% → 1.5%). Enrichment needs to be enforced at point of import, not done retroactively.</div>
+  </div>
+
+  <!-- ICP gap -->
+  <div class="card">
+    <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem">ICP gap — unsegmented but ICP-fit accounts already in SF</div>
+    <div class="krow4" style="margin-bottom:.9rem">
+      <div class="km"><div class="kl">ICP-fit, not segmented</div><div class="kv" style="color:var(--blue)">42,262</div><div class="ks">Tech + 150+ emp</div></div>
+      <div class="km"><div class="kl">Of 2025 additions</div><div class="kv">11,228</div><div class="ks">10% of FY25 new accounts</div></div>
+      <div class="km"><div class="kl">Tech, no emp data</div><div class="kv">81,898</div><div class="ks">May contain more ICP</div></div>
+      <div class="km"><div class="kl">Enrichment recoverable</div><div class="kv" style="color:var(--amber)">~30,000</div><div class="ks">Missing data across 2025+2026</div></div>
+    </div>
+    <div class="krow2">
+      <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:.7rem .9rem">
+        <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">ICP gap by region</div>
+        <div class="ch-wrap" style="height:200px"><canvas id="regionChart" role="img" aria-label="ICP-fit unsegmented accounts by region. North America leads with 21,593.">North America 21,593 · ROW 4,731 · Rest EMEA 3,824 · India 3,199 · UK/Ireland 2,607 · DACH 1,509 · ANZ 1,103.</canvas></div>
+      </div>
+      <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:.7rem .9rem">
+        <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">2026 monthly — ICP rate vs missing data</div>
+        <div class="ch-wrap" style="height:200px"><canvas id="monthChart" role="img" aria-label="2026 monthly trend showing ICP rate declining from 3.1% to 1.5% while missing-both spiked in Jan, Feb and June.">Jan: 3.1% ICP, 50% missing. Mar improved. Jun spiked back to 46% missing.</canvas></div>
+        <div style="display:flex;gap:12px;margin-top:6px;font-size:10px;color:var(--text2)">
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#F09595;margin-right:3px;vertical-align:middle"></span>Missing both %</span>
+          <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#185FA5;margin-right:3px;vertical-align:middle"></span>ICP rate % (right axis)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="conn">↓</div>
+
+<!-- ═══════════════════════════════════════════
+     TIER 4 — PIPELINE FUNNEL
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Tier 4 — pipeline funnel · FY25</div>
+
+  <!-- All opps -->
+  <div class="card" style="margin-bottom:10px">
+    <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem">SQL · SQO · Won by source — all opps</div>
+    <table class="pipe-table">
       <thead>
         <tr>
-          <th>Segment</th>
-          <th>Count</th>
-          <th>% of total filtered</th>
-          <th>∩ TAM</th>
-          <th>∩ SDR</th>
-          <th>∩ DISP</th>
-          <th>∩ Series B+</th>
-          <th>∩ Sales roles</th>
-          <th>∩ Old opps</th>
-          <th>∩ Intent</th>
+          <th>Source</th>
+          <th class="right">Demo requests</th>
+          <th class="right">SQL opps</th>
+          <th class="right">SQL ARR</th>
+          <th class="right">SQO opps</th>
+          <th class="right">SQO ARR</th>
+          <th class="right">% of SQL</th>
+          <th class="right">Won opps</th>
+          <th class="right">Won ARR</th>
+          <th class="right">Win rate</th>
         </tr>
       </thead>
-      <tbody id="overlap-tbody"></tbody>
+      <tbody>
+        <tr>
+          <td>Inbound</td>
+          <td class="right num">1,840</td>
+          <td class="right num">928</td>
+          <td class="right num">$50.9M</td>
+          <td class="right num">438</td>
+          <td class="right num">$28.6M</td>
+          <td class="right"><span class="pill" style="background:var(--green-l);color:var(--green)">47%</span></td>
+          <td class="right num">102</td>
+          <td class="right num">$5.7M</td>
+          <td class="right num">11%</td>
+        </tr>
+        <tr>
+          <td>Outbound</td>
+          <td class="right" style="color:var(--text3)">—</td>
+          <td class="right num">286</td>
+          <td class="right num">$19.9M</td>
+          <td class="right num">110</td>
+          <td class="right num">$8.7M</td>
+          <td class="right"><span class="pill" style="background:var(--amber-l);color:var(--amber-d)">38%</span></td>
+          <td class="right num">24</td>
+          <td class="right num">$1.6M</td>
+          <td class="right num">8%</td>
+        </tr>
+        <tr>
+          <td>Partners</td>
+          <td class="right" style="color:var(--text3)">—</td>
+          <td class="right num">152</td>
+          <td class="right num">$8.6M</td>
+          <td class="right num">104</td>
+          <td class="right num">$6.6M</td>
+          <td class="right"><span class="pill" style="background:var(--green-l);color:var(--green)">68%</span></td>
+          <td class="right num">34</td>
+          <td class="right num">$2.2M</td>
+          <td class="right num">22%</td>
+        </tr>
+        <tr>
+          <td>Other</td>
+          <td class="right" style="color:var(--text3)">—</td>
+          <td class="right num">167</td>
+          <td class="right num">$11.7M</td>
+          <td class="right num">88</td>
+          <td class="right num">$6.5M</td>
+          <td class="right"><span class="pill" style="background:var(--green-l);color:var(--green)">53%</span></td>
+          <td class="right num">32</td>
+          <td class="right num">$2.3M</td>
+          <td class="right num">19%</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td class="right num">1,840</td>
+          <td class="right num">1,535</td>
+          <td class="right num">$91.1M</td>
+          <td class="right num">742</td>
+          <td class="right num">$50.5M</td>
+          <td class="right num">48%</td>
+          <td class="right num">192</td>
+          <td class="right num">$11.9M</td>
+          <td class="right num">13%</td>
+        </tr>
+      </tbody>
     </table>
+    <div style="margin-top:.75rem">
+      <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Segment overlay — all opps</div>
+      <table class="seg-ov">
+        <thead>
+          <tr><th>Segment</th><th>Inbound 928</th><th>Outbound 286</th><th>Partners 152</th><th>Other 167</th><th>Total 1,535</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>In TAM</td><td>238 (26%)</td><td>142 (50%)</td><td>26 (17%)</td><td>58 (35%)</td><td>464 (30%)</td></tr>
+          <tr><td>In SF CPQ</td><td>188 (20%)</td><td>113 (40%)</td><td>21 (14%)</td><td>57 (34%)</td><td>379 (25%)</td></tr>
+          <tr><td>Re-engage</td><td>182 (20%)</td><td>149 (52%)</td><td>31 (20%)</td><td>56 (34%)</td><td>419 (27%)</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
+  <!-- ARR ≥ $100K -->
+  <div class="card" style="margin-bottom:10px">
+    <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem">SQL · SQO · Won by source — ARR ≥ $100K only</div>
+    <table class="pipe-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th class="right">SQL opps</th>
+          <th class="right">SQL ARR</th>
+          <th class="right">SQO opps</th>
+          <th class="right">SQO ARR</th>
+          <th class="right">% of SQL</th>
+          <th class="right">Won opps</th>
+          <th class="right">Won ARR</th>
+          <th class="right">Win rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Inbound</td>
+          <td class="right num">160</td><td class="right num">$25.0M</td>
+          <td class="right num">72</td><td class="right num">$15.1M</td>
+          <td class="right"><span class="pill" style="background:var(--amber-l);color:var(--amber-d)">45%</span></td>
+          <td class="right num">19</td><td class="right num">$2.8M</td><td class="right num">12%</td>
+        </tr>
+        <tr>
+          <td>Outbound</td>
+          <td class="right num">91</td><td class="right num">$11.4M</td>
+          <td class="right num">28</td><td class="right num">$4.9M</td>
+          <td class="right"><span class="pill" style="background:var(--amber-l);color:var(--amber-d)">31%</span></td>
+          <td class="right num">6</td><td class="right num">$802K</td><td class="right num">7%</td>
+        </tr>
+        <tr>
+          <td>Partners</td>
+          <td class="right num">26</td><td class="right num">$4.3M</td>
+          <td class="right num">18</td><td class="right num">$3.4M</td>
+          <td class="right"><span class="pill" style="background:var(--green-l);color:var(--green)">69%</span></td>
+          <td class="right num">5</td><td class="right num">$1.1M</td><td class="right num">19%</td>
+        </tr>
+        <tr>
+          <td>Other</td>
+          <td class="right num">51</td><td class="right num">$7.2M</td>
+          <td class="right num">30</td><td class="right num">$3.9M</td>
+          <td class="right"><span class="pill" style="background:var(--green-l);color:var(--green)">59%</span></td>
+          <td class="right num">8</td><td class="right num">$1.1M</td><td class="right num">16%</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td class="right num">329</td><td class="right num">$48.2M</td>
+          <td class="right num">149</td><td class="right num">$26.4M</td>
+          <td class="right num">45%</td>
+          <td class="right num">38</td><td class="right num">$5.8M</td><td class="right num">12%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:.75rem">
+      <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Segment overlay — ARR ≥ $100K</div>
+      <table class="seg-ov">
+        <thead>
+          <tr><th>Segment</th><th>Inbound 160</th><th>Outbound 91</th><th>Partners 26</th><th>Other 51</th><th>Total 329</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>In TAM</td><td>97 (61%)</td><td>65 (71%)</td><td>13 (50%)</td><td>33 (65%)</td><td>208 (63%)</td></tr>
+          <tr><td>In SF CPQ</td><td>72 (45%)</td><td>53 (58%)</td><td>10 (38%)</td><td>32 (63%)</td><td>167 (51%)</td></tr>
+          <tr><td>Re-engage</td><td>55 (34%)</td><td>45 (49%)</td><td>7 (27%)</td><td>25 (49%)</td><td>132 (40%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Outcomes -->
+  <div style="margin-bottom:10px">
+    <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Outcomes — all opps</div>
+    <div class="outcomes">
+      <div class="outcome-card" style="background:var(--green-l);border-color:#C0DD97">
+        <div class="kl" style="color:var(--green)">Won</div>
+        <div style="font-size:22px;font-weight:500;color:var(--green)">192</div>
+        <div class="ks">$11.9M ARR · 12.5% win rate</div>
+      </div>
+      <div class="outcome-card" style="background:var(--blue-l);border-color:#85B7EB">
+        <div class="kl" style="color:var(--blue)">In pipeline</div>
+        <div style="font-size:22px;font-weight:500;color:var(--blue)">44</div>
+        <div class="ks">$7.3M ARR · still active</div>
+      </div>
+      <div class="outcome-card" style="background:var(--amber-l);border-color:#FAC775">
+        <div class="kl" style="color:var(--amber)">Lost</div>
+        <div style="font-size:22px;font-weight:500;color:var(--amber)">494</div>
+        <div class="ks">$31.1M ARR</div>
+      </div>
+      <div class="outcome-card" style="background:var(--gray-l);border-color:#B4B2A9">
+        <div class="kl" style="color:var(--gray)">Disqualified</div>
+        <div style="font-size:22px;font-weight:500;color:var(--gray)">805</div>
+        <div class="ks">$41.1M ARR</div>
+      </div>
+    </div>
+    <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Outcomes — ARR ≥ $100K</div>
+    <div class="outcomes">
+      <div class="outcome-card" style="background:var(--green-l);border-color:#C0DD97">
+        <div class="kl" style="color:var(--green)">Won</div>
+        <div style="font-size:22px;font-weight:500;color:var(--green)">38</div>
+        <div class="ks">$5.8M ARR · 11.6% win rate</div>
+      </div>
+      <div class="outcome-card" style="background:var(--blue-l);border-color:#85B7EB">
+        <div class="kl" style="color:var(--blue)">In pipeline</div>
+        <div style="font-size:22px;font-weight:500;color:var(--blue)">22</div>
+        <div class="ks">$6.1M ARR · still active</div>
+      </div>
+      <div class="outcome-card" style="background:var(--amber-l);border-color:#FAC775">
+        <div class="kl" style="color:var(--amber)">Lost</div>
+        <div style="font-size:22px;font-weight:500;color:var(--amber)">89</div>
+        <div class="ks">$15.7M ARR</div>
+      </div>
+      <div class="outcome-card" style="background:var(--gray-l);border-color:#B4B2A9">
+        <div class="kl" style="color:var(--gray)">Disqualified</div>
+        <div style="font-size:22px;font-weight:500;color:var(--gray)">180</div>
+        <div class="ks">$20.6M ARR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lost & Disq tables -->
+  <div class="krow2">
+    <div>
+      <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Lost &amp; disqualified — all opps</div>
+      <div class="card" style="padding:.8rem 1rem">
+        <table class="ld-table">
+          <thead>
+            <tr><th>Reason</th><th class="right">Lost</th><th class="right">ARR</th><th class="right">Follow-up</th><th class="right">Disq</th><th class="right">ARR</th><th class="right">Follow-up</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Selected competitor</td><td class="right">78</td><td class="right">$8.2M</td><td class="right"><span class="follow-badge high">82%</span></td><td class="right">1</td><td class="right">$36K</td><td class="right"><span class="follow-badge high">100%</span></td></tr>
+            <tr><td>Alt solution</td><td class="right">21</td><td class="right">$1.7M</td><td class="right"><span class="follow-badge high">71%</span></td><td class="right">3</td><td class="right">$218K</td><td class="right"><span class="follow-badge high">100%</span></td></tr>
+            <tr><td>No active project</td><td class="right">177</td><td class="right">$10.6M</td><td class="right"><span class="follow-badge high">81%</span></td><td class="right">315</td><td class="right">$16.8M</td><td class="right"><span class="follow-badge mid">77%</span></td></tr>
+            <tr><td>Lost touch / no stakeholder</td><td class="right">134</td><td class="right">$6.5M</td><td class="right"><span class="follow-badge high">84%</span></td><td class="right">64</td><td class="right">$3.6M</td><td class="right"><span class="follow-badge mid">75%</span></td></tr>
+            <tr><td>No budget</td><td class="right">23</td><td class="right">$979K</td><td class="right"><span class="follow-badge mid">57%</span></td><td class="right">18</td><td class="right">$412K</td><td class="right"><span class="follow-badge mid">56%</span></td></tr>
+            <tr><td>No product fit</td><td class="right">49</td><td class="right">$2.9M</td><td class="right"><span class="follow-badge low">41%</span></td><td class="right">99</td><td class="right">$5.7M</td><td class="right"><span class="follow-badge low">37%</span></td></tr>
+            <tr><td>Qual criteria not met</td><td class="right">12</td><td class="right">$206K</td><td class="right"><span class="follow-badge low">33%</span></td><td class="right">73</td><td class="right">$1.5M</td><td class="right"><span class="follow-badge low">47%</span></td></tr>
+            <tr><td>Cancelled / no show</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right">222</td><td class="right">$12.1M</td><td class="right"><span class="follow-badge high">82%</span></td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--text3);margin-top:6px">Follow-up = any activity or opp after close · <span class="follow-badge high">≥70%</span> <span class="follow-badge mid">50–69%</span> <span class="follow-badge low">&lt;50%</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Lost &amp; disqualified — ARR ≥ $100K</div>
+      <div class="card" style="padding:.8rem 1rem">
+        <table class="ld-table">
+          <thead>
+            <tr><th>Reason</th><th class="right">Lost</th><th class="right">ARR</th><th class="right">Follow-up</th><th class="right">Disq</th><th class="right">ARR</th><th class="right">Follow-up</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Selected competitor</td><td class="right">21</td><td class="right">$5.3M</td><td class="right"><span class="follow-badge high">86%</span></td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td></tr>
+            <tr><td>Alt solution</td><td class="right">4</td><td class="right">$905K</td><td class="right"><span class="follow-badge high">75%</span></td><td class="right">1</td><td class="right">$114K</td><td class="right"><span class="follow-badge high">100%</span></td></tr>
+            <tr><td>No active project</td><td class="right">34</td><td class="right">$5.5M</td><td class="right"><span class="follow-badge high">85%</span></td><td class="right">69</td><td class="right">$8.2M</td><td class="right"><span class="follow-badge high">90%</span></td></tr>
+            <tr><td>Lost touch / no stakeholder</td><td class="right">16</td><td class="right">$1.9M</td><td class="right"><span class="follow-badge high">94%</span></td><td class="right">20</td><td class="right">$2.1M</td><td class="right"><span class="follow-badge high">90%</span></td></tr>
+            <tr><td>No budget</td><td class="right">3</td><td class="right">$419K</td><td class="right"><span class="follow-badge high">100%</span></td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td></tr>
+            <tr><td>No product fit</td><td class="right">11</td><td class="right">$1.7M</td><td class="right"><span class="follow-badge mid">55%</span></td><td class="right">21</td><td class="right">$3.2M</td><td class="right"><span class="follow-badge mid">67%</span></td></tr>
+            <tr><td>Qual criteria not met</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right">2</td><td class="right">$200K</td><td class="right"><span class="follow-badge high">100%</span></td></tr>
+            <tr><td>Cancelled / no show</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right" style="color:var(--text3)">—</td><td class="right">64</td><td class="right">$6.5M</td><td class="right"><span class="follow-badge high">95%</span></td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:10px;color:var(--text3);margin-top:6px">Follow-up = any activity or opp after close · <span class="follow-badge high">≥70%</span> <span class="follow-badge mid">50–69%</span> <span class="follow-badge low">&lt;50%</span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script>
-let ALL_DATA = [];
+<div class="conn">↓</div>
 
-const SEGMENTS = [
-  { key: 't',  label: 'Marketing — TAM',      total: 12903, bg: '#DBEAFE', border: '#BFDBFE', text: '#1E3A8A', barU: '#2563EB', barO: '#93C5FD' },
-  { key: 'sd', label: 'SDR (FY25)',           total: 4694,  bg: '#D1FAE5', border: '#A7F3D0', text: '#064E3B', barU: '#15803D', barO: '#86EFAC' },
-  { key: 'd',  label: 'DISP',                 total: 3699,  bg: '#FEE2E2', border: '#FECACA', text: '#7F1D1D', barU: '#DC2626', barO: '#FCA5A5' },
-  { key: 'b',  label: 'Series B+ · 200+ emp', total: 1902,  bg: '#D1FAE5', border: '#6EE7B7', text: '#064E3B', barU: '#059669', barO: '#6EE7B7' },
-  { key: 'ro', label: 'Sales Opp Roles',      total: 9329,  bg: '#EDE9FE', border: '#DDD6FE', text: '#4C1D95', barU: '#7C3AED', barO: '#C4B5FD' },
-  { key: 'o',  label: 'Old Opps (excl. Won)', total: 6680,  bg: '#FEF3C7', border: '#FDE68A', text: '#78350F', barU: '#D97706', barO: '#FCD34D' },
-  { key: 'i',  label: 'Intent Signal',            total: 33933, bg: '#FEE2E2', border: '#FECACA', text: '#7F1D1D', barU: '#DC2626', barO: '#FCA5A5' },
-];
-
-async function loadData() {
-  try {
-    const res = await fetch('segments_data.json');
-    ALL_DATA = await res.json();
-    populateFilters();
-    applyFilters();
-  } catch(e) {
-    document.getElementById('filter-summary').textContent = 'Error loading data: ' + e.message;
-  }
-}
-
-function populateFilters() {
-  const regions = [...new Set(ALL_DATA.map(d => d.r).filter(v => v && v !== 'Unknown'))].sort();
-  const crms = [...new Set(ALL_DATA.map(d => d.c).filter(v => v && v !== 'Unknown'))].sort();
-  const sizes = ['Under 50','51 - 100','101 - 200','201-250','251- 500','501 - 1,000','1,001 - 5,000','5,001-10,000','10001+'];
-
-  const addOpts = (id, vals) => {
-    const sel = document.getElementById(id);
-    vals.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
-  };
-  addOpts('f-region', regions);
-  addOpts('f-crm', crms);
-  addOpts('f-size', sizes);
-}
-
-function applyFilters() {
-  const region = document.getElementById('f-region').value;
-  const crm = document.getElementById('f-crm').value;
-  const saas = document.getElementById('f-saas').value;
-  const size = document.getElementById('f-size').value;
-  const icp = document.getElementById('f-icp').value;
-
-  const filtered = ALL_DATA.filter(d =>
-    (!region || d.r === region) &&
-    (!crm    || d.c === crm) &&
-    (!saas   || d.v === saas) &&
-    (!size   || d.s === size) &&
-    (!icp    || d.p === icp)
-  );
-
-  const total = filtered.length;
-  const activeFilters = [region,crm,saas,size,icp].filter(Boolean).length;
-  document.getElementById('filter-summary').innerHTML =
-    `Showing <strong>${total.toLocaleString()}</strong> accounts${activeFilters ? ` matching ${activeFilters} filter${activeFilters>1?'s':''}` : ' (no filters applied)'} · Total master list: <strong>${ALL_DATA.length.toLocaleString()}</strong>`;
-
-  renderCards(filtered);
-  renderOverlap(filtered);
-}
-
-function resetFilters() {
-  ['f-region','f-crm','f-saas','f-size','f-icp'].forEach(id => document.getElementById(id).value = '');
-  applyFilters();
-}
-
-function renderCards(filtered) {
-  const grid = document.getElementById('seg-grid');
-  grid.innerHTML = '';
-  const total = filtered.length || 1;
-
-  SEGMENTS.forEach(seg => {
-    const inSeg = filtered.filter(d => d[seg.key] === 1);
-    const others = SEGMENTS.filter(s => s.key !== seg.key);
-    const inAny = inSeg.filter(d => others.some(s => d[s.key] === 1));
-    const uniqueOnly = inSeg.length - inAny.length;
-    const uniquePct = inSeg.length ? Math.round(uniqueOnly / inSeg.length * 100) : 0;
-    const overlapPct = 100 - uniquePct;
-
-    const card = document.createElement('div');
-    card.className = 'seg-card';
-    card.style.cssText = `background:${seg.bg};border-color:${seg.border}`;
-    card.innerHTML = `
-      <div class="sc-label" style="color:${seg.text}">${seg.label}</div>
-      <div class="sc-count" style="color:${seg.text}">${inSeg.length.toLocaleString()}</div>
-      <div class="sc-total" style="color:${seg.text};opacity:0.7;">of ${seg.total.toLocaleString()} total · ${inSeg.length ? Math.round(inSeg.length/seg.total*100) : 0}% of segment</div>
-      <div class="sc-bar">
-        <div style="width:${uniquePct}%;background:${seg.barU};border-radius:4px 0 0 4px;"></div>
-        <div style="width:${overlapPct}%;background:${seg.barO};border-radius:0 4px 4px 0;"></div>
+<!-- ═══════════════════════════════════════════
+     TIER 5 — CS SNAPSHOT
+═══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Tier 5 — customer success snapshot · Jun 18 2026</div>
+  <div class="card">
+    <div class="cs-grid">
+      <div class="cs-card">
+        <div class="cs-label">Onboarding</div>
+        <div class="cs-num">147</div>
+        <div class="cs-sub">$9.2M ARR · avg $62.9K</div>
+        <div class="cs-bar">
+          <div class="cs-seg" style="width:64.6%;background:var(--green)"></div>
+          <div class="cs-seg" style="width:12.2%;background:var(--amber)"></div>
+          <div class="cs-seg" style="width:22.4%;background:var(--red)"></div>
+        </div>
+        <div class="cs-breakdown">
+          <span style="color:var(--green);font-weight:500">Good 95</span>
+          <span style="color:var(--amber);font-weight:500">Avg 18</span>
+          <span style="color:var(--red);font-weight:500">At risk 33</span>
+        </div>
       </div>
-      <div class="sc-pcts">
-        <span style="color:${seg.text};font-weight:600;">${uniquePct}% unique only</span>
-        <span style="color:${seg.text};opacity:0.6;">${overlapPct}% overlap</span>
-      </div>`;
-    grid.appendChild(card);
-  });
-}
+      <div class="cs-card">
+        <div class="cs-label">Live</div>
+        <div class="cs-num">652</div>
+        <div class="cs-sub">$33.1M ARR · avg $50.8K</div>
+        <div class="cs-bar">
+          <div class="cs-seg" style="width:64.9%;background:var(--green)"></div>
+          <div class="cs-seg" style="width:21.8%;background:var(--amber)"></div>
+          <div class="cs-seg" style="width:13.3%;background:var(--red)"></div>
+        </div>
+        <div class="cs-breakdown">
+          <span style="color:var(--green);font-weight:500">Good 423</span>
+          <span style="color:var(--amber);font-weight:500">Avg 142</span>
+          <span style="color:var(--red);font-weight:500">At risk 87</span>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-label">Churn — FY25</div>
+        <div class="cs-num" style="color:var(--red)">88</div>
+        <div class="cs-sub">$2.7M ARR · Feb 2025 – Jan 2026</div>
+        <div style="font-size:10px;color:var(--text2);margin-bottom:6px">63 of 88 with reason data</div>
+        <div class="churn-reasons">
+          <span class="churn-tag">Acquisition/merger <span>15 · $294K</span></span>
+          <span class="churn-tag">Product fit <span>12 · $479K</span></span>
+          <span class="churn-tag">Adoption/TTV <span>11 · $345K</span></span>
+          <span class="churn-tag">Qualification <span>9 · $240K</span></span>
+          <span class="churn-tag">Customer readiness <span>5 · $161K</span></span>
+          <span class="churn-tag">Low volume/usage <span>5 · $51K</span></span>
+          <span class="churn-tag">Cancelled <span>2 · $54K</span></span>
+          <span class="churn-tag">Budget <span>1 · $18K</span></span>
+          <span class="churn-tag">No reason <span>8 · $153K</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-function renderOverlap(filtered) {
-  const tbody = document.getElementById('overlap-tbody');
-  tbody.innerHTML = '';
-  const total = filtered.length || 1;
+<div class="footer">
+  <span>DealHub GTM Ops · Salesforce data · FY25 = Feb 1 2025–Jan 31 2026</span>
+  <span>CS snapshot Jun 18 2026 · Segments can overlap · ICP = tech + 150+ employees</span>
+</div>
 
-  SEGMENTS.forEach(seg => {
-    const inSeg = filtered.filter(d => d[seg.key] === 1);
-    const n = inSeg.length;
-    if (n === 0) { const tr = document.createElement('tr'); tr.innerHTML = `<td>${seg.label}</td><td>0</td><td class="pct-cell">—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>`; tbody.appendChild(tr); return; }
+</div><!-- end .page -->
 
-    const overlap = (key) => {
-      const c = inSeg.filter(d => d[key] === 1).length;
-      return c ? `${c.toLocaleString()} <span style="color:var(--muted);font-size:9px;">(${Math.round(c/n*100)}%)</span>` : '—';
-    };
+<script>
+new Chart(document.getElementById('regionChart'),{
+  type:'bar',
+  data:{
+    labels:['N. America','ROW','Rest EMEA','India','UK/Ireland','DACH','ANZ','Nordics'],
+    datasets:[{data:[21593,4731,3824,3199,2607,1509,1103,907],backgroundColor:'#185FA5',borderRadius:3,borderSkipped:false}]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x.toLocaleString()}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v}},
+      y:{grid:{display:false},ticks:{font:{size:10}}}
+    }
+  }
+});
 
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td style="font-weight:500;">${seg.label}</td>
-      <td>${n.toLocaleString()}</td>
-      <td class="pct-cell">${Math.round(n/total*100)}%</td>
-      <td>${seg.key !== 't'  ? overlap('t')  : '—'}</td>
-      <td>${seg.key !== 'sd' ? overlap('sd') : '—'}</td>
-      <td>${seg.key !== 'd'  ? overlap('d')  : '—'}</td>
-      <td>${seg.key !== 'b'  ? overlap('b')  : '—'}</td>
-      <td>${seg.key !== 'ro' ? overlap('ro') : '—'}</td>
-      <td>${seg.key !== 'o'  ? overlap('o')  : '—'}</td>
-      <td>${seg.key !== 'i'  ? overlap('i')  : '—'}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-loadData();
+new Chart(document.getElementById('monthChart'),{
+  type:'bar',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets:[
+      {label:'Missing both %',data:[49.9,52.6,5.5,2.9,4.1,46.1],backgroundColor:'#F09595',borderRadius:3,yAxisID:'y'},
+      {label:'ICP rate %',type:'line',data:[3.1,2.5,3.9,2.5,2.0,1.5],borderColor:'#185FA5',backgroundColor:'#185FA5',pointBackgroundColor:'#185FA5',pointRadius:4,tension:0.3,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{display:false},ticks:{font:{size:10}}},
+      y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10},callback:v=>v+'%'},max:100},
+      y2:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:v=>v+'%'},max:8}
+    }
+  }
+});
 </script>
 </body>
 </html>
