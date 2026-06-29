@@ -339,6 +339,56 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Inter','
 </div>
 
 
+
+<div class="section">
+  <div class="sl">Lost &amp; disqualified — revisit tracking · FY25</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="padding:.9rem 1.2rem;border-bottom:.5px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span id="kpi-rev-25" style="font-size:11px;font-weight:500;color:var(--green)">— revisit set</span>
+        <span id="kpi-act-25" style="font-size:11px;font-weight:500;color:var(--blue)">— recent activity</span>
+        <span id="kpi-non-25" style="font-size:11px;color:var(--text3)">— no signal</span>
+      </div>
+      <div style="flex:1"></div>
+      <select id="sig-25" onchange="renderLost25()" style="font-size:11px;font-family:inherit;border:.5px solid var(--border-strong);border-radius:6px;padding:4px 8px;background:var(--surface2);color:var(--text)">
+        <option value="">All signals</option>
+        <option value="revisit">Revisit date set</option>
+        <option value="active">Recent activity</option>
+        <option value="none">No signal</option>
+      </select>
+      <select id="own-25" onchange="renderLost25()" style="font-size:11px;font-family:inherit;border:.5px solid var(--border-strong);border-radius:6px;padding:4px 8px;background:var(--surface2);color:var(--text)">
+        <option value="">All owners</option>
+      </select>
+      <select id="arr-25" onchange="renderLost25()" style="font-size:11px;font-family:inherit;border:.5px solid var(--border-strong);border-radius:6px;padding:4px 8px;background:var(--surface2);color:var(--text)">
+        <option value="0">Any ARR</option>
+        <option value="100000">≥ $100K</option>
+        <option value="200000">≥ $200K</option>
+      </select>
+      <input id="srch-25" type="text" placeholder="Search account..." oninput="renderLost25()" style="font-size:11px;font-family:inherit;border:.5px solid var(--border-strong);border-radius:6px;padding:4px 8px;background:var(--surface2);color:var(--text);width:160px">
+    </div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:11px" id="lt-25">
+        <thead>
+          <tr style="background:var(--surface2)">
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong);white-space:nowrap">Account</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Owner</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Stage</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Reason</th>
+            <th style="text-align:right;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">ARR</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Lost date</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Last activity</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Revisit date</th>
+            <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:.5px solid var(--border-strong)">Signal</th>
+          </tr>
+        </thead>
+        <tbody id="lt-25-body"></tbody>
+      </table>
+    </div>
+    <div id="lt-25-count" style="font-size:10px;color:var(--text3);padding:.5rem 1.2rem;border-top:.5px solid var(--border)"></div>
+  </div>
+</div>
+
+
 <div class="section">
   <div class="sl">Won deals breakdown — 192 deals · $11.9M ARR</div>
   <div class="card">
@@ -399,4 +449,101 @@ new Chart(document.getElementById('s25'),{type:'doughnut',data:{labels:["SMB", "
   <span>DealHub GTM Ops · Salesforce data · FY25 = Feb 1 2025–Jan 31 2026</span>
   <span>CS snapshot Jun 18 2026 · SDR 4,694 · Intent 2,921 · Segments can overlap</span>
 </div>
-</div></body></html>
+</div>
+<script>
+(function(){
+const fmt = n => n>=1e6?'$'+(n/1e6).toFixed(1)+'M':'$'+Math.round(n/1000)+'K';
+const today = new Date('2026-06-29');
+let LOST_DATA = [];
+
+function parseDate(s){
+  if(!s) return null;
+  const p=s.split(' '),m={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  return new Date(parseInt(p[2]),m[p[1]],parseInt(p[0]));
+}
+function dateClass(s){
+  const d=parseDate(s); if(!d) return '';
+  const diff=(d-today)/86400000;
+  if(diff<0) return 'color:#A32D2D;font-weight:500';
+  if(diff<30) return 'color:#854F0B;font-weight:500';
+  return '';
+}
+
+function renderTable(fy, suffix){
+  const sigF=document.getElementById('sig-'+suffix).value;
+  const ownerF=document.getElementById('own-'+suffix).value;
+  const arrF=parseInt(document.getElementById('arr-'+suffix).value)||0;
+  const search=document.getElementById('srch-'+suffix).value.toLowerCase();
+  const fyStr = fy;
+
+  let filtered=LOST_DATA.filter(r=>
+    r.fy===fyStr &&
+    (!sigF||r.signal===sigF) &&
+    (!ownerF||r.owner===ownerF) &&
+    (r.arr>=arrF) &&
+    (!search||r.account.toLowerCase().includes(search)||r.owner.toLowerCase().includes(search))
+  ).sort((a,b)=>{
+    if(a.signal==='revisit'&&b.signal!=='revisit') return -1;
+    if(b.signal==='revisit'&&a.signal!=='revisit') return 1;
+    if(a.signal==='active'&&b.signal==='none') return -1;
+    if(b.signal==='active'&&a.signal==='none') return 1;
+    return b.arr-a.arr;
+  });
+
+  const revC=filtered.filter(r=>r.signal==='revisit').length;
+  const actC=filtered.filter(r=>r.signal==='active').length;
+  const nonC=filtered.filter(r=>r.signal==='none').length;
+  const revARR=filtered.filter(r=>r.signal==='revisit').reduce((s,r)=>s+r.arr,0);
+  const actARR=filtered.filter(r=>r.signal==='active').reduce((s,r)=>s+r.arr,0);
+  document.getElementById('kpi-rev-'+suffix).textContent=revC+' revisit set · '+fmt(revARR);
+  document.getElementById('kpi-act-'+suffix).textContent=actC+' recent activity · '+fmt(actARR);
+  document.getElementById('kpi-non-'+suffix).textContent=nonC+' no signal';
+
+  const sigL={revisit:'Revisit set',active:'Recent activity',none:'No signal'};
+  const sigS={revisit:'background:var(--green-l);color:var(--green)',active:'background:var(--blue-l);color:var(--blue-d)',none:'background:var(--gray-l);color:var(--gray)'};
+  const stgS={'Closed Lost':'background:var(--red-l);color:var(--red-d)','Disqualified':'background:var(--gray-l);color:var(--gray)','Closed - Cleanup':'background:var(--gray-l);color:var(--gray)'};
+  const stgL={'Closed Lost':'Lost','Disqualified':'Disq','Closed - Cleanup':'Disq'};
+
+  // Show max 200 rows
+  const show=filtered.slice(0,200);
+  let html='';
+  show.forEach(r=>{
+    const dc=dateClass(r.revisit_date);
+    html+=`<tr style="border-bottom:.5px solid var(--border)">
+      <td style="padding:6px 10px;font-weight:500">${r.account}</td>
+      <td style="padding:6px 10px;color:var(--text2)">${r.owner.split(' ')[0]}</td>
+      <td style="padding:6px 10px"><span style="font-size:10px;font-weight:500;padding:2px 6px;border-radius:4px;${stgS[r.stage]||''}">${stgL[r.stage]||r.stage}</span></td>
+      <td style="padding:6px 10px;color:var(--text2);font-size:11px">${r.substage}</td>
+      <td style="padding:6px 10px;text-align:right;font-weight:500;font-variant-numeric:tabular-nums">${r.arr>0?fmt(r.arr):'—'}</td>
+      <td style="padding:6px 10px;color:var(--text2)">${r.close_date}</td>
+      <td style="padding:6px 10px;color:var(--text2)">${r.last_activity}</td>
+      <td style="padding:6px 10px;${dc}">${r.revisit_date||'—'}</td>
+      <td style="padding:6px 10px"><span style="font-size:10px;font-weight:500;padding:2px 6px;border-radius:4px;${sigS[r.signal]}">${sigL[r.signal]}</span></td>
+    </tr>`;
+  });
+  document.getElementById('lt-'+suffix+'-body').innerHTML=html||'<tr><td colspan="9" style="padding:24px;text-align:center;color:var(--text3)">No records match.</td></tr>';
+  document.getElementById('lt-'+suffix+'-count').textContent='Showing '+show.length+' of '+filtered.length+' records · Sorted by signal then ARR · Max 200 shown';
+}
+
+window.renderLost25=()=>renderTable('FY25','25');
+window.renderLost26=()=>renderTable('FY26','26');
+
+fetch('lost_data.json?v='+Date.now())
+  .then(r=>r.json())
+  .then(data=>{
+    LOST_DATA=data;
+    // Populate owner dropdowns for both pages
+    const owners=[...new Set(data.map(r=>r.owner).filter(Boolean))].sort();
+    ['25','26'].forEach(s=>{
+      const el=document.getElementById('own-'+s);
+      if(!el) return;
+      owners.forEach(o=>{const opt=document.createElement('option');opt.value=o;opt.textContent=o;el.appendChild(opt);});
+    });
+    if(document.getElementById('lt-25-body')) renderTable('FY25','25');
+    if(document.getElementById('lt-26-body')) renderTable('FY26','26');
+  })
+  .catch(e=>console.error('Lost data load error:',e));
+})();
+</script>
+
+</body></html>
