@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Potential Market — Account Quality</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--bg:#F7F6F2;--surface:#FFFFFF;--surface2:#F0EEE9;--border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.14);--text:#1A1A18;--text2:#6B6963;--text3:#9C9890;--blue:#185FA5;--blue-l:#E6F1FB;--blue-d:#0C447C;--teal:#0F6E56;--teal-l:#E1F5EE;--teal-d:#085041;--red:#A32D2D;--red-l:#FCEBEB;--red-d:#791F1F;--amber:#854F0B;--amber-l:#FAEEDA;--amber-d:#633806;--coral:#993C1D;--coral-l:#FAECE7;--coral-d:#712B13;--purple:#534AB7;--purple-l:#EEEDFE;--purple-d:#3C3489;--green:#3B6D11;--green-l:#EAF3DE;--gray:#5F5E5A;--gray-l:#F1EFE8;--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,0.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;color:var(--text);font-size:14px;line-height:1.5}
+.page{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.page-header{margin-bottom:2rem;border-bottom:1px solid var(--border-strong);padding-bottom:1rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.page-header h1{font-size:20px;font-weight:500}
+.sub{font-size:12px;color:var(--text2);margin-top:3px}
+.badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:4px;display:inline-block}
+.section{margin-bottom:2rem}
+.sl{font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.sl::after{content:'';flex:1;height:1px;background:var(--border)}
+.conn{display:flex;justify-content:center;align-items:center;height:28px;color:var(--text3)}
+.card{background:var(--surface);border:.5px solid var(--border-strong);border-radius:var(--radius);padding:1.1rem 1.3rem;box-shadow:var(--shadow)}
+.krow4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.krow2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.km{background:var(--surface2);border-radius:var(--radius-sm);padding:.7rem .9rem}
+.kl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.kv{font-size:20px;font-weight:500;color:var(--text)}
+.ks{font-size:11px;color:var(--text2);margin-top:2px}
+.cov-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;display:flex;margin:.5rem 0}
+.cov-dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+.cov-legend{display:flex;gap:14px;font-size:10px;color:var(--text2);flex-wrap:wrap}
+.sg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:10px}
+.sg4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.sc{background:var(--surface);border:.5px solid var(--border-strong);border-radius:var(--radius);padding:.9rem 1rem;box-shadow:var(--shadow)}
+.sn{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sv{font-size:22px;font-weight:500;margin-bottom:6px}
+.sbw{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-bottom:5px;display:flex}
+.sbd{height:100%;border-radius:3px}.sbl{height:100%;border-radius:3px;opacity:.28}
+.str{display:flex;justify-content:space-between;font-size:10px;color:var(--text2);margin-bottom:8px}
+.sdv{border:none;border-top:.5px solid var(--border);margin:6px 0}
+.sov{font-size:10px;color:var(--text2);display:flex;justify-content:space-between;padding:2px 0}
+.sov span:last-child{color:var(--text);font-weight:500}
+.pipe-table{width:100%;border-collapse:collapse;font-size:12px}
+.pipe-table th{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);text-align:left;padding:6px 10px;border-bottom:.5px solid var(--border-strong)}
+.pipe-table td{padding:7px 10px;border-bottom:.5px solid var(--border);vertical-align:top}
+.pipe-table tr:last-child td{border-bottom:none;font-weight:500;background:var(--surface2)}
+.pipe-table tr:hover:not(:last-child) td{background:var(--surface2)}
+.right{text-align:right}.num{font-variant-numeric:tabular-nums}
+.pill{font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;display:inline-block}
+.outcomes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.outcome-card{border-radius:var(--radius-sm);padding:.8rem 1rem;border:.5px solid var(--border)}
+.ld-table{width:100%;border-collapse:collapse;font-size:11px}
+.ld-table th{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);padding:5px 8px;border-bottom:.5px solid var(--border-strong);text-align:left}
+.ld-table td{padding:5px 8px;border-bottom:.5px solid var(--border);vertical-align:top}
+.ld-table tr:last-child td{border-bottom:none}
+.ld-table tr:hover td{background:var(--surface2)}
+.fbadge{font-size:10px;padding:1px 5px;border-radius:3px}
+.high{background:var(--green-l);color:var(--green)}.mid{background:var(--amber-l);color:var(--amber-d)}.low{background:var(--red-l);color:var(--red-d)}
+.seg-ov{width:100%;border-collapse:collapse;font-size:11px;margin-top:.5rem}
+.seg-ov th{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);padding:4px 8px;border-bottom:.5px solid var(--border-strong);text-align:right}
+.seg-ov th:first-child{text-align:left}
+.seg-ov td{padding:4px 8px;border-bottom:.5px solid var(--border);text-align:right}
+.seg-ov td:first-child{text-align:left;font-weight:500}
+.seg-ov tr:last-child td{border:none}
+.cs-card{background:var(--surface2);border-radius:var(--radius-sm);padding:.8rem 1rem}
+.cs-bar{display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;margin-bottom:6px}
+.cs-seg{height:100%;border-radius:2px}
+.ctag{font-size:10px;padding:3px 8px;border-radius:4px;background:var(--surface2);color:var(--text2)}
+.ctag span{font-weight:500;color:var(--text)}
+.brow{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.blabel{font-size:10px;color:var(--text2);width:160px;flex-shrink:0}
+.bbar{flex:1;height:7px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.bf{height:100%;border-radius:3px}
+.bv{font-size:10px;font-weight:500;color:var(--text);min-width:40px;text-align:right}
+.bp{font-size:10px;color:var(--text2);min-width:30px;text-align:right}
+.tag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;display:inline-block}
+.alert{border:.5px solid #F09595;background:var(--red-l);border-radius:var(--radius-sm);padding:.65rem .9rem;margin-bottom:10px}
+.alert-t{font-size:10px;font-weight:500;color:var(--red-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.alert-b{font-size:11px;color:var(--red);line-height:1.5}
+.warn{border:.5px solid #EF9F27;background:var(--amber-l);border-radius:var(--radius-sm);padding:.65rem .9rem;margin-bottom:10px}
+.warn-t{font-size:10px;font-weight:500;color:var(--amber-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.warn-b{font-size:11px;color:var(--amber);line-height:1.5}
+.nav-back{font-size:12px;color:var(--text2);text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-bottom:1rem}
+.nav-back:hover{color:var(--text)}
+.footer{margin-top:3rem;padding-top:1rem;border-top:.5px solid var(--border);font-size:10px;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a href="home.html" class="nav-back">← GTM Highway</a>
+
+<div class="page-header">
+  <div>
+    <h1>Potential Market — Account Quality</h1>
+    <div class="sub">SF universe analysis · new account ICP fit · 2025 vs 2026 YTD</div>
+  </div>
+  <span class="badge" style="background:var(--blue-l);color:var(--blue-d)">As of Jun 28 2026</span>
+</div>
+
+<!-- ═══ SF UNIVERSE ═══ -->
+<div class="section">
+  <div class="sl">SF universe</div>
+  <div class="card">
+    <div class="krow4">
+      <div class="km"><div class="kl">Total SF accounts</div><div class="kv">387,725</div><div class="ks">Excl. customers</div></div>
+      <div class="km"><div class="kl">Added in FY25</div><div class="kv">+53,385</div><div class="ks">5.1% ICP-fit (tech+150+)</div></div>
+      <div class="km"><div class="kl">Added in FY26 YTD</div><div class="kv">+38,245</div><div class="ks">2.6% ICP-fit — declining</div></div>
+      <div class="km"><div class="kl">ICP-fit not in any segment</div><div class="kv">42,262</div><div class="ks">Enrichment opportunity</div></div>
+    </div>
+    <div class="cov-bar">
+      <div style="width:3.3%;background:var(--blue);height:100%"></div>
+      <div style="width:3.7%;background:var(--gray);height:100%"></div>
+      <div style="flex:1;background:#D3D1C7;height:100%"></div>
+    </div>
+    <div class="cov-legend">
+      <span><span class="cov-dot" style="background:var(--blue)"></span>TAM / addressed 3.3%</span>
+      <span><span class="cov-dot" style="background:var(--gray)"></span>Other segments 3.7%</span>
+      <span><span class="cov-dot" style="background:#D3D1C7"></span>Not segmented 93%</span>
+    </div>
+  </div>
+</div>
+
+<div class="conn">↓</div>
+
+
+<div class="section">
+  <div class="sl">New account quality — 2025 vs 2026 YTD</div>
+  <div class="alert">
+    <div class="alert-t">ICP hit rate halved year over year</div>
+    <div class="alert-b">5.1% of accounts added in 2025 matched ICP (tech + 150+ emp). In 2026 YTD that dropped to 2.6%. Wrong-industry accounts jumped from 32% to 51% of all new additions.</div>
+  </div>
+  <div class="krow4" style="margin-bottom:10px">
+    <div class="km"><div class="kl">Added in 2025</div><div class="kv">52,408</div><div class="ks">Full calendar year</div></div>
+    <div class="km"><div class="kl">ICP fit 2025</div><div class="kv" style="color:var(--blue)">2,699</div><div class="ks">5.1% — tech + 150+ emp</div></div>
+    <div class="km"><div class="kl">Added in 2026</div><div class="kv">38,245</div><div class="ks">YTD Jun 2026</div></div>
+    <div class="km"><div class="kl">ICP fit 2026</div><div class="kv" style="color:var(--red)">990</div><div class="ks">2.6% — declining</div></div>
+  </div>
+  <div class="krow2" style="margin-bottom:10px">
+    <div class="card" style="padding:.9rem 1rem">
+      <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">2025 — why not TAM (52,408 accounts)</div>
+      <div style="height:9px;background:var(--surface2);border-radius:4px;overflow:hidden;display:flex;margin-bottom:10px">
+        <div style="width:5.1%;background:var(--blue)"></div><div style="width:31.6%;background:var(--coral)"></div>
+        <div style="width:25.2%;background:var(--gray)"></div><div style="width:13%;background:var(--amber)"></div>
+        <div style="width:11.4%;background:var(--purple)"></div><div style="flex:1;background:#B4B2A9"></div>
+      </div>
+      <div class="brow"><div class="blabel">ICP fit</div><div class="bbar"><div class="bf" style="width:5.1%;background:var(--blue)"></div></div><div class="bv">2,699</div><div class="bp" style="color:var(--blue)">5.1%</div></div>
+      <div class="brow"><div class="blabel">Wrong industry</div><div class="bbar"><div class="bf" style="width:31.6%;background:var(--coral)"></div></div><div class="bv">16,578</div><div class="bp">32%</div></div>
+      <div class="brow"><div class="blabel">Missing both fields</div><div class="bbar"><div class="bf" style="width:25.2%;background:var(--gray)"></div></div><div class="bv">13,232</div><div class="bp">25%</div></div>
+      <div class="brow"><div class="blabel">No industry — large enough</div><div class="bbar"><div class="bf" style="width:13%;background:var(--amber)"></div></div><div class="bv">6,805</div><div class="bp">13%</div></div>
+      <div class="brow"><div class="blabel">Tech but too small</div><div class="bbar"><div class="bf" style="width:11.4%;background:var(--purple)"></div></div><div class="bv">5,987</div><div class="bp">11%</div></div>
+      <hr class="sdv" style="margin:8px 0">
+      <div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:500">Top wrong industries</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Construction 851</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Higher Ed 829</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Consumer Svcs 797</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Entertainment 725</span>
+        <span class="tag" style="background:var(--coral-l);color:var(--coral-d)">Financial Svcs 594</span>
+      </div>
+    </div>
+    <div class="card" style="padding:.9rem 1rem;border-color:#F09595">
+      <div style="font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">2026 YTD — why not TAM (38,245 accounts)</div>
+      <div style="height:9px;background:var(--surface2);border-radius:4px;overflow:hidden;display:flex;margin-bottom:10px">
+        <div style="width:2.6%;background:var(--blue)"></div><div style="width:50.7%;background:var(--coral)"></div>
+        <div style="width:25%;background:var(--gray)"></div><div style="width:14.8%;background:var(--purple)"></div>
+        <div style="flex:1;background:#B4B2A9"></div>
+      </div>
+      <div class="brow"><div class="blabel">ICP fit</div><div class="bbar"><div class="bf" style="width:2.6%;background:var(--blue)"></div></div><div class="bv">990</div><div class="bp" style="color:var(--blue)">2.6%</div></div>
+      <div class="brow"><div class="blabel" style="color:var(--red);font-weight:500">Wrong industry ↑</div><div class="bbar"><div class="bf" style="width:50.7%;background:var(--coral)"></div></div><div class="bv" style="color:var(--red)">19,407</div><div class="bp" style="color:var(--red)">51%</div></div>
+      <div class="brow"><div class="blabel">Missing both fields</div><div class="bbar"><div class="bf" style="width:25%;background:var(--gray)"></div></div><div class="bv">9,564</div><div class="bp">25%</div></div>
+      <div class="brow"><div class="blabel" style="color:var(--red);font-weight:500">Tech but too small ↑</div><div class="bbar"><div class="bf" style="width:14.8%;background:var(--purple)"></div></div><div class="bv">5,645</div><div class="bp">15%</div></div>
+      <hr class="sdv" style="margin:8px 0">
+      <div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:500">Top wrong industries — shifted vs 2025</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Education Svcs 2,050</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Prof. Services 1,265</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Div. Finance 1,074</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Gov. Admin 839</span>
+        <span class="tag" style="background:var(--red-l);color:var(--red-d)">Construction 752</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>DealHub GTM Ops · Salesforce data · As of Jun 28 2026</span>
+  <span>ICP = SaaS/tech industry + 150+ employees · Enrichment needed at point of import</span>
+</div>
+
+</div>
+</body>
+</html>
