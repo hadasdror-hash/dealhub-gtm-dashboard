@@ -278,13 +278,15 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,'Inter','
   <div class="card" style="padding:0;overflow:hidden">
     <div style="padding:.9rem 1.2rem;border-bottom:.5px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;align-items:center">
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span id="kpi-rev-26" style="font-size:11px;font-weight:500;color:var(--green)">— revisit set</span>
+        <span id= style="font-size:11px;font-weight:500;color:var(--purple-d)">— new opp</span>
+      <span id="kpi-rev-26" style="font-size:11px;font-weight:500;color:var(--green)">— revisit set</span>
         <span id="kpi-act-26" style="font-size:11px;font-weight:500;color:var(--blue)">— recent activity</span>
         <span id="kpi-non-26" style="font-size:11px;color:var(--text3)">— no signal</span>
       </div>
       <div style="flex:1"></div>
       <select id="sig-26" onchange="renderLost26()" style="font-size:11px;font-family:inherit;border:.5px solid var(--border-strong);border-radius:6px;padding:4px 8px;background:var(--surface2);color:var(--text)">
         <option value="">All signals</option>
+        <option value="new_opp">New opp created</option>
         <option value="revisit">Revisit date set</option>
         <option value="active">Recent activity</option>
         <option value="none">No signal</option>
@@ -416,6 +418,8 @@ function renderTable(fy, suffix){
     (r.arr>=arrF) &&
     (!search||r.account.toLowerCase().includes(search)||r.owner.toLowerCase().includes(search))
   ).sort((a,b)=>{
+    if(a.signal==='new_opp'&&b.signal!=='new_opp') return -1;
+    if(b.signal==='new_opp'&&a.signal!=='new_opp') return 1;
     if(a.signal==='revisit'&&b.signal!=='revisit') return -1;
     if(b.signal==='revisit'&&a.signal!=='revisit') return 1;
     if(a.signal==='active'&&b.signal==='none') return -1;
@@ -428,12 +432,14 @@ function renderTable(fy, suffix){
   const nonC=filtered.filter(r=>r.signal==='none').length;
   const revARR=filtered.filter(r=>r.signal==='revisit').reduce((s,r)=>s+r.arr,0);
   const actARR=filtered.filter(r=>r.signal==='active').reduce((s,r)=>s+r.arr,0);
-  document.getElementById('kpi-rev-'+suffix).textContent=revC+' revisit set · '+fmt(revARR);
+  const newOppC=filtered.filter(r=>r.signal==='new_opp').length;
+  const newOppARR=filtered.filter(r=>r.signal==='new_opp').reduce((s,r)=>s+r.arr,0);
+  document.getElementById('kpi-rev-'+suffix).textContent=revC+' revisit · '+fmt(revARR);
   document.getElementById('kpi-act-'+suffix).textContent=actC+' recent activity · '+fmt(actARR);
   document.getElementById('kpi-non-'+suffix).textContent=nonC+' no signal';
 
-  const sigL={revisit:'Revisit set',active:'Recent activity',none:'No signal'};
-  const sigS={revisit:'background:var(--green-l);color:var(--green)',active:'background:var(--blue-l);color:var(--blue-d)',none:'background:var(--gray-l);color:var(--gray)'};
+  const sigL={new_opp:'New opp created',revisit:'Revisit set',active:'Recent activity',none:'No signal'};
+  const sigS={new_opp:'background:var(--purple-l);color:var(--purple-d)',revisit:'background:var(--green-l);color:var(--green)',active:'background:var(--blue-l);color:var(--blue-d)',none:'background:var(--gray-l);color:var(--gray)'};
   const stgS={'Closed Lost':'background:var(--red-l);color:var(--red-d)','Disqualified':'background:var(--gray-l);color:var(--gray)','Closed - Cleanup':'background:var(--gray-l);color:var(--gray)'};
   const stgL={'Closed Lost':'Lost','Disqualified':'Disq','Closed - Cleanup':'Disq'};
 
