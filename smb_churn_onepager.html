@@ -2,267 +2,243 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DealHub GTM Highway</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>SMB Churn — Salesforce vs HubSpot</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F7F6F3; --surface: #FFFFFF; --border: #E4E3DF;
-    --text: #1A1917; --muted: #888580; --tiny: #B0ADA8;
-    --blue: #2563EB; --green: #15803D; --amber: #D97706;
-  }
-  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-  /* HERO */
-  .hero { background: var(--text); color: #fff; padding: 48px 32px 40px; }
-  .hero-inner { max-width: 960px; margin: 0 auto; }
-  .hero-eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
-  .hero-title { font-size: 36px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
-  .hero-title span { color: #4B88F7; }
-  .hero-sub { font-size: 14px; color: #aaa; max-width: 480px; line-height: 1.6; margin-bottom: 24px; }
-  .hero-meta { display: flex; gap: 20px; flex-wrap: wrap; }
-  .hero-meta-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #888; }
-  .hero-meta-dot { width: 6px; height: 6px; border-radius: 50%; }
-
-  /* CANVAS */
-  .canvas { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
-
-  /* SECTION */
-  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  /* CARDS GRID */
-  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 36px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; color: inherit; }
-  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: #C8C6C0; }
-
-  .card-eyebrow { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; }
-  .card-title { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; line-height: 1.3; }
-  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
-
-  .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); margin-top: 4px; }
-  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500; }
-  .tag-blue { background: #DBEAFE; color: #1D4ED8; }
-  .tag-green { background: #DCFCE7; color: #166534; }
-  .tag-amber { background: #FEF3C7; color: #92400E; }
-  .tag-gray { background: #F3F4F6; color: #374151; }
-  .tag-purple { background: #EDE9FE; color: #5B21B6; }
-
-  .view-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; text-decoration: none; transition: background 0.1s; }
-  .view-btn:hover { background: var(--border); }
-  .view-btn svg { width: 10px; height: 10px; }
-
-  /* STATUS BADGE */
-  .status { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 500; }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
-  .status-live .status-dot { background: #15803D; }
-  .status-live { color: #15803D; }
-  .status-pending .status-dot { background: #D97706; }
-  .status-pending { color: #D97706; }
-
-  /* PENDING CARD */
-  .card-pending { opacity: 0.6; pointer-events: none; }
-  .card-pending .card-title { color: var(--muted); }
-
-  .footnote { font-size: 11px; color: var(--tiny); text-align: center; padding-top: 24px; border-top: 1px solid var(--border); }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F6F3;--surface:#fff;--surface2:#F0EEE9;--border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.14);
+  --text:#1A1917;--text2:#6B6963;--text3:#9C9890;
+  --sf:#185FA5;--sf-l:#E6F1FB;--sf-d:#0C447C;
+  --hs:#0F6E56;--hs-l:#E1F5EE;--hs-d:#085041;
+  --red:#A32D2D;--red-l:#FCEBEB;--red-d:#791F1F;
+  --green:#3B6D11;--green-l:#EAF3DE;
+  --amber:#854F0B;--amber-l:#FAEEDA;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5}
+.page{max-width:1100px;margin:0 auto;padding:2rem 1.75rem 4rem}
+.header{margin-bottom:1.75rem;border-bottom:1px solid var(--border-strong);padding-bottom:1rem}
+.header h1{font-size:20px;font-weight:500}
+.header .sub{font-size:12px;color:var(--text2);margin-top:3px}
+.section{margin-bottom:1.75rem}
+.section-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.card{background:var(--surface);border:.5px solid var(--border-strong);border-radius:10px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.km{background:var(--surface2);border-radius:8px;padding:.9rem 1rem}
+.kl{font-size:11px;color:var(--text2);margin-bottom:4px}
+.kv{font-size:28px;font-weight:500;line-height:1.1}
+.ks{font-size:11px;color:var(--text2);margin-top:4px}
+.legend{display:flex;gap:14px;font-size:11px;color:var(--text2);margin-bottom:8px}
+.legend span{display:flex;align-items:center;gap:5px}
+.ldot{width:10px;height:10px;border-radius:2px}
+.rbar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px}
+.rbar-label{width:140px;flex-shrink:0}
+.rbar-wrap{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.rbar-fill{height:100%;border-radius:3px}
+.rbar-n{font-weight:500;min-width:50px;text-align:right}
+.bucket{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--text2);padding:5px 8px;border-bottom:.5px solid var(--border-strong);text-align:left}
+.tbl th.right{text-align:right}
+.tbl td{padding:5px 8px;border-bottom:.5px solid var(--border)}
+.tbl td.right{text-align:right}
+.tbl tr:hover td{background:var(--surface2)}
+.badge{font-size:9px;font-weight:500;padding:1px 6px;border-radius:3px}
+.scroll{max-height:340px;overflow-y:auto;border:.5px solid var(--border);border-radius:8px}
+.footer{margin-top:2rem;padding-top:1rem;border-top:.5px solid var(--border);font-size:10px;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">DealHub · GTM Operations</div>
-    <div class="hero-title">GTM <span>Highway</span></div>
-    <div class="hero-sub">One place for pipeline health, funnel performance, and customer lifecycle — FY25 full year and FY26 year to date.</div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#4B88F7"></div>FY25 — Feb 2025 – Jan 2026</div>
-      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#34D399"></div>FY26 YTD — Feb – Jun 28 2026</div>
-      <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#888"></div>Salesforce data · Updated Jun 28 2026</div>
+<div class="header">
+  <h1>SMB Churn — Salesforce vs HubSpot</h1>
+  <div class="sub">Up to $25K ARR · Q1 FY25 – Q2 FY26 + current churn notices · Rate = churned ÷ active at start of quarter</div>
+</div>
+
+<div class="section">
+  <div class="grid2" style="margin-bottom:14px">
+    <div class="km"><div class="kl">Salesforce SMB — last 3Q avg</div><div class="kv" style="color:var(--green)">4.8%</div><div class="ks">22 churned / ~150 active avg · Range 2.7% – 7.3%</div></div>
+    <div class="km"><div class="kl">HubSpot SMB — last 3Q avg</div><div class="kv" style="color:var(--red)">5.6%</div><div class="ks">18 churned / ~109 active avg · Range 2.0% – 7.5%</div></div>
+  </div>
+  <div class="card">
+    <div class="legend">
+      <span><span class="ldot" style="background:var(--sf)"></span>Salesforce</span>
+      <span><span class="ldot" style="background:var(--hs);border:2px dashed var(--hs);background:transparent"></span>HubSpot</span>
+    </div>
+    <div style="position:relative;height:230px">
+      <canvas id="trendChart" role="img" aria-label="SMB churn rate trend Salesforce vs HubSpot Q1 FY25 through Q2 FY26, with projected Q3 FY26 if churn notices convert"></canvas>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:10px;margin-top:8px;table-layout:fixed">
+      <tr>
+        <td style="width:90px;color:var(--text2);font-weight:500"></td>
+        <td style="text-align:center;color:var(--sf-d)">12/164</td>
+        <td style="text-align:center;color:var(--sf-d)">6/155</td>
+        <td style="text-align:center;color:var(--sf-d)">7/155</td>
+        <td style="text-align:center;color:var(--sf-d)">7/155</td>
+        <td style="text-align:center;color:var(--sf-d)">11/151</td>
+        <td style="text-align:center;color:var(--sf-d)">4/148</td>
+        <td style="text-align:center;color:var(--sf-d);font-weight:500">6/148</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text2);font-weight:500"></td>
+        <td style="text-align:center;color:var(--hs-d)">2/94</td>
+        <td style="text-align:center;color:var(--hs-d)">2/101</td>
+        <td style="text-align:center;color:var(--hs-d)">8/107</td>
+        <td style="text-align:center;color:var(--hs-d)">8/106</td>
+        <td style="text-align:center;color:var(--hs-d)">4/109</td>
+        <td style="text-align:center;color:var(--hs-d)">6/110</td>
+        <td style="text-align:center;color:var(--red-d);font-weight:500">10/110</td>
+      </tr>
+    </table>
+    <div style="font-size:9px;color:var(--text3);margin-top:4px">Churned / active base each quarter · SF (top row) · HS (bottom row)</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Projected Q3 FY26 — if current churn notices convert</div>
+  <div class="grid2">
+    <div class="card" style="padding:1rem 1.25rem">
+      <div class="kl">Salesforce SMB</div>
+      <div class="kv" style="color:var(--sf)">4.1%</div>
+      <div class="ks">6 on notice / 148 active = projects to 4.1%</div>
+      <div style="margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border);font-size:11px">Previous peak: <strong>7.3%</strong> · <span style="color:var(--green)">within normal range</span></div>
+    </div>
+    <div class="card" style="padding:1rem 1.25rem;border-color:#F09595">
+      <div class="kl">HubSpot SMB</div>
+      <div class="kv" style="color:var(--red)">9.1%</div>
+      <div class="ks">10 on notice / 110 active = projects to 9.1%</div>
+      <div style="margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--border);font-size:11px">Previous peak: <strong>7.5%</strong> · <span style="color:var(--red);font-weight:500">would be a new high</span></div>
     </div>
   </div>
 </div>
 
-<div class="canvas">
-
-  <!-- LIFECYCLE FLOWCHARTS -->
-  <div class="section-title">GTM Lifecycle — Pipeline Funnel</div>
-  <div class="cards">
-
-    <a class="card" href="fy25.html">
-      <div>
-        <div class="card-eyebrow" style="color:#1A1917;">FY25 — Full Year</div>
-        <div class="card-title">Pipeline Funnel — FY25</div>
-      </div>
-      <div class="card-desc">Full year view: account segments, source-based SQL/SQO/Won, lost & disqualified reason breakdown with follow-up signals, CS snapshot and churn.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-blue">SQL · SQO · Won</span>
-          <span class="tag tag-gray">Lost reasons</span>
-          <span class="tag tag-green">CS · Churn</span>
-        </div>
-        <a class="view-btn" href="fy25.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-    <a class="card" href="fy26.html">
-      <div>
-        <div class="card-eyebrow" style="color:#2563EB;">FY26 — Year to Date</div>
-        <div class="card-title">Pipeline Funnel — FY26 YTD</div>
-      </div>
-      <div class="card-desc">YTD view (Feb–Jun 18): source breakdown, segment overlay, pipeline still active, early lost/disq patterns and CS snapshot.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-blue">SQL · SQO · Won</span>
-          <span class="tag tag-amber">YTD · 58% through Q2</span>
-        </div>
-        <a class="view-btn" href="fy26.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- MARKET INTELLIGENCE -->
-  <div class="section-title">Market Intelligence</div>
-  <div class="cards" style="grid-template-columns:1fr;">
-
-    <a class="card" href="potential_market.html">
-      <div>
-        <div class="card-eyebrow" style="color:#7C3AED;">Market Intelligence</div>
-        <div class="card-title">Potential Market — Account Quality</div>
-      </div>
-      <div class="card-desc">SF universe analysis: 387K accounts, ICP fit rate 2025 vs 2026 YTD (5.1% → 2.6%), why-not-TAM breakdown, wrong industry trends and enrichment gaps.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-purple">387K SF accounts</span>
-          <span class="tag tag-blue">ICP quality</span>
-          <span class="tag tag-amber">2025 vs 2026</span>
-        </div>
-        <a class="view-btn" href="potential_market.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-  </div>
-
-    <!-- DASHBOARDS -->
-  <div class="section-title">Operational Dashboards</div>
-  <div class="cards">
-
-    <a class="card" href="demos.html">
-      <div>
-        <div class="card-eyebrow" style="color:#059669;">SQL & SQO Dashboard</div>
-        <div class="card-title">Demos Created — Q2 FY26</div>
-      </div>
-      <div class="card-desc">Weekly and QoQ trends for demos created, SQO conversion, source and sales team size breakdown. Live Q2 vs Q1 comparison.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-green">Q2 FY26</span>
-          <span class="tag tag-blue">WoW · QoQ</span>
-          <span class="tag tag-gray">By source · By segment</span>
-        </div>
-        <a class="view-btn" href="demos.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-    <a class="card" href="pipe.html">
-      <div>
-        <div class="card-eyebrow" style="color:#7C3AED;">Pipeline Dashboard</div>
-        <div class="card-title">Pipeline by Quarter — Q2 · Q3 · Q4</div>
-      </div>
-      <div class="card-desc">Open pipeline by stage, CRO weighted ARR, owner breakdown and won deals for Q2. Forward-looking Q3 and Q4 outlook.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-purple">Q2 · Q3 · Q4</span>
-          <span class="tag tag-amber">Weighted ARR</span>
-          <span class="tag tag-gray">By owner · By segment</span>
-        </div>
-        <a class="view-btn" href="pipe.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-  </div>
-
-
-
-
-  <!-- CALENDAR -->
-  <div class="section-title">Calendar Intelligence</div>
-  <div class="cards">
-    <a class="card" href="meetings.html">
-      <div>
-        <div class="card-eyebrow" style="color:#7C3AED;">Calendar Intelligence</div>
-        <div class="card-title">Upcoming Meetings — 100K+ Accounts</div>
-      </div>
-      <div class="card-desc">Future meetings on rep calendars matched to open opportunities above $100K ARR — by rep, stage and date.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-purple">39 meetings</span>
-          <span class="tag tag-blue">Becky · Boaz · Jonathan</span>
-          <span class="tag tag-green">100K+ ARR</span>
-        </div>
-        <a class="view-btn" href="meetings.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-  </div>
-
-  <!-- CUSTOMER INSIGHTS -->
-  <div class="section-title">Customer Insights</div>
-  <div class="cards" style="grid-template-columns:1fr;">
-
-    <a class="card" href="smb_churn_onepager.html">
-      <div>
-        <div class="card-eyebrow" style="color:#991B1B;">Customer Insights</div>
-        <div class="card-title">SMB Churn Analysis — Salesforce vs HubSpot</div>
-      </div>
-      <div class="card-desc">6-quarter SMB churn trend by CRM, projected Q3 FY26 if current notices convert, reason breakdown (avoidable vs uncontrollable), and full account list of churned + at-risk SMB customers.</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="tag tag-gray">SMB · up to $25K ARR</span>
-          <span class="tag tag-blue">SF vs HS</span>
-          <span class="tag" style="background:#FEE2E2;color:#991B1B;">16 on churn notice</span>
-        </div>
-        <a class="view-btn" href="smb_churn_onepager.html">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg></a>
-      </div>
-    </a>
-
-  </div>
-
-    <!-- COMING SOON -->
-  <div class="section-title">Coming Soon</div>
-  <div class="cards">
-
-    <div class="card card-pending">
-      <div>
-        <div class="card-eyebrow" style="color:var(--muted);">Customer Success</div>
-        <div class="card-title">CS Lifecycle — Onboarding · Live · Churn</div>
-      </div>
-      <div class="card-desc">Full CS snapshot with health breakdown, renewal pipeline, churn reason buckets and win-back tracking.</div>
-      <div class="card-footer">
-        <div class="card-tags"><span class="tag tag-gray">Pending churn reason export</span></div>
-        <span class="status status-pending"><span class="status-dot"></span>In progress</span>
+<div class="section">
+  <div class="section-label">Churn reasons — historical, both CRMs</div>
+  <div class="grid2">
+    <div class="card">
+      <div class="bucket" style="background:var(--surface2);color:var(--text2)">Salesforce SMB · 38 reasons logged · $510K</div>
+      <div class="rbar-row"><div class="rbar-label">Acquisition</div><div class="rbar-wrap"><div class="rbar-fill" style="width:100%;background:var(--sf)"></div></div><div class="rbar-n">9 · $120K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Adoption</div><div class="rbar-wrap"><div class="rbar-fill" style="width:56%;background:var(--sf)"></div></div><div class="rbar-n">5 · $75K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Customer readiness</div><div class="rbar-wrap"><div class="rbar-fill" style="width:44%;background:var(--sf)"></div></div><div class="rbar-n">4 · $68K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Product issues</div><div class="rbar-wrap"><div class="rbar-fill" style="width:33%;background:var(--sf)"></div></div><div class="rbar-n">3 · $38K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Low volume</div><div class="rbar-wrap"><div class="rbar-fill" style="width:33%;background:var(--sf)"></div></div><div class="rbar-n">3 · $25K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Other (6 reasons)</div><div class="rbar-wrap"><div class="rbar-fill" style="width:78%;background:var(--text3)"></div></div><div class="rbar-n">14 · $184K</div></div>
+      <div style="margin-top:.6rem;padding-top:.5rem;border-top:.5px solid var(--border);font-size:11px">
+        <span style="color:var(--text2)">Uncontrollable (M&A):</span> <strong>11 · 29%</strong> &nbsp;
+        <span style="color:var(--text2)">Avoidable:</span> <strong>13 · 34%</strong>
       </div>
     </div>
-
-    <div class="card card-pending">
-      <div>
-        <div class="card-eyebrow" style="color:var(--muted);">GTM Health</div>
-        <div class="card-title">GTM Health Master Dashboard</div>
-      </div>
-      <div class="card-desc">Unified health view across all pipeline stages, CS accounts and key conversion metrics — single page executive summary.</div>
-      <div class="card-footer">
-        <div class="card-tags"><span class="tag tag-gray">Pending SF data</span></div>
-        <span class="status status-pending"><span class="status-dot"></span>Planned</span>
+    <div class="card" style="border-color:#F09595">
+      <div class="bucket" style="background:var(--red-l);color:var(--red-d)">HubSpot SMB · 20 reasons logged · $307K</div>
+      <div class="rbar-row"><div class="rbar-label" style="color:var(--red-d);font-weight:500">Qualification</div><div class="rbar-wrap"><div class="rbar-fill" style="width:100%;background:var(--red)"></div></div><div class="rbar-n" style="color:var(--red-d);font-weight:500">4 · $59K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Product issues</div><div class="rbar-wrap"><div class="rbar-fill" style="width:75%;background:var(--hs)"></div></div><div class="rbar-n">3 · $51K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Product fit</div><div class="rbar-wrap"><div class="rbar-fill" style="width:75%;background:var(--hs)"></div></div><div class="rbar-n">3 · $43K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Adoption</div><div class="rbar-wrap"><div class="rbar-fill" style="width:50%;background:var(--hs)"></div></div><div class="rbar-n">2 · $34K</div></div>
+      <div class="rbar-row"><div class="rbar-label">Other (6 reasons)</div><div class="rbar-wrap"><div class="rbar-fill" style="width:200%;max-width:100%;background:var(--text3)"></div></div><div class="rbar-n">8 · $120K</div></div>
+      <div style="margin-top:.6rem;padding-top:.5rem;border-top:.5px solid var(--border);font-size:11px">
+        <span style="color:var(--text2)">Uncontrollable (M&A):</span> <strong>1 · 5%</strong> &nbsp;
+        <span style="color:var(--red-d)">Avoidable:</span> <strong style="color:var(--red-d)">11 · 55%</strong>
       </div>
     </div>
-
   </div>
+  <div class="card" style="margin-top:10px;background:var(--amber-l);border-color:#EF9F27">
+    <div style="font-size:11px;color:var(--amber);line-height:1.5"><strong>Same churn rate, different cause.</strong> Salesforce SMB churn is mostly companies being acquired — uncontrollable. HubSpot SMB churn is mostly qualification — wrong-ICP accounts that should not have closed. Fixable at point of sale, not after the fact.</div>
+  </div>
+</div>
 
-  <div class="footnote">DealHub GTM Ops · hadasdror-hash.github.io/dealhub-gtm-dashboard · Data from Salesforce · Jun 28 2026</div>
+<div class="section">
+  <div class="section-label">Full SMB churn list — Q1 FY25 to today, plus accounts on churn notice</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div style="display:flex;gap:8px;padding:.7rem 1rem;border-bottom:.5px solid var(--border);font-size:11px">
+      <span><strong>77</strong> churned since Q1 FY25</span>
+      <span style="color:var(--text3)">+</span>
+      <span style="color:var(--red-d)"><strong>16</strong> on churn notice now</span>
+      <span style="color:var(--text3)">=</span>
+      <span><strong>93</strong> total</span>
+    </div>
+    <div class="grid2" style="padding:1rem;gap:14px">
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--sf-d);margin-bottom:6px">Salesforce · 53 accounts</div>
+        <div class="scroll">
+          <table class="tbl">
+            <thead><tr style="position:sticky;top:0;background:var(--surface2)"><th>Account</th><th>Status</th><th>Reason</th><th class="right">ARR</th><th>Date</th></tr></thead>
+            <tbody id="sfList"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--hs-d);margin-bottom:6px">HubSpot · 40 accounts</div>
+        <div class="scroll">
+          <table class="tbl">
+            <thead><tr style="position:sticky;top:0;background:var(--surface2)"><th>Account</th><th>Status</th><th>Reason</th><th class="right">ARR</th><th>Date</th></tr></thead>
+            <tbody id="hsList"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>DealHub GTM Ops · SMB churn analysis · Jun 29 2026</span>
+  <span>SMB = up to $25K ARR · Rate calculated as churned ÷ active at start of quarter</span>
+</div>
 
 </div>
+
+<script>
+const trendLabels = ['Q1 FY25','Q2 FY25','Q3 FY25','Q4 FY25','Q1 FY26','Q2 FY26','Q3 FY26 proj.'];
+const sfData = [7.3,3.9,4.5,4.5,7.3,2.7,4.1];
+const hsData = [2.1,2.0,7.5,7.5,3.7,5.5,9.1];
+
+new Chart(document.getElementById('trendChart'), {
+  type:'line',
+  data:{
+    labels:trendLabels,
+    datasets:[
+      {label:'Salesforce',data:sfData,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,0.07)',fill:true,tension:0.25,pointRadius:(ctx)=>ctx.dataIndex===6?6:4,pointBackgroundColor:(ctx)=>ctx.dataIndex===6?'#0C447C':'#185FA5',borderWidth:2,pointStyle:'rect',segment:{borderDash:ctx=>ctx.p1DataIndex===6?[6,4]:undefined}},
+      {label:'HubSpot',data:hsData,borderColor:'#0F6E56',backgroundColor:'rgba(15,110,86,0.07)',fill:true,tension:0.25,pointRadius:(ctx)=>ctx.dataIndex===6?7:4,pointBackgroundColor:(ctx)=>ctx.dataIndex===6?'#A32D2D':'#0F6E56',borderWidth:2,borderDash:[5,3],pointStyle:'circle',segment:{borderDash:ctx=>ctx.p1DataIndex===6?[6,4]:[5,3]}},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{
+        const counts = c.dataset.label==='Salesforce'
+          ? ['12/164','6/155','7/155','7/155','11/151','4/148','6/148 proj']
+          : ['2/94','2/101','8/107','8/106','4/109','6/110','10/110 proj'];
+        return c.dataset.label+': '+c.parsed.y.toFixed(1)+'% ('+counts[c.dataIndex]+')';
+      }}}},
+    scales:{
+      x:{grid:{display:false},ticks:{font:{size:11}}},
+      y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},callback:v=>v+'%'},min:0,max:10}
+    }
+  }
+});
+
+const sfList = [["CodeFresh", "SF", "Churned", "Acquisition", 5760, "1 Feb 2025"], ["SupportLogic", "SF", "Churned", "Low volume", 9000, "1 Feb 2025"], ["Expo Convention Contractors", "SF", "Churned", "Customer readiness", 16200, "9 Feb 2025"], ["EcoOnline", "SF", "Churned", "Other", 19125, "15 Feb 2025"], ["Marcura Platform Solutions FZE", "SF", "Churned", "Adoption", 24420, "16 Feb 2025"], ["SCADAfence", "SF", "Churned", "Acquisition", 9000, "20 Feb 2025"], ["Wiliot", "SF", "Churned", "Product issues", 18000, "23 Feb 2025"], ["StayNTouch", "SF", "Churned", "Budget", 18000, "25 Feb 2025"], ["Functional Software (Sentry)", "SF", "Churned", "\u2014", 20064, "1 Mar 2025"], ["BayoTech", "SF", "Churned", "Qualification", 6600, "9 Apr 2025"], ["ThinkLP", "SF", "Churned", "Customer readiness", 9000, "30 Apr 2025"], ["Drift", "SF", "Churned", "\u2014", 21600, "30 Apr 2025"], ["Rapid7", "SF", "Churned", "\u2014", 0, "8 May 2025"], ["OpusCapita", "SF", "Churned", "Acquisition", 17955, "4 Jun 2025"], ["Ultra", "SF", "Churned", "Low volume", 7920, "22 Jun 2025"], ["Aidoc", "SF", "Churned", "Adoption", 11160, "1 Jul 2025"], ["Vecna Robotics", "SF", "Churned", "Adoption", 16200, "3 Jul 2025"], ["Akamai Technologies Israel", "SF", "Churned", "Acquisition", 18000, "15 Jul 2025"], ["AllSeated", "SF", "Churned", "Acquisition", 8307, "3 Aug 2025"], ["Gem", "SF", "Churned", "Product fit", 20765, "3 Aug 2025"], ["Bioagilytix", "SF", "Churned", "Qualification", 18000, "2 Oct 2025"], ["RingCentral Florida", "SF", "Churned", "Acquisition", 17280, "2 Oct 2025"], ["Prophecy International", "SF", "Churned", "Adoption", 15600, "14 Oct 2025"], ["Axis Security", "SF", "Churned", "Acquisition", 9853, "29 Oct 2025"], ["Vulcan Cyber", "SF", "Churned", "\u2014", 12960, "29 Oct 2025"], ["Able.Digital", "SF", "Churned", "Other", 18000, "5 Nov 2025"], ["Hive Streaming", "SF", "Churned", "\u2014", 13752, "6 Nov 2025"], ["Feaniks", "SF", "Churned", "Other", 12067, "17 Nov 2025"], ["Netigate", "SF", "Churned", "Merger/Acq", 13205, "19 Nov 2025"], ["Metro Exhibits", "SF", "Churned", "\u2014", 22680, "9 Dec 2025"], ["Hivebrite", "SF", "Churned", "\u2014", 0, "21 Dec 2025"], ["Senseon", "SF", "Churned", "Other", 6969, "5 Jan 2026"], ["Talkspace", "SF", "Churned", "Customer readiness", 20000, "2 Feb 2026"], ["JAMIS", "SF", "Churned", "\u2014", 13500, "10 Feb 2026"], ["5 Words Media", "SF", "Churned", "Acquisition", 11340, "19 Feb 2026"], ["Critical Insight", "SF", "Churned", "\u2014", 11700, "19 Feb 2026"], ["TruHu", "SF", "Churned", "Poor engagement", 7200, "19 Feb 2026"], ["Unqork", "SF", "Churned", "\u2014", 21600, "19 Feb 2026"], ["Cresta", "SF", "Churned", "Product fit", 6600, "26 Feb 2026"], ["Ordergroove", "SF", "Churned", "Product issues", 0, "26 Feb 2026"], ["Geoedge", "SF", "Churned", "\u2014", 6000, "1 Mar 2026"], ["Bright Network", "SF", "Churned", "\u2014", 21040, "14 Apr 2026"], ["Prezent", "SF", "Churned", "Product issues", 12600, "21 Apr 2026"], ["World Television", "SF", "Churned", "Poor engagement", 16946, "2 May 2026"], ["Omnipresent", "SF", "Churned", "Merger/Acq", 13500, "2 May 2026"], ["Aravo", "SF", "Churned", "\u2014", 16320, "18 Jun 2026"], ["Zluri", "SF", "Churned", "\u2014", 9000, "18 Jun 2026"], ["Coretek Services", "SF", "On notice", "\u2014", 12049, "\u2014"], ["Inky Technology", "SF", "On notice", "\u2014", 12613, "Renews 1 Nov 2026"], ["LogRocket", "SF", "On notice", "\u2014", 24608, "Renews 1 Oct 2026"], ["Luma Health", "SF", "On notice", "\u2014", 11907, "Renews 1 Dec 2026"], ["Source", "SF", "On notice", "\u2014", 20142, "Renews 31 Aug 2026"], ["Polimorphic", "SF", "On notice", "\u2014", 24300, "Renews 1 Dec 2026"]];
+const hsList = [["Vivo Technologies", "HS", "Churned", "\u2014", 9360, "1 Mar 2025"], ["GAST Clearwater", "HS", "Churned", "Qualification", 8550, "27 Mar 2025"], ["Mainstay", "HS", "Churned", "Adoption", 18000, "4 Jun 2025"], ["DataStealth", "HS", "Churned", "Qualification", 18000, "27 Jul 2025"], ["Smenco Pty Ltd", "HS", "Churned", "Adoption", 16200, "18 Aug 2025"], ["ThoroughCare", "HS", "Churned", "\u2014", 25000, "3 Sep 2025"], ["Zappie Communications Ltd", "HS", "Churned", "Product fit", 23904, "2 Oct 2025"], ["Raft", "HS", "Churned", "Product fit", 13661, "2 Oct 2025"], ["Veriti", "HS", "Churned", "\u2014", 9000, "11 Oct 2025"], ["PortX", "HS", "Churned", "Qualification", 9450, "15 Oct 2025"], ["Wander", "HS", "Churned", "\u2014", 18000, "21 Oct 2025"], ["Helios", "HS", "Churned", "\u2014", 18000, "30 Oct 2025"], ["iNGENu CRO", "HS", "Churned", "Product fit", 9450, "4 Nov 2025"], ["Konfidas", "HS", "Churned", "\u2014", 12000, "11 Nov 2025"], ["Quantios", "HS", "Churned", "\u2014", 15120, "17 Nov 2025"], ["BIG LIFT LLC", "HS", "Churned", "\u2014", 7200, "1 Dec 2025"], ["hook", "HS", "Churned", "Product issues", 18000, "22 Dec 2025"], ["Lumin Digital", "HS", "Churned", "\u2014", 16380, "25 Dec 2025"], ["Verso", "HS", "Churned", "\u2014", 15950, "15 Jan 2026"], ["View, Inc.", "HS", "Churned", "Product issues", 23310, "27 Jan 2026"], ["Ferrum Technology Services", "HS", "Churned", "Other", 18000, "2 Feb 2026"], ["Shipsy", "HS", "Churned", "\u2014", 12480, "19 Feb 2026"], ["LDP Associates", "HS", "Churned", "\u2014", 11880, "19 Feb 2026"], ["Blumira", "HS", "Churned", "\u2014", 18900, "13 Mar 2026"], ["BinSentry", "HS", "Churned", "Product issues", 10000, "2 May 2026"], ["Ellie Diagnostics", "HS", "Churned", "Merger/Acq", 16800, "2 May 2026"], ["Kennedy Events", "HS", "Churned", "Poor engagement", 14400, "2 May 2026"], ["uConnect", "HS", "Churned", "Budget", 18000, "2 May 2026"], ["Inspired Thinking Group", "HS", "Churned", "\u2014", 22260, "15 May 2026"], ["SKB Cases", "HS", "Churned", "\u2014", 19125, "1 Jun 2026"], ["Mobilesson (Connecteam)", "HS", "On notice", "\u2014", 14400, "Renews 16 Jul 2026"], ["Ninjio", "HS", "On notice", "\u2014", 18630, "Renews 22 Sep 2026"], ["Velocity Smart Technology", "HS", "On notice", "\u2014", 9500, "Renews 8 Jul 2026"], ["medialakeAI", "HS", "On notice", "\u2014", 9979, "Renews 1 Aug 2026"], ["Functionize", "HS", "On notice", "\u2014", 18000, "Renews 15 Sep 2026"], ["Heidi Health", "HS", "On notice", "\u2014", 18000, "Renews 19 Jun 2026"], ["Spatial Data Logic", "HS", "On notice", "\u2014", 21600, "Renews 1 Jun 2026"], ["iVigee", "HS", "On notice", "\u2014", 18000, "Renews 30 Jun 2026"], ["Cubrodesign", "HS", "On notice", "\u2014", 21060, "Renews 1 Aug 2026"], ["Dynex", "HS", "On notice", "\u2014", 9000, "\u2014"]];
+
+const statusBadge = {'Churned':'background:#F1EFE8;color:#5F5E5A','On notice':'background:#FCEBEB;color:#791F1F'};
+
+function renderList(list, elId) {
+  let html = '';
+  list.forEach(([acct,crm,status,reason,arr,date]) => {
+    const arrFmt = arr > 0 ? '$'+arr.toLocaleString() : '—';
+    html += `<tr>
+      <td style="font-weight:500">${acct}</td>
+      <td><span class="badge" style="${statusBadge[status]}">${status}</span></td>
+      <td style="color:var(--text2)">${reason}</td>
+      <td class="right" style="font-variant-numeric:tabular-nums">${arrFmt}</td>
+      <td style="color:var(--text2);white-space:nowrap;font-size:10px">${date}</td>
+    </tr>`;
+  });
+  document.getElementById(elId).innerHTML = html;
+}
+renderList(sfList, 'sfList');
+renderList(hsList, 'hsList');
+</script>
 </body>
 </html>
